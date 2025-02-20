@@ -1,0 +1,35 @@
+package bsu.edu.cs.Parsers;
+
+import bsu.edu.cs.Exceptions.noItemFoundException;
+import bsu.edu.cs.Exceptions.openInputStreamException;
+import net.minidev.json.JSONArray;
+import org.junit.jupiter.api.Test;
+
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+public class ParkParserTest {
+
+    @Test
+    public void getQueryTest() throws openInputStreamException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        assert sampleFile != null;
+        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        assertEquals("$..parks",parkParser.getQuery());
+    }
+
+    @Test
+    public void convertRevisionsToListTest() throws openInputStreamException, noItemFoundException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        assert sampleFile != null;
+        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
+        List<Park> convertedList = parkParser.convertRevisionsToList(parsedRevisions);
+        assertEquals(132, convertedList.size());
+    }
+
+}

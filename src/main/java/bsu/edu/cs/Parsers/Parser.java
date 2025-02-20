@@ -16,19 +16,18 @@ public abstract class Parser <T> {
     }
 
     public T parse() throws noItemFoundException {
-        JSONArray parsedRevisions = extractRevisions(new ByteArrayInputStream(this.inputStreamInstance.inputStream));
+        JSONArray parsedRevisions = extractData(new ByteArrayInputStream(this.inputStreamInstance.inputStream));
         return convertRevisionsToList(parsedRevisions);
     }
 
-    protected JSONArray extractRevisions(InputStream inputStreamInstance) throws noItemFoundException {
-        JSONArray output;
+    protected JSONArray extractData(InputStream inputStreamInstance) throws noItemFoundException {
+        JSONArray dataArray;
         try {
-            JSONArray revisionArray = JsonPath.read(inputStreamInstance,getQuery());
-            output = (JSONArray) revisionArray.getFirst();
+             dataArray = JsonPath.read(inputStreamInstance,getQuery());
         }catch (Exception e) {
             throw new noItemFoundException();
         }
-        return output;
+        return dataArray;
     }
 
     protected abstract String getQuery();
