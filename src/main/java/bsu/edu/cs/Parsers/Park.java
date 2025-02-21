@@ -1,13 +1,13 @@
 package bsu.edu.cs.Parsers;
 
 public class Park {
-    private int id;
-    private String name;
-    private String country;
-    private String continent;
-    private String latitude;
-    private String longitude;
-    private String timezone;
+    final private int id;
+    final private String name;
+    final private String country;
+    final private String continent;
+    final private String latitude;
+    final private String longitude;
+    final private String timezone;
 
     public Park(int id, String name, String country, String continent, String latitude, String longitude,String timezone){
         this.id = id;
