@@ -6,10 +6,11 @@ import net.minidev.json.JSONArray;
 import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayInputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkParserTest {
 
@@ -29,6 +30,40 @@ public class ParkParserTest {
         JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
         List<Park> convertedList = parkParser.convertRevisionsToList(parsedRevisions);
         assertEquals(132, convertedList.size());
+    }
+
+    @Test
+    public void extractDataTest() throws openInputStreamException, noItemFoundException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        assert sampleFile != null;
+        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
+        assertNotNull(parsedRevisions);
+    }
+
+    @Test
+    public void extractDataTestNoItems() throws openInputStreamException, IOException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        assert sampleFile != null;
+        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+
+        //Closed to test file exception
+        sampleFile.close();
+
+        try {
+            parkParser.extractData(sampleFile);
+            fail("Expected noItemFoundException");
+        }catch (noItemFoundException e){
+            assertEquals("Could not find the item you were looking for!",e.getMessage());
+        }
+    }
+
+    @Test
+    public void parseTest() throws openInputStreamException, noItemFoundException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        assert sampleFile != null;
+        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        assertEquals(132,parkParser.parse().size());
     }
 
 }
