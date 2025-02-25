@@ -19,7 +19,7 @@ public class GUI extends Application {
         // Left Sidebar (10%)
         VBox sidebar = new VBox(10);
         sidebar.setPadding(new Insets(10));
-        sidebar.setStyle("-fx-background-color: #271A89; -fx-padding: 20px;");
+        sidebar.getStyleClass().add("sidebar");
 
         TextField searchBar = new TextField();
         searchBar.setPromptText("Search Parks...");
@@ -33,9 +33,9 @@ public class GUI extends Application {
         // Main Display Area (90%)
         VBox mainContent = new VBox(10);
         mainContent.setPadding(new Insets(20));
+        mainContent.getStyleClass().add("main-content");
         Label parkTitle = new Label("Select a Park");
-        parkTitle.setStyle("-fx-font-size: 24px; -fx-font-weight: bold;");
-
+        parkTitle.getStyleClass().add("park-title");
         ListView<String> ridesList = new ListView<>();
 
         mainContent.getChildren().addAll(parkTitle, ridesList);
@@ -51,6 +51,7 @@ public class GUI extends Application {
         });
 
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         primaryStage.setTitle("National Parks Explorer");
         primaryStage.setScene(scene);
         primaryStage.show();
