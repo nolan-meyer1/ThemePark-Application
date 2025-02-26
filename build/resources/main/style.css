@@ -1,0 +1,21 @@
+.sidebar {
+    -fx-background-color: #271A89;
+    -fx-padding: 10px;
+}
+
+.text-field {
+    -fx-font-size: 14px;
+}
+
+.list-view {
+    -fx-background-color: #ffffff;
+}
+
+.main-content {
+    -fx-padding: 20px;
+}
+
+.park-title {
+    -fx-font-size: 24px;
+    -fx-font-weight: bold;
+}
