@@ -10,7 +10,7 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
-public class MagicKingdomAccessTest {
+public class ParksAccessTest {
     @Test
     public void testAccessToJsonFile(){
         String jsonData = readSampleFileAsString();
