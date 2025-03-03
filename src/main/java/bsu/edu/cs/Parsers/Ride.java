@@ -33,6 +33,8 @@ public class Ride {
         return wait_time;
     }
 
-    public String getLastUpdated(){return last_updated;}
+    public String getLastUpdated(){
+        return last_updated;
+    }
 
 }

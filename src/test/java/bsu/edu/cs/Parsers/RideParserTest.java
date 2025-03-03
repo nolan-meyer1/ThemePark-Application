@@ -23,12 +23,12 @@ public class RideParserTest {
 
     @Test
     public void convertRevisionsToListTest() throws openInputStreamException, noItemFoundException {
-        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
         RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));
         JSONArray parsedRevisions = rideParser.extractData(new ByteArrayInputStream(rideParser.inputStreamInstance.inputStream));
         List<Ride> convertedList = rideParser.convertRevisionsToList(parsedRevisions);
-        assertEquals(0, convertedList.size());
+        assertEquals(44, convertedList.size());
     }
 
 }
