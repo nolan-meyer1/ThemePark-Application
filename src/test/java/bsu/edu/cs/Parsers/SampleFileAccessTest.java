@@ -10,25 +10,39 @@ import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.util.Objects;
 
-public class ParksAccessTest {
+public class SampleFileAccessTest {
+
     @Test
-    public void testAccessToJsonFile(){
-        String jsonData = readSampleFileAsString();
+    public void testAccessToParks(){
+        String jsonData = readSampleFileAsString("parks.json");
         Assertions.assertNotNull(jsonData);
     }
 
     @Test
-    public void testCountRevisionsWithJsonPath(){
-        String jsonData = readSampleFileAsString();
+    public void testAccessRides(){
+        String jsonData = readSampleFileAsString("magicKingdom.json");
+        Assertions.assertNotNull(jsonData);
+    }
+
+    @Test
+    public void testCountParks(){
+        String jsonData = readSampleFileAsString("parks.json");
         JSONArray parks = getParksFromJson(jsonData);
         Assertions.assertEquals(132, parks.size());
     }
 
-    private String readSampleFileAsString(){
+    @Test
+    public void testCountRides(){
+        String jsonData = readSampleFileAsString("magicKingdom.json");
+        JSONArray rides = getRidesFromJson(jsonData);
+        Assertions.assertEquals(44, rides.size());
+    }
+
+    private String readSampleFileAsString(String fileName){
         String output = "";
         try{
             try (InputStream sampleFile = Thread.currentThread().getContextClassLoader()
-                    .getResourceAsStream("parks.json")) {
+                    .getResourceAsStream(fileName)) {
                 output = new String(Objects.requireNonNull(sampleFile).readAllBytes(), Charset.defaultCharset());
             }
         }catch (IOException | NullPointerException e) {
@@ -40,4 +54,9 @@ public class ParksAccessTest {
     private JSONArray getParksFromJson(String jsonData) {
         return JsonPath.read(jsonData, "$..parks[*]");
     }
+
+    private JSONArray getRidesFromJson(String jsonData) {
+        return JsonPath.read(jsonData, "$..rides[*]");
+    }
+
 }
