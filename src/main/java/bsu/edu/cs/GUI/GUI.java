@@ -1,6 +1,8 @@
 package bsu.edu.cs.GUI;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -26,6 +28,20 @@ public class GUI extends Application {
 
         ListView<String> parksList = new ListView<>();
         parksList.getItems().addAll(parkRides.keySet());
+
+        searchBar.setOnKeyTyped(event -> {
+            String searchText = searchBar.getText().toLowerCase();
+            ObservableList<String> filteredList = FXCollections.observableArrayList();
+
+            for (String ride : parkRides.keySet()) {
+                if (ride.toLowerCase().startsWith(searchText)) {
+                    filteredList.add(ride);
+                }
+            }
+
+            parksList.setItems(filteredList);
+        });
+
 
         sidebar.getChildren().addAll(searchBar, parksList);
         root.setLeft(sidebar);
