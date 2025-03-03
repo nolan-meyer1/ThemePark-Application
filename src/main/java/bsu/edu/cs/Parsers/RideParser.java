@@ -20,10 +20,10 @@ public class RideParser extends Parser<List<Ride>> {
     protected List<Ride> convertRevisionsToList(JSONArray list) {
         List<Ride> ridesList = new ArrayList<>();
 
-        for (Object rideInstance : list) {
-            if (rideInstance instanceof LinkedHashMap<?, ?>) {
+        for (Object rideItem : list) {
+            if (rideItem instanceof LinkedHashMap<?, ?>) {
                 @SuppressWarnings("unchecked")
-                LinkedHashMap<String, ?> rideConverted = (LinkedHashMap<String, ?>) rideInstance;
+                LinkedHashMap<String, ?> rideConverted = (LinkedHashMap<String, ?>) rideItem;
                 ridesList.add(new Ride(
                         (int) rideConverted.get("id"),
                         (String) rideConverted.get("name"),
