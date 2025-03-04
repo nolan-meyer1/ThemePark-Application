@@ -1,5 +1,11 @@
 package bsu.edu.cs.GUI;
 
+import bsu.edu.cs.Exceptions.networkErrorException;
+import bsu.edu.cs.Exceptions.noItemFoundException;
+import bsu.edu.cs.Exceptions.openInputStreamException;
+import bsu.edu.cs.InternetConnections.ParkConnection;
+import bsu.edu.cs.InternetConnections.RideConnection;
+import bsu.edu.cs.Parsers.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,11 +17,15 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class GUI extends Application {
-    private final Map<String, List<String>> parkRides = new HashMap<>();
+   private ParkConnection parkConnection = new ParkConnection();
+    private ParkParser parkParser;
+    private final Map<String, Park> parksMap = new HashMap<>();
+    private RideConnection rideConnection = new RideConnection();
+    private RideParser rideParser;
 
     @Override
-    public void start(Stage primaryStage) {
-        fetchParksAndRides();
+    public void start(Stage primaryStage) throws noItemFoundException, networkErrorException, openInputStreamException {
+        fetchParks();
         BorderPane root = new BorderPane();
 
         // Left Sidebar (10%)
@@ -27,13 +37,13 @@ public class GUI extends Application {
         searchBar.setPromptText("Search Parks...");
 
         ListView<String> parksList = new ListView<>();
-        parksList.getItems().addAll(parkRides.keySet());
+        parksList.getItems().addAll(parksMap.keySet());
 
         searchBar.setOnKeyTyped(event -> {
             String searchText = searchBar.getText().toLowerCase();
             ObservableList<String> filteredList = FXCollections.observableArrayList();
 
-            for (String ride : parkRides.keySet()) {
+            for (String ride : parksMap.keySet()) {
                 if (ride.toLowerCase().startsWith(searchText)) {
                     filteredList.add(ride);
                 }
@@ -62,22 +72,36 @@ public class GUI extends Application {
             if (newValue != null) {
                 parkTitle.setText(newValue + " Rides");
                 ridesList.getItems().clear();
-                ridesList.getItems().addAll(parkRides.getOrDefault(newValue, Collections.emptyList()));
+                try {
+                   rideParser = new RideParser(new ApiInputStream(rideConnection.search(parksMap.get(newValue).getId())));
+                   List<Ride> rideList = rideParser.parse();
+
+                   for(Ride ride: rideList){
+                       ridesList.getItems().add(
+                               ride.getName() + " | Wait Time: " + ride.getWaitTime() + " min | Is Open: " + (ride.getIsOpen() ? "Yes" : "No")
+                       );
+
+                   }
+                } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
 
         Scene scene = new Scene(root, 800, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
-        primaryStage.setTitle("National Parks Explorer");
+        primaryStage.setTitle("Theme Park Explorer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    private void fetchParksAndRides() {
-        parkRides.put("Yellowstone", Arrays.asList("Old Faithful Geyser - 20 min", "Grand Prismatic - 15 min"));
-        parkRides.put("Yosemite", Arrays.asList("Half Dome Hike - 120 min", "Glacier Point - 30 min"));
-        parkRides.put("Grand Canyon", Arrays.asList("Skywalker - 25 min", "Rim Trail - 40 min"));
-        parkRides.put("Zion", Arrays.asList("Angels Landing - 90 min", "The Narrows - 60 min"));
-        parkRides.put("Great Smoky Mountains", Arrays.asList("Cling mans Dome - 35 min", "Codes Cove Loop - 45 min"));
+    private void fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
+        ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
+        parkParser = new ParkParser(apiInputStream);
+        List<Park> parksList = parkParser.parse();
+
+        for(Park park: parksList){
+            parksMap.put(park.getName(),park);
+        }
     }
 
     public static void main(String[] args) {
