@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class GUI extends Application {
-   private ParkConnection parkConnection = new ParkConnection();
+    private ParkConnection parkConnection = new ParkConnection();
     private ParkParser parkParser;
     private final Map<String, Park> parksMap = new HashMap<>();
     private RideConnection rideConnection = new RideConnection();
@@ -43,12 +43,11 @@ public class GUI extends Application {
             String searchText = searchBar.getText().toLowerCase();
             ObservableList<String> filteredList = FXCollections.observableArrayList();
 
-            for (String ride : parksMap.keySet()) {
-                if (ride.toLowerCase().startsWith(searchText)) {
-                    filteredList.add(ride);
+            for (String park : parksMap.keySet()) {
+                if (park.toLowerCase().startsWith(searchText)) {
+                    filteredList.add(park);
                 }
             }
-
             parksList.setItems(filteredList);
         });
 
@@ -80,8 +79,12 @@ public class GUI extends Application {
                        ridesList.getItems().add(
                                ride.getName() + " | Wait Time: " + ride.getWaitTime() + " min | Is Open: " + (ride.getIsOpen() ? "Yes" : "No")
                        );
-
                    }
+
+                   if(rideList.isEmpty()){
+                       ridesList.getItems().add("No ride information can be found for this park!");
+                   }
+
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     throw new RuntimeException(e);
                 }
