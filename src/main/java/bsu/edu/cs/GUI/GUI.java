@@ -17,10 +17,10 @@ import javafx.stage.Stage;
 import java.util.*;
 
 public class GUI extends Application {
-    private ParkConnection parkConnection = new ParkConnection();
+    private final ParkConnection parkConnection = new ParkConnection();
     private ParkParser parkParser;
-    private final Map<String, Park> parksMap = new HashMap<>();
-    private RideConnection rideConnection = new RideConnection();
+    private Map<String, Park> parksMap;
+    private final RideConnection rideConnection = new RideConnection();
     private RideParser rideParser;
 
     @Override
@@ -100,11 +100,7 @@ public class GUI extends Application {
     private void fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
         ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
         parkParser = new ParkParser(apiInputStream);
-        List<Park> parksList = parkParser.parse();
-
-        for(Park park: parksList){
-            parksMap.put(park.getName(),park);
-        }
+        parksMap = parkParser.parse();
     }
 
     public static void main(String[] args) {
