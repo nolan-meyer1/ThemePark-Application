@@ -98,6 +98,7 @@ public class GUI extends Application {
         primaryStage.show();
     }
     private void fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
+        //Search is left blank because we are just grabbing the parks so there's no value to give it but a blank string
         ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
         parkParser = new ParkParser(apiInputStream);
         parksMap = parkParser.parse();
