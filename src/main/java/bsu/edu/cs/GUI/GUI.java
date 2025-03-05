@@ -12,9 +12,17 @@ import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+
+import java.awt.*;
+import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.*;
+import java.util.List;
 
 public class GUI extends Application {
     private final ParkConnection parkConnection = new ParkConnection();
@@ -55,8 +63,17 @@ public class GUI extends Application {
             parksList.setItems(filteredList);
         });
 
+        Hyperlink contributionLink = new Hyperlink("Powered by Queue-Times.com");
+        contributionLink.setOnAction(actionEvent -> {
+            try {
+                Desktop.getDesktop().browse(new URI("https://queue-times.com/en-US"));
+            } catch (IOException | URISyntaxException e) {
+                throw new RuntimeException(e);
+            }
+        });
 
-        sidebar.getChildren().addAll(searchBar, parksList);
+
+        sidebar.getChildren().addAll(searchBar, parksList,contributionLink);
         root.setLeft(sidebar);
 
         // Main Display Area (90%)
