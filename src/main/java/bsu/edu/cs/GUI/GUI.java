@@ -82,7 +82,7 @@ public class GUI extends Application {
         mainContent.getStyleClass().add("main-content");
         Label parkTitle = new Label("Select a Park");
         parkTitle.getStyleClass().add("park-title");
-        ListView<String> ridesList = new ListView<>();
+        ListView<Ride> ridesList = new ListView<>();
 
         mainContent.getChildren().addAll(parkTitle, ridesList);
         root.setCenter(mainContent);
@@ -96,15 +96,12 @@ public class GUI extends Application {
                    rideParser = new RideParser(new ApiInputStream(rideConnection.search(parksMap.get(newValue).getId())));
                    List<Ride> rideList = rideParser.parse();
 
-                   for(Ride ride: rideList){
-                       ridesList.getItems().add(
-                               ride.getName() + " | Wait Time: " + ride.getWaitTime() + " min | " + (ride.getIsOpen() ? "OPENED" : "CLOSED")
-                       );
-                   }
+                    if(rideList.isEmpty()){
+                        rideList.add(new Ride(0,"No ride information available", false, 0, "N/A"));
+                    }
 
-                   if(rideList.isEmpty()){
-                       ridesList.getItems().add("No ride information can be found for this park!");
-                   }
+                    ridesList.setItems(FXCollections.observableArrayList(rideList));
+                    styleRidesList(ridesList);
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     throw new RuntimeException(e);
@@ -138,6 +135,43 @@ public class GUI extends Application {
                 }
             }
         }
+    }
+
+    private void styleRidesList(ListView<Ride> ridesList){
+        ridesList.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(Ride ride, boolean empty) {
+                super.updateItem(ride, empty);
+                if (empty || ride == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    Label nameLabel = new Label(ride.getName() + " | ");
+
+                    Label waitTimeLabel = new Label(ride.getWaitTime() + " min");
+                    waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
+
+                    Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
+                    statusLabel.getStyleClass().add(ride.getIsOpen() ? "statusOpen" : "statusClosed");
+
+                    HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
+                    setGraphic(hbox);
+                }
+            }
+        });
+    }
+
+    private String getWaitTimeColor(int waitTime){
+        String output;
+
+        if(waitTime < 45){
+            output = "lowWaitTime";
+        }else if(waitTime <= 90){
+            output = "mediumWaitTime";
+        }else{
+            output = "highWaitTime";
+        }
+        return output;
     }
 
     public static void main(String[] args) {

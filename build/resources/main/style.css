@@ -19,3 +19,29 @@
     -fx-font-size: 24px;
     -fx-font-weight: bold;
 }
+
+.statusOpen {
+    -fx-text-fill: green;
+}
+
+.statusClosed {
+    -fx-text-fill: gray;
+}
+
+.lowWaitTime {
+    -fx-text-fill: white;
+    -fx-padding: 3px 8px;
+    -fx-background-color: green
+}
+
+.mediumWaitTime {
+    -fx-text-fill: white;
+    -fx-padding: 3px 8px;
+    -fx-background-color: rgb(230, 230, 0)
+}
+
+.highWaitTime {
+    -fx-text-fill: white;
+    -fx-padding: 3px 8px;
+    -fx-background-color: red
+}
