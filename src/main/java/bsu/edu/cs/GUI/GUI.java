@@ -37,7 +37,9 @@ public class GUI extends Application {
         searchBar.setPromptText("Search Parks...");
 
         ListView<String> parksList = new ListView<>();
-        parksList.getItems().addAll(parksMap.keySet());
+        ObservableList<String> sortedList = FXCollections.observableArrayList(parksMap.keySet());
+        alphabeticalSort(sortedList);
+        parksList.getItems().addAll(sortedList);
 
         searchBar.setOnKeyTyped(event -> {
             String searchText = searchBar.getText().toLowerCase();
@@ -48,6 +50,8 @@ public class GUI extends Application {
                     filteredList.add(park);
                 }
             }
+
+            alphabeticalSort(filteredList);
             parksList.setItems(filteredList);
         });
 
@@ -102,6 +106,21 @@ public class GUI extends Application {
         ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
         parkParser = new ParkParser(apiInputStream);
         parksMap = parkParser.parse();
+    }
+
+    private void alphabeticalSort(ObservableList<String> list){
+
+        String temp;
+
+        for(int i = 0; i < list.size(); i++){
+            for(int j = 0; j < list.size() -1 - i; j++){
+                if(list.get(j).charAt(0) > list.get(j+1).charAt(0)){
+                    temp = list.get(j);
+                    list.set(j,list.get(j+1));
+                    list.set(j+1,temp);
+                }
+            }
+        }
     }
 
     public static void main(String[] args) {
