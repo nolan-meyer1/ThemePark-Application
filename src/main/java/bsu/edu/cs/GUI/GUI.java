@@ -81,7 +81,7 @@ public class GUI extends Application {
 
                    for(Ride ride: rideList){
                        ridesList.getItems().add(
-                               ride.getName() + " | Wait Time: " + ride.getWaitTime() + " min | Is Open: " + (ride.getIsOpen() ? "Yes" : "No")
+                               ride.getName() + " | Wait Time: " + ride.getWaitTime() + " min | " + (ride.getIsOpen() ? "OPENED" : "CLOSED")
                        );
                    }
 
