@@ -147,12 +147,15 @@ public class GUI extends Application {
                     setGraphic(null);
                 } else {
                     Label nameLabel = new Label(ride.getName() + " | ");
+                    nameLabel.setMinWidth(380);
 
                     Label waitTimeLabel = new Label(ride.getWaitTime() + " min");
                     waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
+                    waitTimeLabel.setMinWidth(60);
 
                     Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
                     statusLabel.getStyleClass().add(ride.getIsOpen() ? "statusOpen" : "statusClosed");
+                    statusLabel.setMinWidth(60);
 
                     HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
                     setGraphic(hbox);
