@@ -142,11 +142,14 @@ public class GUI extends Application {
             @Override
             protected void updateItem(Ride ride, boolean empty) {
                 super.updateItem(ride, empty);
+
+                setStyle("");
+
                 if (empty || ride == null) {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    Label nameLabel = new Label(ride.getName() + " | ");
+                    Label nameLabel = new Label(ride.getName());
                     nameLabel.setMinWidth(380);
 
                     Label waitTimeLabel = new Label(ride.getWaitTime() + " min");
@@ -158,6 +161,8 @@ public class GUI extends Application {
                     statusLabel.setMinWidth(60);
 
                     HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
+                    getStyleClass().add("listElement");
+
                     setGraphic(hbox);
                 }
             }

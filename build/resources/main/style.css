@@ -1,47 +1,55 @@
 .sidebar {
-    -fx-background-color: #271A89;
+     -fx-background-color: #271A89;
+     -fx-padding: 10px;
+ }
+
+ .text-field {
+     -fx-font-size: 14px;
+ }
+
+ .list-view {
+     -fx-background-color: #ffffff;
+ }
+
+ .main-content {
+     -fx-padding: 20px;
+ }
+
+ .park-title {
+     -fx-font-size: 24px;
+     -fx-font-weight: bold;
+ }
+
+ .statusOpen {
+     -fx-text-fill: green;
+ }
+
+ .statusClosed {
+     -fx-text-fill: gray;
+ }
+
+ .lowWaitTime {
+     -fx-text-fill: white;
+     -fx-padding: 3px 8px;
+     -fx-background-color: green
+ }
+
+ .mediumWaitTime {
+     -fx-text-fill: white;
+     -fx-padding: 3px 8px;
+     -fx-background-color: rgb(230, 230, 0)
+ }
+
+ .highWaitTime {
+     -fx-text-fill: white;
+     -fx-padding: 3px 8px;
+     -fx-background-color: red
+ }
+
+ .listElement {
+    -fx-background-color: #f5f5f5;
     -fx-padding: 10px;
-}
-
-.text-field {
-    -fx-font-size: 14px;
-}
-
-.list-view {
-    -fx-background-color: #ffffff;
-}
-
-.main-content {
-    -fx-padding: 20px;
-}
-
-.park-title {
-    -fx-font-size: 24px;
-    -fx-font-weight: bold;
-}
-
-.statusOpen {
-    -fx-text-fill: green;
-}
-
-.statusClosed {
-    -fx-text-fill: gray;
-}
-
-.lowWaitTime {
-    -fx-text-fill: white;
-    -fx-padding: 3px 8px;
-    -fx-background-color: green
-}
-
-.mediumWaitTime {
-    -fx-text-fill: white;
-    -fx-padding: 3px 8px;
-    -fx-background-color: rgb(230, 230, 0)
-}
-
-.highWaitTime {
-    -fx-text-fill: white;
-    -fx-padding: 3px 8px;
-    -fx-background-color: red
-}
+    -fx-border-radius: 10px;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 1px;
+ }
