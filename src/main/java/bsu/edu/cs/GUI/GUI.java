@@ -154,7 +154,7 @@ public class GUI extends Application {
 
                     Label waitTimeLabel = new Label();
                     if(ride.getIsOpen()){
-                        waitTimeLabel.setText(ride.getWaitTime() + " min");
+                        waitTimeLabel.setText(convertMinToHours(ride.getWaitTime()));
                         waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
                     }
                     waitTimeLabel.setMinWidth(60);
@@ -182,6 +182,26 @@ public class GUI extends Application {
         }else{
             output = "highWaitTime";
         }
+        return output;
+    }
+
+    private String convertMinToHours(int minutes){
+
+        String output;
+        int hours;
+        int extraMinutes;
+
+        if(minutes < 60){
+            output = minutes + " min";
+        }else if(minutes % 60 == 0){
+            hours = minutes / 60;
+            output = String.format("%d hr",hours);
+        }else{
+            hours = minutes / 60;
+            extraMinutes = minutes % 60;
+            output = String.format("%d hr %d min",hours,extraMinutes);
+        }
+
         return output;
     }
 

@@ -29,21 +29,21 @@
  }
 
  .lowWaitTime {
-     -fx-text-fill: white;
+     -fx-text-fill: #FFFFFF;
      -fx-padding: 3px 8px;
-     -fx-background-color: green
+     -fx-background-color: #28A745
  }
 
  .mediumWaitTime {
-     -fx-text-fill: white;
+     -fx-text-fill: #000000;
      -fx-padding: 3px 8px;
-     -fx-background-color: rgb(230, 230, 0)
+     -fx-background-color: #FFD700
  }
 
  .highWaitTime {
-     -fx-text-fill: white;
+     -fx-text-fill: #FFFFFF;
      -fx-padding: 3px 8px;
-     -fx-background-color: red
+     -fx-background-color: #DC3545
  }
 
  .listElement {
