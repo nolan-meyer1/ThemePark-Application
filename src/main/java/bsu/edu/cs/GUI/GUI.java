@@ -152,8 +152,11 @@ public class GUI extends Application {
                     Label nameLabel = new Label(ride.getName());
                     nameLabel.setMinWidth(380);
 
-                    Label waitTimeLabel = new Label(ride.getWaitTime() + " min");
-                    waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
+                    Label waitTimeLabel = new Label();
+                    if(ride.getIsOpen()){
+                        waitTimeLabel.setText(ride.getWaitTime() + " min");
+                        waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
+                    }
                     waitTimeLabel.setMinWidth(60);
 
                     Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
