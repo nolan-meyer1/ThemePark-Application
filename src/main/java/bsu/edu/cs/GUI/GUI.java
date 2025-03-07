@@ -28,8 +28,19 @@ public class GUI extends Application {
     private Map<String,Park> parksMap;
 
     @Override
-    public void start(Stage primaryStage) throws noItemFoundException, networkErrorException, openInputStreamException {
-        parksMap = controller.fetchParks();
+    public void start(Stage primaryStage) {
+        Alert errorPopUp = new Alert(Alert.AlertType.ERROR);
+        errorPopUp.setTitle("Error!");
+        errorPopUp.getDialogPane().getStyleClass().add("alert");
+
+        try {
+            parksMap = controller.fetchParks();
+        } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
+            errorPopUp.setContentText("There was an error! Please check internet connection");
+            errorPopUp.showAndWait();
+            return;
+        }
+
         BorderPane root = new BorderPane();
 
         // Left Sidebar (10%)
@@ -64,7 +75,8 @@ public class GUI extends Application {
             try {
                 Desktop.getDesktop().browse(new URI("https://queue-times.com/en-US"));
             } catch (IOException | URISyntaxException e) {
-                throw new RuntimeException(e);
+                errorPopUp.setContentText("Can't open this link! Please try again!");
+                errorPopUp.showAndWait();
             }
         });
 
@@ -87,19 +99,22 @@ public class GUI extends Application {
             if (newValue != null) {
                 parkTitle.setText(newValue + " Rides");
                 ridesList.getItems().clear();
+                List<Ride> rideList;
                 try {
-                   List<Ride> rideList = controller.getRides(parksMap.get(newValue).getId());
+                    rideList = controller.getRides(parksMap.get(newValue).getId());
 
                     if(rideList.isEmpty()){
                         rideList.add(new Ride(0,"No ride information available", false, 0, "N/A"));
                     }
 
-                    ridesList.setItems(FXCollections.observableArrayList(rideList));
-                    styleRidesList(ridesList);
-
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
-                    throw new RuntimeException(e);
+                    rideList = new ArrayList<>();
+                    rideList.add(new Ride(0,"Error retrieving ride information! Please check internet connection and try again!", false, 0, "N/A"));
                 }
+
+                ridesList.setItems(FXCollections.observableArrayList(rideList));
+                styleRidesList(ridesList);
+
             }
         });
 

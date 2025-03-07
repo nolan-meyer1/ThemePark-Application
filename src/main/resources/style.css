@@ -53,3 +53,8 @@
     -fx-border-color: #e0e0e0;
     -fx-border-width: 1px;
  }
+
+ .alert {
+    -fx-background-color: gray;
+    -fx-font-size: 20px;
+ }
