@@ -3,8 +3,6 @@ package bsu.edu.cs.GUI;
 import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
-import bsu.edu.cs.InternetConnections.ParkConnection;
-import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.Parsers.*;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
@@ -25,15 +23,13 @@ import java.util.*;
 import java.util.List;
 
 public class GUI extends Application {
-    private final ParkConnection parkConnection = new ParkConnection();
-    private ParkParser parkParser;
-    private Map<String, Park> parksMap;
-    private final RideConnection rideConnection = new RideConnection();
-    private RideParser rideParser;
+
+    private final Controller controller = new Controller();
+    private Map<String,Park> parksMap;
 
     @Override
     public void start(Stage primaryStage) throws noItemFoundException, networkErrorException, openInputStreamException {
-        fetchParks();
+        parksMap = controller.fetchParks();
         BorderPane root = new BorderPane();
 
         // Left Sidebar (10%)
@@ -46,7 +42,7 @@ public class GUI extends Application {
 
         ListView<String> parksList = new ListView<>();
         ObservableList<String> sortedList = FXCollections.observableArrayList(parksMap.keySet());
-        alphabeticalSort(sortedList);
+        Collections.sort(sortedList);
         parksList.getItems().addAll(sortedList);
 
         searchBar.setOnKeyTyped(event -> {
@@ -59,7 +55,7 @@ public class GUI extends Application {
                 }
             }
 
-            alphabeticalSort(filteredList);
+            Collections.sort(filteredList);
             parksList.setItems(filteredList);
         });
 
@@ -71,7 +67,6 @@ public class GUI extends Application {
                 throw new RuntimeException(e);
             }
         });
-
 
         sidebar.getChildren().addAll(searchBar, parksList,contributionLink);
         root.setLeft(sidebar);
@@ -93,8 +88,7 @@ public class GUI extends Application {
                 parkTitle.setText(newValue + " Rides");
                 ridesList.getItems().clear();
                 try {
-                   rideParser = new RideParser(new ApiInputStream(rideConnection.search(parksMap.get(newValue).getId())));
-                   List<Ride> rideList = rideParser.parse();
+                   List<Ride> rideList = controller.getRides(parksMap.get(newValue).getId());
 
                     if(rideList.isEmpty()){
                         rideList.add(new Ride(0,"No ride information available", false, 0, "N/A"));
@@ -115,27 +109,6 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-    private void fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
-        //Search is left blank because we are just grabbing the parks so there's no value to give it but a blank string
-        ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
-        parkParser = new ParkParser(apiInputStream);
-        parksMap = parkParser.parse();
-    }
-
-    private void alphabeticalSort(ObservableList<String> list){
-
-        String temp;
-
-        for(int i = 0; i < list.size(); i++){
-            for(int j = 0; j < list.size() -1 - i; j++){
-                if(list.get(j).charAt(0) > list.get(j+1).charAt(0)){
-                    temp = list.get(j);
-                    list.set(j,list.get(j+1));
-                    list.set(j+1,temp);
-                }
-            }
-        }
-    }
 
     private void styleRidesList(ListView<Ride> ridesList){
         ridesList.setCellFactory(lv -> new ListCell<>() {
@@ -154,8 +127,8 @@ public class GUI extends Application {
 
                     Label waitTimeLabel = new Label();
                     if(ride.getIsOpen()){
-                        waitTimeLabel.setText(convertMinToHours(ride.getWaitTime()));
-                        waitTimeLabel.getStyleClass().add(getWaitTimeColor(ride.getWaitTime()));
+                        waitTimeLabel.setText(controller.convertMinToHours(ride.getWaitTime()));
+                        waitTimeLabel.getStyleClass().add(controller.getWaitTimeColor(ride.getWaitTime()));
                     }
                     waitTimeLabel.setMinWidth(60);
 
@@ -170,39 +143,6 @@ public class GUI extends Application {
                 }
             }
         });
-    }
-
-    private String getWaitTimeColor(int waitTime){
-        String output;
-
-        if(waitTime < 45){
-            output = "lowWaitTime";
-        }else if(waitTime <= 90){
-            output = "mediumWaitTime";
-        }else{
-            output = "highWaitTime";
-        }
-        return output;
-    }
-
-    private String convertMinToHours(int minutes){
-
-        String output;
-        int hours;
-        int extraMinutes;
-
-        if(minutes < 60){
-            output = minutes + " min";
-        }else if(minutes % 60 == 0){
-            hours = minutes / 60;
-            output = String.format("%d hr",hours);
-        }else{
-            hours = minutes / 60;
-            extraMinutes = minutes % 60;
-            output = String.format("%d hr %d min",hours,extraMinutes);
-        }
-
-        return output;
     }
 
     public static void main(String[] args) {
