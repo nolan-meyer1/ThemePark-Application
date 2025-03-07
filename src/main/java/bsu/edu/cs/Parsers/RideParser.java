@@ -1,9 +1,8 @@
 package bsu.edu.cs.Parsers;
 
 import net.minidev.json.JSONArray;
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
+
+import java.util.*;
 
 public class RideParser extends Parser<List<Ride>> {
 
@@ -33,6 +32,7 @@ public class RideParser extends Parser<List<Ride>> {
                 ));
             }
         }
+        ridesList.sort(Comparator.comparing(Ride::getName));
         return ridesList;
     }
 }

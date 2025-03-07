@@ -8,7 +8,7 @@ import org.junit.jupiter.api.Test;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
+import java.util.HashMap;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -28,7 +28,7 @@ public class ParkParserTest {
         assert sampleFile != null;
         ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
         JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
-        List<Park> convertedList = parkParser.convertRevisionsToList(parsedRevisions);
+        HashMap<String,Park> convertedList = parkParser.convertRevisionsToList(parsedRevisions);
         assertEquals(132, convertedList.size());
     }
 
