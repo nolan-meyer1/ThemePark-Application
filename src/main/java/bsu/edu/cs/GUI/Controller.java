@@ -12,10 +12,8 @@ import java.util.Map;
 
 public class Controller {
 
-    private final ParkConnection parkConnection = new ParkConnection();
-    private final RideConnection rideConnection = new RideConnection();
-
     public Map<String, Park> fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
+        ParkConnection parkConnection = new ParkConnection();
         //Search is left blank because we are just grabbing the parks so there's no value to give it but a blank string
         ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
         ParkParser parkParser = new ParkParser(apiInputStream);
@@ -57,6 +55,7 @@ public class Controller {
     }
 
     public List<Ride> getRides(int id) throws networkErrorException, openInputStreamException, noItemFoundException {
+        RideConnection rideConnection = new RideConnection();
         RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(id)));
         return rideParser.parse();
     }
