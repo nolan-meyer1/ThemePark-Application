@@ -137,24 +137,33 @@ public class GUI extends Application {
                     setText(null);
                     setGraphic(null);
                 } else {
+                    VBox rideContainer = new VBox(5);
+                    rideContainer.getStyleClass().add("ride-item");
+
                     Label nameLabel = new Label(ride.getName());
-                    nameLabel.setMinWidth(380);
+                    nameLabel.getStyleClass().add("ride-name");
+
+                    HBox infoBox = new HBox(10);
+                    infoBox.getStyleClass().add("ride-info");
 
                     Label waitTimeLabel = new Label();
                     if(ride.getIsOpen()){
                         waitTimeLabel.setText(controller.convertMinToHours(ride.getWaitTime()));
-                        waitTimeLabel.getStyleClass().add(controller.getWaitTimeColor(ride.getWaitTime()));
+//                        waitTimeLabel.getStyleClass().add(controller.getWaitTimeColor(ride.getWaitTime()));
+                        waitTimeLabel.getStyleClass().addAll(controller.getWaitTimeColor(ride.getWaitTime()), "wait-time");
                     }
-                    waitTimeLabel.setMinWidth(60);
+//                    waitTimeLabel.setMinWidth(60);
 
                     Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
-                    statusLabel.getStyleClass().add(ride.getIsOpen() ? "statusOpen" : "statusClosed");
-                    statusLabel.setMinWidth(60);
+                    statusLabel.getStyleClass().addAll(ride.getIsOpen() ? "statusOpen" : "statusClosed", "wait-time");
+//                    statusLabel.setMinWidth(60);
+                    infoBox.getChildren().addAll(waitTimeLabel, statusLabel);
+                    rideContainer.getChildren().addAll(nameLabel, infoBox);
 
-                    HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
-                    getStyleClass().add("listElement");
+//                    HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
+//                    getStyleClass().add("listElement");
 
-                    setGraphic(hbox);
+                    setGraphic(rideContainer);
                 }
             }
         });

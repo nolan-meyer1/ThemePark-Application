@@ -30,21 +30,24 @@
      -fx-text-fill: gray;
  }
 
+ .wait-time {
+     -fx-padding: 5px;
+     -fx-border-radius: 15px;
+     -fx-border-width: 1px;
+ }
+
  .lowWaitTime {
      -fx-text-fill: #FFFFFF;
-     -fx-padding: 3px 8px;
      -fx-background-color: #28A745
  }
 
  .mediumWaitTime {
      -fx-text-fill: #000000;
-     -fx-padding: 3px 8px;
      -fx-background-color: #FFD700
  }
 
  .highWaitTime {
      -fx-text-fill: #FFFFFF;
-     -fx-padding: 3px 8px;
      -fx-background-color: #DC3545
  }
 
