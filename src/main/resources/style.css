@@ -13,11 +13,13 @@
 
  .main-content {
      -fx-padding: 20px;
+     -fx-background-color: #271A89;
  }
 
  .park-title {
      -fx-font-size: 24px;
      -fx-font-weight: bold;
+     -fx-text-fill: white;
  }
 
  .statusOpen {

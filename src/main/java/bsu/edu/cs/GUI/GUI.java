@@ -118,7 +118,7 @@ public class GUI extends Application {
             }
         });
 
-        Scene scene = new Scene(root, 800, 600);
+        Scene scene = new Scene(root, 1000, 600);
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         primaryStage.setTitle("Theme Park Explorer");
         primaryStage.setScene(scene);
