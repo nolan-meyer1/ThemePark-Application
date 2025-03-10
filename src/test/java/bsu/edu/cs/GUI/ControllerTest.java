@@ -35,6 +35,12 @@ public class ControllerTest {
     }
 
     @Test
+    public void fetchParksTest() throws noItemFoundException, networkErrorException, openInputStreamException {
+        Controller controller = new Controller();
+        assertEquals(132,controller.fetchParks().size());
+    }
+
+    @Test
     public void getWaitTimeColorLessThan45minTest(){
         Controller controller = new Controller();
         assertEquals("lowWaitTime",controller.getWaitTimeColor(43));
