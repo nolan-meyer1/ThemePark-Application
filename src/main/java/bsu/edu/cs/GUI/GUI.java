@@ -8,6 +8,7 @@ import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.Label;
@@ -137,33 +138,27 @@ public class GUI extends Application {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    VBox rideContainer = new VBox(5);
-                    rideContainer.getStyleClass().add("ride-item");
-
                     Label nameLabel = new Label(ride.getName());
                     nameLabel.getStyleClass().add("ride-name");
 
-                    HBox infoBox = new HBox(10);
-                    infoBox.getStyleClass().add("ride-info");
-
                     Label waitTimeLabel = new Label();
-                    if(ride.getIsOpen()){
+                    if (ride.getIsOpen()) {
                         waitTimeLabel.setText(controller.convertMinToHours(ride.getWaitTime()));
-//                        waitTimeLabel.getStyleClass().add(controller.getWaitTimeColor(ride.getWaitTime()));
                         waitTimeLabel.getStyleClass().addAll(controller.getWaitTimeColor(ride.getWaitTime()), "wait-time");
                     }
-//                    waitTimeLabel.setMinWidth(60);
 
                     Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
-                    statusLabel.getStyleClass().addAll(ride.getIsOpen() ? "statusOpen" : "statusClosed", "wait-time");
-//                    statusLabel.setMinWidth(60);
-                    infoBox.getChildren().addAll(waitTimeLabel, statusLabel);
-                    rideContainer.getChildren().addAll(nameLabel, infoBox);
+                    statusLabel.getStyleClass().add(ride.getIsOpen() ? "statusOpen" : "statusClosed");
 
-//                    HBox hbox = new HBox(10, nameLabel, waitTimeLabel, statusLabel);
-//                    getStyleClass().add("listElement");
+                    HBox spacer = new HBox();
+                    HBox.setHgrow(spacer, Priority.ALWAYS); // Acts like flex-grow to push elements apart
 
-                    setGraphic(rideContainer);
+                    HBox rideInfoBox = new HBox(10, nameLabel, spacer, waitTimeLabel, statusLabel);
+                    rideInfoBox.getStyleClass().add("ride-item");
+                    rideInfoBox.setAlignment(Pos.CENTER_LEFT);
+                    HBox.setHgrow(rideInfoBox, Priority.ALWAYS);
+
+                    setGraphic(rideInfoBox);
                 }
             }
         });

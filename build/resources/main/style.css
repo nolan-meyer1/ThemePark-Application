@@ -86,6 +86,13 @@
     -fx-border-color: #e0e0e0;
     -fx-border-width: 1px;
     -fx-margin-bottom: 10px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    /*-fx-hgap: 10px;*/
+    -fx-content-display: flex;
+    /*-fx-display: flex;*/
+    /*-fx-*/
+    -fx-justify-content: space-between;
 }
 
 .ride-name {
