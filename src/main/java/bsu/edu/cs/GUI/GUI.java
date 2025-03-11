@@ -91,6 +91,7 @@ public class GUI extends Application {
         Label parkTitle = new Label("Select a Park");
         parkTitle.getStyleClass().add("park-title");
         ListView<Ride> ridesList = new ListView<>();
+        ridesList.getStyleClass().add("rides-container");
 
         mainContent.getChildren().addAll(parkTitle, ridesList);
         root.setCenter(mainContent);
@@ -148,7 +149,7 @@ public class GUI extends Application {
                     }
 
                     Label statusLabel = new Label(ride.getIsOpen() ? " OPENED" : " CLOSED");
-                    statusLabel.getStyleClass().add(ride.getIsOpen() ? "statusOpen" : "statusClosed");
+                    statusLabel.getStyleClass().add(ride.getIsOpen() ? "status-open" : "status-closed");
 
                     HBox spacer = new HBox();
                     HBox.setHgrow(spacer, Priority.ALWAYS); // Acts like flex-grow to push elements apart

@@ -25,11 +25,11 @@ public class Controller {
         String output;
 
         if(waitTime < 45){
-            output = "lowWaitTime";
+            output = "low-wait-time";
         }else if(waitTime <= 90){
-            output = "mediumWaitTime";
+            output = "medium-wait-time";
         }else{
-            output = "highWaitTime";
+            output = "high-wait-time";
         }
         return output;
     }
