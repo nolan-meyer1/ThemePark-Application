@@ -11,6 +11,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.*;
@@ -22,6 +23,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class GUI extends Application {
 
@@ -47,7 +49,7 @@ public class GUI extends Application {
         // Left Sidebar (10%)
         VBox sidebar = new VBox(10);
         sidebar.setPadding(new Insets(10));
-        sidebar.getStyleClass().add("sidebar");
+        sidebar.getStyleClass().add("side-bar");
 
         TextField searchBar = new TextField();
         searchBar.setPromptText("Search Parks...");
@@ -90,10 +92,14 @@ public class GUI extends Application {
         mainContent.getStyleClass().add("main-content");
         Label parkTitle = new Label("Select a Park");
         parkTitle.getStyleClass().add("park-title");
+        AtomicBoolean isDarkMode = new AtomicBoolean(false);
+
+        Button toggleThemeButton = new Button("Toggle Theme");
+
         ListView<Ride> ridesList = new ListView<>();
         ridesList.getStyleClass().add("rides-container");
 
-        mainContent.getChildren().addAll(parkTitle, ridesList);
+        mainContent.getChildren().addAll(parkTitle, toggleThemeButton, ridesList);
         root.setCenter(mainContent);
 
         // Handle Park Selection
@@ -121,11 +127,32 @@ public class GUI extends Application {
         });
 
         Scene scene = new Scene(root, 1000, 600);
+        toggleThemeButton.setOnAction(e -> {
+            String theme = isDarkMode.get() ? "/style.css" : "/dark-mode.css";
+            scene.getStylesheets().setAll(Objects.requireNonNull(getClass().getResource(theme)).toExternalForm());
+            isDarkMode.set(!isDarkMode.get());
+        });
+        parksList.setCellFactory(lv -> new ListCell<>() {
+            @Override
+            protected void updateItem(String park, boolean empty) {
+                super.updateItem(park, empty);
+                if (empty || park == null) {
+                    setText(null);
+                    setGraphic(null);
+                } else {
+                    setText(park);
+                    getStyleClass().add("parks-container");
+                }
+            }
+        });
+
+
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         primaryStage.setTitle("Theme Park Explorer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+
 
     private void styleRidesList(ListView<Ride> ridesList){
         ridesList.setCellFactory(lv -> new ListCell<>() {
@@ -139,6 +166,7 @@ public class GUI extends Application {
                     setText(null);
                     setGraphic(null);
                 } else {
+                    getStyleClass().add("parks-container");
                     Label nameLabel = new Label(ride.getName());
                     nameLabel.getStyleClass().add("ride-name");
 
@@ -156,6 +184,7 @@ public class GUI extends Application {
 
                     HBox rideInfoBox = new HBox(10, nameLabel, spacer, waitTimeLabel, statusLabel);
                     rideInfoBox.getStyleClass().add("ride-item");
+                    rideInfoBox.setSpacing(20);
                     rideInfoBox.setAlignment(Pos.CENTER_LEFT);
                     HBox.setHgrow(rideInfoBox, Priority.ALWAYS);
 
