@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 
@@ -93,13 +95,22 @@ public class GUI extends Application {
         Label parkTitle = new Label("Select a Park");
         parkTitle.getStyleClass().add("park-title");
         AtomicBoolean isDarkMode = new AtomicBoolean(false);
-
-        Button toggleThemeButton = new Button("Toggle Theme");
-
+        Image sunIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/sun.png")));
+        Image moonIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/moon.png")));
+        ImageView toggleIcon = new ImageView(sunIcon);
+        toggleIcon.setFitHeight(20);
+        toggleIcon.setFitWidth(20);
+        Button toggleThemeButton = new Button();
+        toggleThemeButton.setGraphic(toggleIcon);
+        toggleThemeButton.getStyleClass().add("toggle-button");
         ListView<Ride> ridesList = new ListView<>();
         ridesList.getStyleClass().add("rides-container");
-
-        mainContent.getChildren().addAll(parkTitle, toggleThemeButton, ridesList);
+        HBox ridesHeader = new HBox(10);
+        HBox spacer = new HBox();
+        HBox.setHgrow(spacer, Priority.ALWAYS);
+        ridesHeader.getChildren().addAll(parkTitle, spacer, toggleThemeButton);
+        ridesHeader.setAlignment(Pos.CENTER_LEFT);
+        mainContent.getChildren().addAll(ridesHeader, ridesList);
         root.setCenter(mainContent);
 
         // Handle Park Selection
@@ -119,17 +130,16 @@ public class GUI extends Application {
                     rideList = new ArrayList<>();
                     rideList.add(new Ride(0,"Error retrieving ride information! Please check internet connection and try again!", false, 0, "N/A"));
                 }
-
                 ridesList.setItems(FXCollections.observableArrayList(rideList));
                 styleRidesList(ridesList);
 
             }
         });
-
         Scene scene = new Scene(root, 1000, 600);
         toggleThemeButton.setOnAction(e -> {
             String theme = isDarkMode.get() ? "/style.css" : "/dark-mode.css";
             scene.getStylesheets().setAll(Objects.requireNonNull(getClass().getResource(theme)).toExternalForm());
+            toggleIcon.setImage(isDarkMode.get() ? sunIcon : moonIcon);
             isDarkMode.set(!isDarkMode.get());
         });
         parksList.setCellFactory(lv -> new ListCell<>() {
@@ -145,7 +155,6 @@ public class GUI extends Application {
                 }
             }
         });
-
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         primaryStage.setTitle("Theme Park Explorer");
@@ -166,7 +175,7 @@ public class GUI extends Application {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    getStyleClass().add("parks-container");
+                    getStyleClass().add("black");
                     Label nameLabel = new Label(ride.getName());
                     nameLabel.getStyleClass().add("ride-name");
 
@@ -182,9 +191,9 @@ public class GUI extends Application {
                     HBox spacer = new HBox();
                     HBox.setHgrow(spacer, Priority.ALWAYS); // Acts like flex-grow to push elements apart
 
-                    HBox rideInfoBox = new HBox(10, nameLabel, spacer, waitTimeLabel, statusLabel);
+                    HBox rideInfoBox = new HBox(40, nameLabel, spacer, waitTimeLabel, statusLabel);
                     rideInfoBox.getStyleClass().add("ride-item");
-                    rideInfoBox.setSpacing(20);
+//                    rideInfoBox.setSpacing(20);
                     rideInfoBox.setAlignment(Pos.CENTER_LEFT);
                     HBox.setHgrow(rideInfoBox, Priority.ALWAYS);
 
