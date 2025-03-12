@@ -16,7 +16,7 @@ public class RideParser extends Parser<List<Ride>> {
     }
 
     @Override
-    protected List<Ride> convertRevisionsToList(JSONArray list) {
+    protected List<Ride> convertData(JSONArray list) {
         List<Ride> ridesList = new ArrayList<>();
 
         for (Object rideItem : list) {

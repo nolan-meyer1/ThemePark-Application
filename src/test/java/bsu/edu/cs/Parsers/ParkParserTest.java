@@ -28,7 +28,7 @@ public class ParkParserTest {
         assert sampleFile != null;
         ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
         JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
-        HashMap<String,Park> convertedList = parkParser.convertRevisionsToList(parsedRevisions);
+        HashMap<String,Park> convertedList = parkParser.convertData(parsedRevisions);
         assertEquals(132, convertedList.size());
     }
 

@@ -16,7 +16,7 @@ public class ParkParser extends Parser<HashMap<String,Park>> {
     }
 
     @Override
-    protected HashMap<String,Park> convertRevisionsToList(JSONArray list) {
+    protected HashMap<String,Park> convertData(JSONArray list) {
 
         HashMap<String,Park> parkMap = new HashMap<>();
 

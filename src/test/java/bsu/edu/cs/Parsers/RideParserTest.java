@@ -27,7 +27,7 @@ public class RideParserTest {
         assert sampleFile != null;
         RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));
         JSONArray parsedRevisions = rideParser.extractData(new ByteArrayInputStream(rideParser.inputStreamInstance.inputStream));
-        List<Ride> convertedList = rideParser.convertRevisionsToList(parsedRevisions);
+        List<Ride> convertedList = rideParser.convertData(parsedRevisions);
         assertEquals(44, convertedList.size());
     }
 
