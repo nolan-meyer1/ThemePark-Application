@@ -31,10 +31,6 @@ public class GUI extends Application {
 
     private final Controller controller = new Controller();
     private Map<String,Park> parksMap;
-    String temperature = "30°C";
-    String windSpeed = "25 km/h";
-    String time = "11:32 PM";
-    String humidity = "18%";
 
     @Override
     public void start(Stage primaryStage) {
@@ -112,27 +108,35 @@ public class GUI extends Application {
         ridesHeader.getChildren().addAll(parkTitle, spacer, toggleThemeButton);
         ridesHeader.setAlignment(Pos.CENTER_LEFT);
 
-
-        HBox weather = getWeather();
+        HBox weather = getWeather(new Weather(45,"Can't find data!",0,0,0,0,"01d"));
         weather.setMaxWidth(300);
         weather.setMaxHeight(250);
         weather.getStyleClass().add("weather-container");
 
-        mainContent.getChildren().addAll(ridesHeader, weather, ridesList);
+        mainContent.getChildren().addAll(ridesHeader,weather,ridesList);
         root.setCenter(mainContent);
 
         // Handle Park Selection
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
+                Park park = parksMap.get(newValue);
                 parkTitle.setText(newValue + " Rides");
                 ridesList.getItems().clear();
                 List<Ride> rideList;
                 try {
-                    rideList = controller.getRides(parksMap.get(newValue).getId());
+                    rideList = controller.getRides(park.getId());
 
                     if(rideList.isEmpty()){
                         rideList.add(new Ride(0,"No ride information available", false, 0, "N/A"));
                     }
+
+                    mainContent.getChildren().remove(1);
+                    HBox weatherUpdated = getWeather(controller.getWeather(park.getLatitude(),park.getLongitude()));
+                    weatherUpdated.setMaxWidth(300);
+                    weatherUpdated.setMaxHeight(250);
+                    weatherUpdated.getStyleClass().add("weather-container");
+                    mainContent.getChildren().add(1,weatherUpdated);
+
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     rideList = new ArrayList<>();
@@ -169,11 +173,10 @@ public class GUI extends Application {
         primaryStage.show();
     }
 
-    private HBox getWeather() {
-        Label temperatureLabel = new Label(temperature);
-        Label timeLabel = new Label(time);
-        Label humidityLabel = new Label(humidity);
-        Label windSpeedLabel = new Label(windSpeed);
+    private HBox getWeather(Weather weather) {
+        Label temperatureLabel = new Label(Double.toString(weather.getTemperature()));
+        Label humidityLabel = new Label(Integer.toString(weather.getHumidity()));
+        Label windSpeedLabel = new Label(Double.toString(weather.getWindSpeed()));
         ImageView humidityIcon = new ImageView(new Image("/humidity.png"));
         ImageView windIcon = new ImageView(new Image("/wind.png"));
 
@@ -189,7 +192,6 @@ public class GUI extends Application {
         windDetails.getChildren().addAll(windIcon, windSpeedLabel);
 
         temperatureLabel.getStyleClass().addAll("white", "temp");
-        timeLabel.getStyleClass().addAll("white", "time");
         humidityLabel.getStyleClass().add("white");
         windSpeedLabel.getStyleClass().add("white");
 
@@ -197,17 +199,14 @@ public class GUI extends Application {
         weatherSpeed.getChildren().addAll(humidityDetails, windDetails);
         weatherSpeed.getStyleClass().add("weather-speed");
 
-        VBox weatherDetails = new VBox();
-        weatherDetails.getChildren().addAll(timeLabel);
-
-        ImageView weatherIcon = new ImageView(new Image("/rain.png"));
+        ImageView weatherIcon = new ImageView(new Image("https://openweathermap.org/img/wn/"+weather.getIconID()+"@4x.png"));
         VBox weatherImage = new VBox();
         weatherImage.getChildren().addAll(weatherIcon, temperatureLabel, weatherSpeed);
 
         weatherIcon.setFitHeight(100);
         weatherIcon.setFitWidth(100);
 
-        return new HBox(10, weatherImage, weatherDetails);
+        return new HBox(10, weatherImage);
     }
 
     private void styleRidesList(ListView<Ride> ridesList){

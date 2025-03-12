@@ -5,11 +5,9 @@ import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.InternetConnections.ParkConnection;
 import bsu.edu.cs.InternetConnections.RideConnection;
+import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
 
-import java.time.ZoneId;
-import java.time.ZonedDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -63,11 +61,10 @@ public class Controller {
         return rideParser.parse();
     }
 
-    public String getTime(Park park){
-        ZoneId zoneId = ZoneId.of(park.getTimezone());
-        ZonedDateTime time = ZonedDateTime.now(zoneId);
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
-        return time.format(formatter);
+    public Weather getWeather(String latitude, String longitude) throws networkErrorException, openInputStreamException, noItemFoundException {
+        WeatherConnection weatherConnection = new WeatherConnection();
+        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(weatherConnection.search(new String[]{latitude,longitude})));
+        return weatherParser.parse();
     }
 
 }
