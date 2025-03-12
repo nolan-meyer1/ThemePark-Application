@@ -22,7 +22,7 @@ public class RideParserTest {
     }
 
     @Test
-    public void convertRevisionsToListTest() throws openInputStreamException, noItemFoundException {
+    public void convertDataTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
         RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));

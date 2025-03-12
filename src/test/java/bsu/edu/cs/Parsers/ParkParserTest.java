@@ -23,7 +23,7 @@ public class ParkParserTest {
     }
 
     @Test
-    public void convertRevisionsToListTest() throws openInputStreamException, noItemFoundException {
+    public void convertDataTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
         ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
