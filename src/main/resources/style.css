@@ -35,9 +35,15 @@
     -fx-padding: 20;
     -fx-text-fill: #eaeaea;
     -fx-background-color: #300D99;
-    -fx-alignment: left;
     -fx-border-radius: 38px;
     -fx-background-radius: 38px;
+}
+
+.weather-speed {
+    -fx-background-color: #104084;
+    -fx-padding: 5;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
 }
 
 .white {
@@ -45,11 +51,12 @@
 }
 
 .time {
-    -fx-font-size: 40px;
+    -fx-font-size: 25px;
 }
 
-.weather {
+.temp {
     -fx-font-size: 35px;
+    -fx-end-margin: 20px;
 }
 
 .park-title {

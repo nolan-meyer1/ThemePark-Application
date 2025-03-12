@@ -114,8 +114,8 @@ public class GUI extends Application {
 
 
         HBox weather = getWeather();
-        weather.setMaxWidth(220);
-        weather.setMaxHeight(400);
+        weather.setMaxWidth(300);
+        weather.setMaxHeight(250);
         weather.getStyleClass().add("weather-container");
 
         mainContent.getChildren().addAll(ridesHeader, weather, ridesList);
@@ -174,20 +174,35 @@ public class GUI extends Application {
         Label timeLabel = new Label(time);
         Label humidityLabel = new Label(humidity);
         Label windSpeedLabel = new Label(windSpeed);
+        ImageView humidityIcon = new ImageView(new Image("/humidity.png"));
+        ImageView windIcon = new ImageView(new Image("/wind.png"));
+
+        humidityIcon.setFitWidth(20);
+        humidityIcon.setFitHeight(20);
+        windIcon.setFitWidth(20);
+        windIcon.setFitHeight(20);
+
+        HBox humidityDetails = new HBox(2);
+        humidityDetails.getChildren().addAll(humidityIcon, humidityLabel);
+
+        HBox windDetails = new HBox(2);
+        windDetails.getChildren().addAll(windIcon, windSpeedLabel);
+
         temperatureLabel.getStyleClass().addAll("white", "temp");
         timeLabel.getStyleClass().addAll("white", "time");
         humidityLabel.getStyleClass().add("white");
         windSpeedLabel.getStyleClass().add("white");
 
-        HBox weatherSpeed = new HBox();
-        weatherSpeed.getChildren().addAll(humidityLabel, windSpeedLabel);
+        HBox weatherSpeed = new HBox(10);
+        weatherSpeed.getChildren().addAll(humidityDetails, windDetails);
+        weatherSpeed.getStyleClass().add("weather-speed");
 
         VBox weatherDetails = new VBox();
-        weatherDetails.getChildren().addAll(timeLabel, humidityLabel, windSpeedLabel);
+        weatherDetails.getChildren().addAll(timeLabel);
 
         ImageView weatherIcon = new ImageView(new Image("/rain.png"));
         VBox weatherImage = new VBox();
-        weatherImage.getChildren().addAll(weatherIcon, temperatureLabel);
+        weatherImage.getChildren().addAll(weatherIcon, temperatureLabel, weatherSpeed);
 
         weatherIcon.setFitHeight(100);
         weatherIcon.setFitWidth(100);

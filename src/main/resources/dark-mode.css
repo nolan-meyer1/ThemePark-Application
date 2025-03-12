@@ -36,6 +36,34 @@
     -fx-spacing: 20px;
 }
 
+
+.weather-container {
+    -fx-padding: 20;
+    -fx-text-fill: #eaeaea;
+    -fx-background-color: #300D99;
+    -fx-border-radius: 38px;
+    -fx-background-radius: 38px;
+}
+
+.weather-speed {
+    -fx-background-color: #104084;
+    -fx-padding: 5;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+}
+
+.white {
+    -fx-text-fill: #eaeaea;
+}
+
+.time {
+    -fx-font-size: 25px;
+}
+
+.temp {
+    -fx-font-size: 35px;
+}
+
 .park-title {
     -fx-font-size: 28px;
     -fx-font-weight: bold;
