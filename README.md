@@ -7,6 +7,10 @@
 ## Parsers
 
 ### ApiInputStream
+This class is used so that we can have an input stream and open it more than once for parsing if we want to. 
+
+#### openInputStrem()
+When you create in instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
 
 ### Park
 This is what will contain all of the data we have about the parks. Each park object will have the id, the name, country, continenet, latitude, longitude, and timezone. 
