@@ -7,6 +7,9 @@ import bsu.edu.cs.InternetConnections.ParkConnection;
 import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.Parsers.*;
 
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Map;
 
@@ -58,6 +61,13 @@ public class Controller {
         RideConnection rideConnection = new RideConnection();
         RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(id)));
         return rideParser.parse();
+    }
+
+    public String getTime(Park park){
+        ZoneId zoneId = ZoneId.of(park.getTimezone());
+        ZonedDateTime time = ZonedDateTime.now(zoneId);
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("hh:mm a");
+        return time.format(formatter);
     }
 
 }
