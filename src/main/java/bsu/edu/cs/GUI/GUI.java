@@ -31,6 +31,10 @@ public class GUI extends Application {
 
     private final Controller controller = new Controller();
     private Map<String,Park> parksMap;
+    String temperature = "30°C";
+    String windSpeed = "25 km/h";
+    String time = "11:32 PM";
+    String humidity = "18%";
 
     @Override
     public void start(Stage primaryStage) {
@@ -64,13 +68,11 @@ public class GUI extends Application {
         searchBar.setOnKeyTyped(event -> {
             String searchText = searchBar.getText().toLowerCase();
             ObservableList<String> filteredList = FXCollections.observableArrayList();
-
             for (String park : parksMap.keySet()) {
                 if (park.toLowerCase().startsWith(searchText)) {
                     filteredList.add(park);
                 }
             }
-
             Collections.sort(filteredList);
             parksList.setItems(filteredList);
         });
@@ -84,7 +86,6 @@ public class GUI extends Application {
                 errorPopUp.showAndWait();
             }
         });
-
         sidebar.getChildren().addAll(searchBar, parksList,contributionLink);
         root.setLeft(sidebar);
 
@@ -110,7 +111,14 @@ public class GUI extends Application {
         HBox.setHgrow(spacer, Priority.ALWAYS);
         ridesHeader.getChildren().addAll(parkTitle, spacer, toggleThemeButton);
         ridesHeader.setAlignment(Pos.CENTER_LEFT);
-        mainContent.getChildren().addAll(ridesHeader, ridesList);
+
+
+        HBox weather = getWeather();
+        weather.setMaxWidth(220);
+        weather.setMaxHeight(400);
+        weather.getStyleClass().add("weather-container");
+
+        mainContent.getChildren().addAll(ridesHeader, weather, ridesList);
         root.setCenter(mainContent);
 
         // Handle Park Selection
@@ -135,7 +143,7 @@ public class GUI extends Application {
 
             }
         });
-        Scene scene = new Scene(root, 1000, 600);
+        Scene scene = new Scene(root, 1200, 600);
         toggleThemeButton.setOnAction(e -> {
             String theme = isDarkMode.get() ? "/style.css" : "/dark-mode.css";
             scene.getStylesheets().setAll(Objects.requireNonNull(getClass().getResource(theme)).toExternalForm());
@@ -155,22 +163,44 @@ public class GUI extends Application {
                 }
             }
         });
-
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource("/style.css")).toExternalForm());
         primaryStage.setTitle("Theme Park Explorer");
         primaryStage.setScene(scene);
         primaryStage.show();
     }
 
+    private HBox getWeather() {
+        Label temperatureLabel = new Label(temperature);
+        Label timeLabel = new Label(time);
+        Label humidityLabel = new Label(humidity);
+        Label windSpeedLabel = new Label(windSpeed);
+        temperatureLabel.getStyleClass().addAll("white", "temp");
+        timeLabel.getStyleClass().addAll("white", "time");
+        humidityLabel.getStyleClass().add("white");
+        windSpeedLabel.getStyleClass().add("white");
+
+        HBox weatherSpeed = new HBox();
+        weatherSpeed.getChildren().addAll(humidityLabel, windSpeedLabel);
+
+        VBox weatherDetails = new VBox();
+        weatherDetails.getChildren().addAll(timeLabel, humidityLabel, windSpeedLabel);
+
+        ImageView weatherIcon = new ImageView(new Image("/rain.png"));
+        VBox weatherImage = new VBox();
+        weatherImage.getChildren().addAll(weatherIcon, temperatureLabel);
+
+        weatherIcon.setFitHeight(100);
+        weatherIcon.setFitWidth(100);
+
+        return new HBox(10, weatherImage, weatherDetails);
+    }
 
     private void styleRidesList(ListView<Ride> ridesList){
         ridesList.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Ride ride, boolean empty) {
                 super.updateItem(ride, empty);
-
                 setStyle("");
-
                 if (empty || ride == null) {
                     setText(null);
                     setGraphic(null);
@@ -193,7 +223,6 @@ public class GUI extends Application {
 
                     HBox rideInfoBox = new HBox(40, nameLabel, spacer, waitTimeLabel, statusLabel);
                     rideInfoBox.getStyleClass().add("ride-item");
-//                    rideInfoBox.setSpacing(20);
                     rideInfoBox.setAlignment(Pos.CENTER_LEFT);
                     HBox.setHgrow(rideInfoBox, Priority.ALWAYS);
 
