@@ -42,6 +42,10 @@ This method takes in a JSONArray. This is overriden by the subclass and uses the
 
 ### RideParser
 
+### Weather
+
+### WeatherParser
+
 ----------------------------------------------------------------------------
 
 ## Internet Connections
@@ -64,7 +68,9 @@ This class handles the fetching of all the parks from the QueueTimes API.
 #### createURLRequest(T searchItem)
 This method will still take in a search item, but because of the URL we just want to grab the URL. We won't be using the search item for this method, but will will still override it to use the URL we want. 
 
-### rideConnection
+### RideConnection
+
+### WeatherConnection
 
 ----------------------------------------------------------------------------
 
@@ -93,18 +99,12 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 ## Error Handling
 
 ### networkErrorException
+This is a custom exception that we wrote. This exception is thrown when a network error occurs. This will be handled in the GUI.
 
 ### noItemFoundException
+This is a custom exception happens when the item cannot be found. It is handled inside of the GUI.
 
 ### openInputStreamException
-
-
-### Weather
-
-----------------------------------------------------------------------------
-
-#### WeatherConnection
-#### weather
-#### WeatherParser
+This is a custom exception that happens when we cannot open the input stream. This is also handled inside of the GUI. 
 
 
