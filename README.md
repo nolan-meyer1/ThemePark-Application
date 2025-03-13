@@ -97,3 +97,14 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 ### noItemFoundException
 
 ### openInputStreamException
+
+
+### Weather
+
+----------------------------------------------------------------------------
+
+#### WeatherConnection
+#### weather
+#### WeatherParser
+
+
