@@ -50,7 +50,7 @@ This method takes in a JSONArray. This is overriden by the subclass and uses the
 
 ## Internet Connections
 
-### internetConnection
+### InternetConnection
 This abstract class also uses generics in order to handle what the searchItem is. This will grab us our input stream that we will then parse. 
 
 #### search(T searchItem)
@@ -62,7 +62,7 @@ This method takes in a URL. It will then go to that endpoint and grab an input s
 #### createURLRequest(T searchItem)
 This method will take in a search item that we will then use to build a URL and return it. This will be overriden by the subclass. 
 
-### parkConnection
+### ParkConnection
 This class handles the fetching of all the parks from the QueueTimes API. 
 
 #### createURLRequest(T searchItem)
