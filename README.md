@@ -84,6 +84,9 @@ This takes in the an integer that will be our wait time. It will then return the
 #### getRides(int id)
 This takes in an id was the parameter. It will use the RideConnection and RideParser class to get a list of rides. 
 
+#### getWeather(String latitude, String longitude)
+This method takes a string of longitude and latitude. It then uses the WeatherConnection and WeatherParser class to return a Weather object containing all the weather data.
+
 
 ### GUI
 
