@@ -45,7 +45,7 @@ This method takes in a JSONArray. This is overriden by the subclass and uses the
 ### Weather
 This is what contains all the data we have about the weather. Each weather object will have the id, name, temperature, feels_like, windSpeed, humidity, and iconID.
 ### WeatherParser
-This is what parses the object gotten from the Weather API. (https://openweathermap.org/).
+This is what parses the object gotten from the API.
 #### getQuery
 This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
 #### convertData(JSONArray list)
@@ -76,6 +76,9 @@ This method will still take in a search item, but because of the URL we just wan
 ### RideConnection
 
 ### WeatherConnection
+This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API. 
+#### createRequestUrl(String[] latitudeAndLongitude)
+This method generates the API request URL for retrieving weather data based on geographic coordinates.
 
 ----------------------------------------------------------------------------
 
