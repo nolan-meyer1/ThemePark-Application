@@ -43,8 +43,9 @@ This method takes in a JSONArray. This is overriden by the subclass and uses the
 ### RideParser
 
 ### Weather
-
+This is what contains all the data we have about the weather. Each weather object will have the id, name, temperature, feels_like, windSpeed, humidity, and iconID.
 ### WeatherParser
+This is what parses the object gotten from the Weather API. (https://openweathermap.org/)
 
 ----------------------------------------------------------------------------
 
