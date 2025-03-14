@@ -48,6 +48,8 @@ This is what contains all the data we have about the weather. Each weather objec
 This is what parses the object gotten from the Weather API. (https://openweathermap.org/).
 #### getQuery
 This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
+#### convertData(JSONArray list)
+This method is converts raw JSON weather data into a structured object.
 
 ----------------------------------------------------------------------------
 
