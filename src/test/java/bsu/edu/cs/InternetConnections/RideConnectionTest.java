@@ -8,7 +8,7 @@ public class RideConnectionTest {
     @Test
     public void createURLRequestTest() {
         RideConnection rideConnection = new RideConnection();
-        Integer searchItem = rideConnection.getSearchItem();
+        Integer searchItem = 23;
 
         assertEquals("https://queue-times.com/parks/" + searchItem + "/queue_times.json",
                 rideConnection.createRequestUrl(searchItem));
