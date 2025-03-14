@@ -174,9 +174,9 @@ public class GUI extends Application {
     }
 
     private HBox getWeather(Weather weather) {
-        Label temperatureLabel = new Label(Double.toString(weather.getTemperature()));
-        Label humidityLabel = new Label(Integer.toString(weather.getHumidity()));
-        Label windSpeedLabel = new Label(Double.toString(weather.getWindSpeed()));
+        Label temperatureLabel = new Label(weather.getTemperature() + "℉");
+        Label humidityLabel = new Label(weather.getHumidity() + "%");
+        Label windSpeedLabel = new Label(weather.getWindSpeed() + " MPH");
         ImageView humidityIcon = new ImageView(new Image("/humidity.png"));
         ImageView windIcon = new ImageView(new Image("/wind.png"));
 
