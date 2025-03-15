@@ -118,12 +118,11 @@ This takes in an id was the parameter. It will use the RideConnection and RidePa
 #### *getWeather(String latitude, String longitude)*
 This method takes a string of longitude and latitude. It then uses the WeatherConnection and WeatherParser class to return a Weather object containing all the weather data.
 
+### - $${\color{lightblue}GUI}$$  
 
 ----------------------------------------------------------------------------
 
-### - $${\color{lightblue}GUI}$$
-
-## Error Handling
+## $${\color{lightgreen}Error Handling}$$
 
 ### - $${\color{lightblue}networkErrorException}$$
 This is a custom exception that we wrote. This exception is thrown when a network error occurs. This is handled in the GUI.  
