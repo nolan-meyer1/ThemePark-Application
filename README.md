@@ -10,6 +10,7 @@ This class is used so that we can have an input stream and open it more than onc
 #### openInputStrem()
 When you create in instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
 
+
 ### Park
 This is what will contain all of the data we have about the parks. Each park object will have the id, the name, country, continenet, latitude, longitude, and timezone. 
 
@@ -21,6 +22,7 @@ This is method will return a String that contains our JSON path query.
 
 #### conertRevisionsToList(JSONArray list)
 This method takes in a JSONArray. It will then loop through that array and convert each item in that list to a Park object. It will then return it as a HashMap with the park's name as the key, and the value as the Park object.
+
 
 ### Parser
 This is an abstract class that will be used for all of our parsers. It also uses generics so we can return whatever type of data that we would like.
@@ -39,15 +41,27 @@ This method takes in a JSONArray. This is overriden by the subclass and uses the
 
 
 ### Ride
+This will hold data for rides within a park. Each ride object will contain an id, a name, whether it is open, the wait time, and when it was last updated.
 
 ### RideParser
+This is the class that will parse data from the Ride class for later use. 
+
+#### getQuery
+This returns a string that contains our JSON query like in the Parser class. It will is overriden as well.
+
+#### convertData
+This will convert the data from a Linked Hashmap and populate the items into an ArrayList.
+
 
 ### Weather
 This is what contains all the data we have about the weather. Each weather object will have the id, name, temperature, feels_like, windSpeed, humidity, and iconID.
+
 ### WeatherParser
 This is what parses the object gotten from the Weather API.
+
 #### getQuery
 This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
+
 #### convertData(JSONArray list)
 This method is converts raw JSON weather data into a structured object.
 
@@ -67,16 +81,20 @@ This method takes in a URL. It will then go to that endpoint and grab an input s
 #### createURLRequest(T searchItem)
 This method will take in a search item that we will then use to build a URL and return it. This will be overriden by the subclass. 
 
+
 ### ParkConnection
 This class handles the fetching of all the parks from the QueueTimes API. 
 
 #### createURLRequest(T searchItem)
 This method will still take in a search item, but because of the URL we just want to grab the URL. We won't be using the search item for this method, but will will still override it to use the URL we want. 
 
+
 ### RideConnection
+
 
 ### WeatherConnection
 This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API. 
+
 #### createRequestUrl(String[] latitudeAndLongitude)
 This method generates the API request URL for retrieving weather data based on geographic coordinates.
 
@@ -107,10 +125,12 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 ## Error Handling
 
 ### networkErrorException
-This is a custom exception that we wrote. This exception is thrown when a network error occurs. This will be handled in the GUI.
+This is a custom exception that we wrote. This exception is thrown when a network error occurs. This is handled in the GUI.
+
 
 ### noItemFoundException
 This is a custom exception happens when the item cannot be found. It is handled inside of the GUI.
+
 
 ### openInputStreamException
 This is a custom exception that happens when we cannot open the input stream. This is also handled inside of the GUI. 
