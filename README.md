@@ -7,7 +7,7 @@
 ### - $${\color{lightblue}ApiInputStream}$$ 
 This class is used so that we can have an input stream and open it more than once for parsing if we want to.  
 
-####   * *openInputStrem()*
+#### &bull; *openInputStream()*
 When you create in instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
 
 
