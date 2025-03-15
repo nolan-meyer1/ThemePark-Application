@@ -2,7 +2,7 @@
 
 ----------------------------------------------------------------------------
 
-## Parsers
+## $${\color{lightgreen}Parsers}$$
 
 ### - ApiInputStream
 This class is used so that we can have an input stream and open it more than once for parsing if we want to. 
@@ -67,7 +67,7 @@ This method is converts raw JSON weather data into a structured object.
 
 ----------------------------------------------------------------------------
 
-## Internet Connections
+## $${\color{lightgreen}Internet Connections}$$
 
 ### - InternetConnection
 This abstract class also uses generics in order to handle what the searchItem is. This will grab us our input stream that we will then parse. 
@@ -100,7 +100,7 @@ This method generates the API request URL for retrieving weather data based on g
 
 ----------------------------------------------------------------------------
 
-## GUI
+## $${\color{lightgreen}GUI}$$
 
 ### - Controller
 This class is what will handle all the logic for our GUI. 
