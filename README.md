@@ -2,6 +2,16 @@
 
 ----------------------------------------------------------------------------
 
+## $${\color{lightgreen}Build Instructions}$$
+In order to run this program you will need to create a file called ApiKeys.json, and add it to the resources folder inside of the src/main/resources. Inside of the file this should be the structure: 
+
+```json
+{
+  "weather": "Your OpenWeatherMap(https://openweathermap.org/current) API key"
+}
+```
+
+
 ## $${\color{lightgreen}Parsers}$$
 
 ### &#9679; $${\color{lightblue}ApiInputStream}$$ 
