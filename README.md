@@ -12,7 +12,7 @@ When you create in instance of this object you will need to give it an input str
 
 
 ### - $${\color{lightblue}Park}$$ 
-This is what will contain all of the data we have about the parks. Each park object will have the id, the name, country, continenet, latitude, longitude, and timezone.  
+This is what will contain all of the data we have about the parks. Each park object will have the id, the name, country, continent, latitude, longitude, and timezone.  
 
 ### - $${\color{lightblue}ParkParser}$$ 
 This is what will parse the data that is given to use from the api.  
@@ -78,7 +78,7 @@ This method will be given a search item. It will then call the createURLRequest 
 #### *getInputStream(String url)*
 This method takes in a URL. It will then go to that endpoint and grab an input stream and return it.
 
-#### *createURLRequest(T searchItem)*
+#### *createRequestURL(T searchItem)*
 This method will take in a search item that we will then use to build a URL and return it. This will be overriden by the subclass. 
 
 
@@ -86,7 +86,7 @@ This method will take in a search item that we will then use to build a URL and 
 This class handles the fetching of all the parks from the QueueTimes API.  
 
 #### *createURLRequest(T searchItem)*
-This method will still take in a search item, but because of the URL we just want to grab the URL. We won't be using the search item for this method, but will will still override it to use the URL we want. 
+This method will still take in a search item, but here we just want to grab the URL. We won't be using the search item for this method, but we will still override it to use the URL we want. 
 
 
 ### - $${\color{lightblue}RideConnection}$$
