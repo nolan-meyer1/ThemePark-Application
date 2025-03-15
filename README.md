@@ -4,7 +4,7 @@
 
 ## $${\color{lightgreen}Parsers}$$
 
-### - $${\color{lightblue}ApiInputStream}$$ 
+### &#9679; $${\color{lightblue}ApiInputStream}$$ 
 This class is used so that we can have an input stream and open it more than once for parsing if we want to.  
 
 #### &bull; *openInputStream()*
