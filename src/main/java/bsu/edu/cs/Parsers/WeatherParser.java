@@ -38,10 +38,27 @@ public class WeatherParser extends Parser<Weather> {
         Number windSpeedNumber = (Number) windData.get("speed");
         double windSpeed = windSpeedNumber.doubleValue();
 
+        Number tempNumber = (Number) weatherData.get("temp");
+        double temp = tempNumber.doubleValue();
 
-        output = new Weather((Integer) mainData.get("id"),(String) mainData.get("main"),(Double) weatherData.get("temp"),
-                (Double) weatherData.get("feels_like"),windSpeed,(Integer) weatherData.get("humidity"),
-                (String) mainData.get("icon"));
+        Number feelsLikeNumber = (Number) weatherData.get("feels_like");
+        double feelsLike = feelsLikeNumber.doubleValue();
+
+        Number humidityNumber = (Number) weatherData.get("humidity");
+        int humidity = humidityNumber.intValue();
+
+
+
+        output = new Weather(
+                (Integer) mainData.get("id"),
+                (String) mainData.get("main"),
+                temp,
+                feelsLike,
+                windSpeed,
+                humidity,
+                (String) mainData.get("icon")
+        );
+
 
         return output;
     }
