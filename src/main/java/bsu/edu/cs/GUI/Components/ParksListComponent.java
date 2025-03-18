@@ -6,7 +6,9 @@ import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Controller;
 import bsu.edu.cs.Parsers.Park;
 import bsu.edu.cs.Parsers.Ride;
-import bsu.edu.cs.Utils.Constants;
+import bsu.edu.cs.Utils.CSSConstants;
+import bsu.edu.cs.Utils.TextConstants;
+import bsu.edu.cs.Utils.UIConstants;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
@@ -29,11 +31,11 @@ public class ParksListComponent {
 
     public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent) {
         VBox sidebar = new VBox(10);
-        sidebar.setPadding(new Insets(Constants.PADDING));
-        sidebar.getStyleClass().add(Constants.CLASS_SIDEBAR);
+        sidebar.setPadding(new Insets(UIConstants.PADDING));
+        sidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
 
         TextField searchBar = new TextField();
-        searchBar.setPromptText(Constants.SEARCH_PROMPT);
+        searchBar.setPromptText(TextConstants.SEARCH_PROMPT);
 
         ListView<String> parksList = new ListView<>();
         ObservableList<String> sortedList = FXCollections.observableArrayList(parksMap.keySet());
@@ -52,12 +54,12 @@ public class ParksListComponent {
             parksList.setItems(filteredList);
         });
 
-        Hyperlink contributionLink = new Hyperlink(Constants.QUEUE_TIMES_TEXT);
+        Hyperlink contributionLink = new Hyperlink(TextConstants.QUEUE_TIMES_TEXT);
         contributionLink.setOnAction(actionEvent -> {
             try {
-                Desktop.getDesktop().browse(new URI(Constants.QUEUE_TIMES_URL));
+                Desktop.getDesktop().browse(new URI(TextConstants.QUEUE_TIMES_URL));
             } catch (Exception e) {
-                errorPopUp.setContentText(Constants.LINK_ERROR);
+                errorPopUp.setContentText(TextConstants.LINK_ERROR);
                 errorPopUp.showAndWait();
             }
         });
@@ -70,7 +72,7 @@ public class ParksListComponent {
                     setGraphic(null);
                 } else {
                     setText(park);
-                    getStyleClass().add(Constants.CLASS_PARKS_CONTAINER);
+                    getStyleClass().add(CSSConstants.CLASS_PARKS_CONTAINER);
                 }
             }
         });
@@ -81,27 +83,27 @@ public class ParksListComponent {
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 Park park = parksMap.get(newValue);
-                parkTitle.setText(newValue + Constants.RIDE_SUFFIX);
+                parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
                 ridesList.getItems().clear();
                 List<Ride> rideList;
                 try {
                     rideList = controller.getRides(park.getId());
 
                     if (rideList.isEmpty()) {
-                        rideList.add(new Ride(0, Constants.NO_RIDE_INFO, false, 0, "N/A"));
+                        rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0, "N/A"));
                     }
 
                     mainContent.getChildren().remove(1);
                     HBox weatherUpdated = weatherComponent.createWeatherDisplay(controller.getWeather(park.getLatitude(), park.getLongitude()));
-                    weatherUpdated.setMaxWidth(Constants.WEATHER_MAX_WIDTH);
-                    weatherUpdated.setMaxHeight(Constants.WEATHER_MAX_HEIGHT);
+                    weatherUpdated.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
+                    weatherUpdated.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
                     weatherUpdated.getStyleClass().add("weather-container");
                     mainContent.getChildren().add(1, weatherUpdated);
 
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     rideList = new ArrayList<>();
-                    rideList.add(new Ride(0, Constants.ERROR_RETRIEVING_RIDES, false, 0, "N/A"));
+                    rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0, "N/A"));
                 }
                 ridesList.setItems(FXCollections.observableArrayList(rideList));
                 ridesListComponent.styleRidesList(ridesList, controller);

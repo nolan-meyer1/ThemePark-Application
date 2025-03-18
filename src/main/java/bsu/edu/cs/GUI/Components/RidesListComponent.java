@@ -2,7 +2,8 @@ package bsu.edu.cs.GUI.Components;
 
 import bsu.edu.cs.GUI.Controller;
 import bsu.edu.cs.Parsers.Ride;
-import bsu.edu.cs.Utils.Constants;
+import bsu.edu.cs.Utils.CSSConstants;
+import bsu.edu.cs.Utils.TextConstants;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
@@ -21,24 +22,24 @@ public class RidesListComponent {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    getStyleClass().add(Constants.CLASS_BLACK);
+                    getStyleClass().add(CSSConstants.CLASS_BLACK);
                     Label nameLabel = new Label(ride.getName());
-                    nameLabel.getStyleClass().add(Constants.CLASS_RIDE_NAME);
+                    nameLabel.getStyleClass().add(CSSConstants.CLASS_RIDE_NAME);
 
                     Label waitTimeLabel = new Label();
                     if (ride.getIsOpen()) {
                         waitTimeLabel.setText(controller.convertMinToHours(ride.getWaitTime()));
-                        waitTimeLabel.getStyleClass().addAll(controller.getWaitTimeColor(ride.getWaitTime()), Constants.CLASS_WAIT_TIME);
+                        waitTimeLabel.getStyleClass().addAll(controller.getWaitTimeColor(ride.getWaitTime()), CSSConstants.CLASS_WAIT_TIME);
                     }
 
-                    Label statusLabel = new Label(ride.getIsOpen() ? Constants.OPEN_STATUS : Constants.CLOSED_STATUS);
-                    statusLabel.getStyleClass().add(ride.getIsOpen() ? Constants.CLASS_STATUS_OPEN : Constants.CLASS_STATUS_CLOSED);
+                    Label statusLabel = new Label(ride.getIsOpen() ? TextConstants.OPEN_STATUS : TextConstants.CLOSED_STATUS);
+                    statusLabel.getStyleClass().add(ride.getIsOpen() ? CSSConstants.CLASS_STATUS_OPEN : CSSConstants.CLASS_STATUS_CLOSED);
 
                     HBox spacer = new HBox();
                     HBox.setHgrow(spacer, Priority.ALWAYS);
 
                     HBox rideInfoBox = new HBox(40, nameLabel, spacer, waitTimeLabel, statusLabel);
-                    rideInfoBox.getStyleClass().add(Constants.CLASS_RIDE_ITEM);
+                    rideInfoBox.getStyleClass().add(CSSConstants.CLASS_RIDE_ITEM);
                     rideInfoBox.setAlignment(Pos.CENTER_LEFT);
                     HBox.setHgrow(rideInfoBox, Priority.ALWAYS);
 
