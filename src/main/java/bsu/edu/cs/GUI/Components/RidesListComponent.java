@@ -10,7 +10,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
-public class RidesList {
+public class RidesListComponent {
     public void styleRidesList(ListView<Ride> ridesList, Controller controller) {
         ridesList.setCellFactory(lv -> new ListCell<>() {
             @Override
@@ -48,3 +48,4 @@ public class RidesList {
         });
     }
 }
+
