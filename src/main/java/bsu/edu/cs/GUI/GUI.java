@@ -17,9 +17,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-
 import java.util.*;
-
 public class GUI extends Application {
 
     private final Controller controller = new Controller();
@@ -40,15 +38,15 @@ public class GUI extends Application {
             errorPopUp.showAndWait();
             return;
         }
-
         BorderPane root = new BorderPane();
+        Scene scene = new Scene(root, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
+        Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
 
         // Left Sidebar (10%)
-
         ParksListComponent sideBar = new ParksListComponent();
 
         // Main Display Area (90%)
-        VBox mainContent = new VBox(10);
+        VBox mainContent = new VBox(Constants.MEDIUM_SPACING);
         mainContent.setPadding(new Insets(Constants.PADDING_LARGE));
         mainContent.getStyleClass().add(Constants.CLASS_MAIN_CONTENT);
         Label parkTitle = new Label(Constants.SELECT_PARK_TEXT);
@@ -57,11 +55,7 @@ public class GUI extends Application {
         ListView<Ride> ridesList = new ListView<>();
         ridesList.getStyleClass().add(Constants.CLASS_RIDES_CONTAINER);
 
-
-        Scene scene = new Scene(root, Constants.WINDOW_WIDTH, Constants.WINDOW_HEIGHT);
-        Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
-
-        HBox ridesHeader = new HBox(10);
+        HBox ridesHeader = new HBox(Constants.MEDIUM_SPACING);
         HBox spacer = new HBox();
         HBox.setHgrow(spacer, Priority.ALWAYS);
         ridesHeader.getChildren().addAll(parkTitle, spacer, toggleThemeButton);
@@ -76,10 +70,7 @@ public class GUI extends Application {
 
         root.setLeft(sideBarVBox);
         mainContent.getChildren().addAll(ridesHeader,weather,ridesList);
-
         root.setCenter(mainContent);
-
-
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(Constants.STYLE_PATH)).toExternalForm());
         primaryStage.setTitle(Constants.APP_TITLE);
         primaryStage.setScene(scene);

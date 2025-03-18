@@ -11,9 +11,9 @@ import javafx.scene.layout.VBox;
 public class WeatherComponent {
 
     public HBox createWeatherDisplay(Weather weather) {
-        Label temperatureLabel = new Label(weather.getTemperature() + "℉");
-        Label humidityLabel = new Label(weather.getHumidity() + "%");
-        Label windSpeedLabel = new Label(weather.getWindSpeed() + " MPH");
+        Label temperatureLabel = new Label(weather.getTemperature() + Constants.TEMPERATURE_UNIT);
+        Label humidityLabel = new Label(weather.getHumidity() + Constants.HUMIDITY_UNIT);
+        Label windSpeedLabel = new Label(weather.getWindSpeed() + Constants.WIND_SPEED_UNIT);
 
         ImageView humidityIcon = new ImageView(new Image(Constants.HUMIDITY_ICON_PATH));
         ImageView windIcon = new ImageView(new Image(Constants.WIND_ICON_PATH));
@@ -23,17 +23,17 @@ public class WeatherComponent {
         windIcon.setFitWidth(Constants.ICON_SIZE);
         windIcon.setFitHeight(Constants.ICON_SIZE);
 
-        HBox humidityDetails = new HBox(2);
+        HBox humidityDetails = new HBox(Constants.SMALL_SPACING);
         humidityDetails.getChildren().addAll(humidityIcon, humidityLabel);
 
-        HBox windDetails = new HBox(2);
+        HBox windDetails = new HBox(Constants.SMALL_SPACING);
         windDetails.getChildren().addAll(windIcon, windSpeedLabel);
 
         temperatureLabel.getStyleClass().addAll(Constants.CLASS_WHITE, Constants.CLASS_TEMP);
         humidityLabel.getStyleClass().add(Constants.CLASS_WHITE);
         windSpeedLabel.getStyleClass().add(Constants.CLASS_WHITE);
 
-        HBox weatherSpeed = new HBox(10);
+        HBox weatherSpeed = new HBox(Constants.MEDIUM_SPACING);
         weatherSpeed.getChildren().addAll(humidityDetails, windDetails);
         weatherSpeed.getStyleClass().add(Constants.CLASS_WEATHER_SPEED);
 
@@ -44,6 +44,7 @@ public class WeatherComponent {
         weatherIcon.setFitHeight(Constants.WEATHER_ICON_SIZE);
         weatherIcon.setFitWidth(Constants.WEATHER_ICON_SIZE);
 
-        return new HBox(10, weatherImage);
+        return new HBox(Constants.MEDIUM_SPACING, weatherImage);
+
     }
 }

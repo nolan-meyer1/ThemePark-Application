@@ -5,6 +5,9 @@ public class Constants {
     public static final int WINDOW_WIDTH = 1200;
     public static final int WINDOW_HEIGHT = 600;
     public static final int PADDING = 10;
+    public static final int SMALL_SPACING = 2;
+    public static final int MEDIUM_SPACING = 10;
+
     public static final int PADDING_LARGE = 20;
     public static final int ICON_SIZE = 20;
     public static final int WEATHER_ICON_SIZE = 100;
@@ -40,6 +43,10 @@ public class Constants {
     public static final String WEATHER_ICON_URL_SUFFIX = "@4x.png";
 
     // Text Constants
+    public static final String TEMPERATURE_UNIT = "℉";
+    public static final String HUMIDITY_UNIT = "%";
+    public static final String WIND_SPEED_UNIT = " MPH";
+
     public static final String APP_TITLE = "Theme Park Explorer";
     public static final String SEARCH_PROMPT = "Search Parks...";
     public static final String SELECT_PARK_TEXT = "Select a Park";
