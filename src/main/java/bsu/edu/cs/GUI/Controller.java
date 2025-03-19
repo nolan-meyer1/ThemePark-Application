@@ -17,8 +17,8 @@ public class Controller {
         ParkConnection parkConnection = new ParkConnection();
         //Search is left blank because we are just grabbing the parks so there's no value to give it but a blank string
         ApiInputStream apiInputStream = new ApiInputStream(parkConnection.search(""));
-        ParkParser parkParser = new ParkParser(apiInputStream);
-        return parkParser.parse();
+        ParkParser parkParserInstance = new ParkParser(apiInputStream);
+        return parkParserInstance.parse();
     }
 
 
@@ -56,15 +56,15 @@ public class Controller {
     }
 
     public List<Ride> getRides(int id) throws networkErrorException, openInputStreamException, noItemFoundException {
-        RideConnection rideConnection = new RideConnection();
-        RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(id)));
-        return rideParser.parse();
+        RideConnection rideConnectionInstance = new RideConnection();
+        RideParser rideParserInstance = new RideParser(new ApiInputStream(rideConnectionInstance.search(id)));
+        return rideParserInstance.parse();
     }
 
     public Weather getWeather(String latitude, String longitude) throws networkErrorException, openInputStreamException, noItemFoundException {
-        WeatherConnection weatherConnection = new WeatherConnection();
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(weatherConnection.search(new String[]{latitude,longitude})));
-        return weatherParser.parse();
+        WeatherConnection weatherConnectionInstance = new WeatherConnection();
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new String[]{latitude,longitude})));
+        return weatherParserInstance.parse();
     }
 
 }
