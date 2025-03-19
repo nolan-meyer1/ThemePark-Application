@@ -17,10 +17,10 @@ public abstract class InternetConnection<T> {
         try{
             @SuppressWarnings("deprecation")
             URL urlConnection = new URL(url);
-            URLConnection connection = urlConnection.openConnection();
-            connection.setRequestProperty("User-Agent",
+            URLConnection connectionInstance = urlConnection.openConnection();
+            connectionInstance.setRequestProperty("User-Agent",
                     "Revision Reporter/0.1 (nolan.meyer@bsu.edu)");
-            output = connection.getInputStream();
+            output = connectionInstance.getInputStream();
         }catch (Exception e) {
             throw new networkErrorException();
         }
