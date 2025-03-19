@@ -1,6 +1,10 @@
 # Final Project Team-D
 
 ----------------------------------------------------------------------------
+This is a simple application that allows you to a pick a theme park, and it will display the ride names and wait times!
+
+<img width="1196" alt="Screenshot 2025-03-19 at 1 28 34 PM" src="https://github.com/user-attachments/assets/b42ccf3b-5a31-4309-a004-aa08e88edcac" />
+<img width="1193" alt="Screenshot 2025-03-19 at 1 28 49 PM" src="https://github.com/user-attachments/assets/bb5da19a-aa65-4328-9e18-5e7e34bfde04" />
 
 ## $${\color{lightgreen}Build Instructions}$$
 In order to run this program you will need to create a file called ApiKeys.json, and add it to the resources folder inside of the src/main/resources. Inside of the file this should be the structure: 
