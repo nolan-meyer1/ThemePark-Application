@@ -17,7 +17,7 @@ public abstract class Parser <T> {
 
     public T parse() throws noItemFoundException {
         JSONArray parsedRevisions = extractData(new ByteArrayInputStream(this.inputStreamInstance.inputStream));
-        return convertRevisionsToList(parsedRevisions);
+        return convertData(parsedRevisions);
     }
 
     protected JSONArray extractData(InputStream inputStreamInstance) throws noItemFoundException {
@@ -31,5 +31,5 @@ public abstract class Parser <T> {
     }
 
     protected abstract String getQuery();
-    protected abstract T convertRevisionsToList(JSONArray list);
+    protected abstract T convertData(JSONArray list);
 }
