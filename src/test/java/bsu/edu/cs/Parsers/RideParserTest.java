@@ -58,4 +58,12 @@ public class RideParserTest {
         }
 
     }
+
+    @Test
+    public void parseTest() throws openInputStreamException, noItemFoundException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
+        assert sampleFile != null;
+        RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));
+        assertEquals(44,rideParser.parse().size());
+    }
 }
