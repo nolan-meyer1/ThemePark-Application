@@ -145,4 +145,13 @@ This is a custom exception happens when the item cannot be found. It is handled 
 ### &#9679; $${\color{lightblue}openInputStreamException}$$
 This is a custom exception that happens when we cannot open the input stream. This is also handled inside of the GUI.  
 
+----------------------------------------------------------------------------
+
+## $${\color{lightgreen}APIs/Technologies}$$
+
+* Java
+* JavaFX
+* [OpenWeatherMap](https://openweathermap.org/current)
+* [QueueTimes](https://queue-times.com/en-US/pages/api)
+
 
