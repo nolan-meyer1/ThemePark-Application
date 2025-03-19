@@ -1,0 +1,23 @@
+[
+  {
+    "place_id": 279213997,
+    "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+    "osm_type": "way",
+    "osm_id": 310187834,
+    "lat": "28.41772285",
+    "lon": "-81.58484892884152",
+    "class": "tourism",
+    "type": "attraction",
+    "place_rank": 30,
+    "importance": 5.319066147855371e-05,
+    "addresstype": "tourism",
+    "name": "Pirates of the Caribbean",
+    "display_name": "Pirates of the Caribbean, Caribbean Way, Bay Lake, Orange County, Florida, United States",
+    "boundingbox": [
+      "28.4172919",
+      "28.4181529",
+      "-81.5857558",
+      "-81.5841073"
+    ]
+  }
+]

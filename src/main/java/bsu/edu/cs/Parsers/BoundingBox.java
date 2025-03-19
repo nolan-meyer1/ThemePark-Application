@@ -2,31 +2,31 @@ package bsu.edu.cs.Parsers;
 
 public class BoundingBox {
 
-    private final double minimumLatitude;
-    private final double maximumLatitude;
-    private final double minimumLongitude;
-    private final double maximumLongitude;
+    private final String minimumLatitude;
+    private final String maximumLatitude;
+    private final String minimumLongitude;
+    private final String maximumLongitude;
 
-    public BoundingBox(double minimumLatitude, double maximumLatitude,double minimumLongitude, double maximumLongitude){
+    public BoundingBox(String minimumLatitude, String maximumLatitude,String minimumLongitude, String maximumLongitude){
         this.minimumLatitude = minimumLatitude;
         this.maximumLatitude = maximumLatitude;
         this.minimumLongitude = minimumLongitude;
         this.maximumLongitude = maximumLongitude;
     }
 
-    public double getMinimumLatitude(){
+    public String getMinimumLatitude(){
         return minimumLatitude;
     }
 
-    public double getMaximumLatitude() {
+    public String getMaximumLatitude() {
         return maximumLatitude;
     }
 
-    public double getMinimumLongitude() {
+    public String getMinimumLongitude() {
         return minimumLongitude;
     }
 
-    public double getMaximumLongitude() {
+    public String getMaximumLongitude() {
         return maximumLongitude;
     }
 
