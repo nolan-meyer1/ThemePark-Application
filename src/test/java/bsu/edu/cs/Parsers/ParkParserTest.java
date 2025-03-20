@@ -18,40 +18,40 @@ public class ParkParserTest {
     public void getQueryTest() throws openInputStreamException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
-        assertEquals("$..parks[*]",parkParser.getQuery());
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
+        assertEquals("$..parks[*]",parkParserInstance.getQuery());
     }
 
     @Test
     public void convertDataTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
-        JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
-        HashMap<String,Park> convertedList = parkParser.convertData(parsedRevisions);
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
+        JSONArray parsedData = parkParserInstance.extractData(new ByteArrayInputStream(parkParserInstance.inputStreamInstance.inputStream));
+        HashMap<String,Park> convertedList = parkParserInstance.convertData(parsedData);
         assertEquals(132, convertedList.size());
     }
 
     @Test
-    public void extractTest() throws openInputStreamException, noItemFoundException {
+    public void extractDataTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
-        JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
-        assertNotNull(parsedRevisions);
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
+        JSONArray parsedData = parkParserInstance.extractData(new ByteArrayInputStream(parkParserInstance.inputStreamInstance.inputStream));
+        assertNotNull(parsedData);
     }
 
     @Test
-    public void extractTestNoItems() throws openInputStreamException, IOException {
+    public void extractDataTestNoItems() throws openInputStreamException, IOException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
 
         //Closed to test file exception
         sampleFile.close();
 
         try {
-            parkParser.extractData(sampleFile);
+            parkParserInstance.extractData(sampleFile);
             fail("Expected noItemFoundException");
         }catch (noItemFoundException e){
             assertEquals("Could not find the item you were looking for!",e.getMessage());
