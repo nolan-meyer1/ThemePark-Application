@@ -155,6 +155,7 @@ This is a custom exception that happens when we cannot open the input stream. Th
 
 * Java
 * JavaFX
+* Cascading Style Sheets (CSS)
 * Gradle
 * IntelliJ
 * [OpenWeatherMap](https://openweathermap.org/current)
