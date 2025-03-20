@@ -33,7 +33,7 @@ public class ParkParserTest {
     }
 
     @Test
-    public void extractDataTest() throws openInputStreamException, noItemFoundException {
+    public void extractTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
         ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
@@ -42,7 +42,7 @@ public class ParkParserTest {
     }
 
     @Test
-    public void extractDataTestNoItems() throws openInputStreamException, IOException {
+    public void extractTestNoItems() throws openInputStreamException, IOException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
         ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
@@ -62,8 +62,8 @@ public class ParkParserTest {
     public void parseTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("parks.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
-        assertEquals(132,parkParser.parse().size());
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
+        assertEquals(132,parkParserInstance.parse().size());
     }
 
 }
