@@ -23,35 +23,35 @@ public class RideParserTest {
     }
 
     @Test
-    public void convertDataTest() throws openInputStreamException, noItemFoundException {
+    public void conversionTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
-        RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));
-        JSONArray parsedRevisions = rideParser.extractData(new ByteArrayInputStream(rideParser.inputStreamInstance.inputStream));
-        List<Ride> convertedList = rideParser.convertData(parsedRevisions);
+        RideParser rideParserInstance = new RideParser(new ApiInputStream(sampleFile));
+        JSONArray parsedRevisions = rideParserInstance.extractData(new ByteArrayInputStream(rideParserInstance.inputStreamInstance.inputStream));
+        List<Ride> convertedList = rideParserInstance.convertData(parsedRevisions);
         assertEquals(44, convertedList.size());
     }
 
     @Test
-    public void extractDataTest() throws openInputStreamException, noItemFoundException {
+    public void extractionTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
-        JSONArray parsedRevisions = parkParser.extractData(new ByteArrayInputStream(parkParser.inputStreamInstance.inputStream));
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
+        JSONArray parsedRevisions = parkParserInstance.extractData(new ByteArrayInputStream(parkParserInstance.inputStreamInstance.inputStream));
         assertNotNull(parsedRevisions);
     }
 
     @Test
-    public void extractDataTestNoItems() throws openInputStreamException, IOException {
+    public void extractionTestNoItems() throws openInputStreamException, IOException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
-        ParkParser parkParser = new ParkParser(new ApiInputStream(sampleFile));
+        ParkParser parkParserInstance = new ParkParser(new ApiInputStream(sampleFile));
 
         //Closed to test file exception
         sampleFile.close();
 
         try {
-            parkParser.extractData(sampleFile);
+            parkParserInstance.extractData(sampleFile);
             fail("Expected noItemFoundException");
         } catch (noItemFoundException e) {
             assertEquals("Could not find the item you were looking for!", e.getMessage());
@@ -63,7 +63,7 @@ public class RideParserTest {
     public void parseTest() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("magicKingdom.json");
         assert sampleFile != null;
-        RideParser rideParser = new RideParser(new ApiInputStream(sampleFile));
-        assertEquals(44,rideParser.parse().size());
+        RideParser rideParserInstance = new RideParser(new ApiInputStream(sampleFile));
+        assertEquals(44,rideParserInstance.parse().size());
     }
 }
