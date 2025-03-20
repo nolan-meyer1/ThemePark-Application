@@ -7,10 +7,10 @@ public class RideConnectionTest {
 
     @Test
     public void createURLRequestTest() {
-        RideConnection rideConnection = new RideConnection();
+        RideConnection rideConnectionInstance = new RideConnection();
         Integer searchItem = 23;
 
         assertEquals("https://queue-times.com/parks/" + searchItem + "/queue_times.json",
-                rideConnection.createRequestUrl(searchItem));
+                rideConnectionInstance.createRequestUrl(searchItem));
     }
 }

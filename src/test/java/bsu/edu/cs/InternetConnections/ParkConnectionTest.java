@@ -8,7 +8,7 @@ public class ParkConnectionTest{
 
     @Test
     public void createURLRequestTest(){
-        ParkConnection parkConnection = new ParkConnection();
-        assertEquals("https://queue-times.com/parks.json",parkConnection.createRequestUrl("test"));
+        ParkConnection parkConnectionInstance = new ParkConnection();
+        assertEquals("https://queue-times.com/parks.json",parkConnectionInstance.createRequestUrl("test"));
     }
 }
