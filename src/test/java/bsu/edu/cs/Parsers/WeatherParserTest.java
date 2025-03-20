@@ -11,67 +11,67 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class WeatherParserTest {
 
     @Test
-    public void convertDataTestGetName() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetName() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals("Clear",weatherParser.parse().getName());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals("Clear",weatherParserInstance.parse().getName());
     }
 
     @Test
-    public void convertDataTestGetId() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetId() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(800,weatherParser.parse().getId());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals(800,weatherParserInstance.parse().getId());
     }
 
     @Test
-    public void convertDataTestGetFeelsLike() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetFeelsLike() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(79.75,weatherParser.parse().getFeels_like());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals(79.75,weatherParserInstance.parse().getFeels_like());
     }
 
     @Test
-    public void convertDataTestGetTemp() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetTemp() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(80.2,weatherParser.parse().getTemperature());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals(80.2,weatherParserInstance.parse().getTemperature());
     }
 
     @Test
-    public void convertDataTestGetWindSpeed() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetWindSpeed() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(3,weatherParser.parse().getWindSpeed());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals(3,weatherParserInstance.parse().getWindSpeed());
     }
 
     @Test
-    public void convertDataTestGetHumidity() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetHumidity() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(36,weatherParser.parse().getHumidity());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals(36,weatherParserInstance.parse().getHumidity());
     }
 
     @Test
-    public void convertDataTestGetID() throws openInputStreamException, noItemFoundException {
+    public void conversionTestGetID() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals("01d",weatherParser.parse().getIconID());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals("01d",weatherParserInstance.parse().getIconID());
     }
 
     @Test
     public void getQueryTest() throws openInputStreamException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("WeatherSample.json");
         assert sampleFile != null;
-        WeatherParser weatherParser = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals("$..*",weatherParser.getQuery());
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
+        assertEquals("$..*",weatherParserInstance.getQuery());
     }
 
 }
