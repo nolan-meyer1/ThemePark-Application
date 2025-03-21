@@ -25,8 +25,8 @@ public class WeatherConnection extends InternetConnection<Coordinates> {
     }
 
     private static String loadApiKey() throws IOException {
-        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
-        return JsonPath.read(sampleFile,"weather");
+        InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
+        return JsonPath.read(apiKeyFile,"weather");
     }
 
 }
