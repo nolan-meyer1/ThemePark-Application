@@ -63,7 +63,7 @@ public class Controller {
 
     public Weather getWeather(String latitude, String longitude) throws networkErrorException, openInputStreamException, noItemFoundException {
         WeatherConnection weatherConnectionInstance = new WeatherConnection();
-        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new String[]{latitude,longitude})));
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new Coordinates(latitude, longitude))));
         return weatherParserInstance.parse();
     }
 

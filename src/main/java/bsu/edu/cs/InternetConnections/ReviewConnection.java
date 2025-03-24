@@ -1,12 +1,11 @@
 package bsu.edu.cs.InternetConnections;
 
-import bsu.edu.cs.Parsers.Coordinates;
 import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
 import java.io.InputStream;
 
-public class WeatherConnection extends InternetConnection<Coordinates> {
+public class ReviewConnection extends InternetConnection<String>{
 
     private static final String API_KEY;
 
@@ -17,16 +16,14 @@ public class WeatherConnection extends InternetConnection<Coordinates> {
             throw new RuntimeException("Failed to load API Key",e);
         }
     }
-
-
     @Override
-    public String createRequestUrl(Coordinates latitudeAndLongitude) {
-        return "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeAndLongitude.getLatitude() + "&lon=" + latitudeAndLongitude.getLongitude() + "&appid=" + API_KEY + "&units=imperial";
+    protected String createRequestUrl(String searchItem) {
+        return String.format("https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,rating,reviews&key=%s",
+                searchItem,API_KEY);
     }
 
     private static String loadApiKey() throws IOException {
         InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
-        return JsonPath.read(apiKeyFile,"weather");
+        return JsonPath.read(apiKeyFile,"google");
     }
-
 }
