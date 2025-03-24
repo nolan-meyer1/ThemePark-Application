@@ -16,7 +16,6 @@
 </style>
 <body>
 <div id="map">
-<p>KJNLDB</p>
 </div>
 
 <script
@@ -29,21 +28,19 @@
 ></script>
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
 <script>
-    function setMapView(lat, long, zoomLevel) {
-
-    }
-    function addMarker(lat, long, rideName, waitTime) {
-
-    }
-    var map = L.map('map').setView([51.505, -0.09], 19);
-
+    const map = L.map('map').setView([0, 0], 1);
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+    function setMapView(lat, long, zoomLevel) {
+        map.setView([lat, long], zoomLevel)
+    }
+    function addMarker(lat, long, rideName, waitTime) {
+        L.marker([lat, long]).addTo(map)
+            .bindPopup(`<b>${rideName}</b><br>Wait Time: ${waitTime}`)
+            .openPopup()
+    }
 
-    L.marker([51.5, -0.09]).addTo(map)
-        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
-        .openPopup()
 </script>
 </body>
 </html>
