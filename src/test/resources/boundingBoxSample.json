@@ -1,0 +1,40 @@
+{
+  "place_id": 277097598,
+  "licence": "Data © OpenStreetMap contributors, ODbL 1.0. http://osm.org/copyright",
+  "osm_type": "node",
+  "osm_id": 1257471018,
+  "lat": "28.4177416",
+  "lon": "-81.581052",
+  "class": "amenity",
+  "type": "cafe",
+  "place_rank": 30,
+  "importance": 0.00005319066147855371,
+  "addresstype": "amenity",
+  "name": "Starbucks",
+  "display_name": "Starbucks, 1365, Main Street, Bay Lake, Orange County, Florida, 32830, United States",
+  "address": {
+    "amenity": "Starbucks",
+    "house_number": "1365",
+    "road": "Main Street",
+    "hamlet": "Bay Lake",
+    "county": "Orange County",
+    "state": "Florida",
+    "ISO3166-2-lvl4": "US-FL",
+    "postcode": "32830",
+    "country": "United States",
+    "country_code": "us"
+  },
+  "boundingbox": [
+    "28.4176916",
+    "28.4177916",
+    "-81.5811020",
+    "-81.5810020"
+  ],
+  "geojson": {
+    "type": "Point",
+    "coordinates": [
+      -81.581052,
+      28.4177416
+    ]
+  }
+}
