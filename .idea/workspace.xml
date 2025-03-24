@@ -4,9 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a1ad995-6f97-467d-9036-ea7684a994c6" name="Changes" comment="added functions">
-      <change beforePath="$PROJECT_DIR$/src/main/java/bsu/edu/cs/GUI/Html/Map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bsu/edu/cs/GUI/Html/Map.html" afterDir="false" />
-    </list>
+    <list default="true" id="1a1ad995-6f97-467d-9036-ea7684a994c6" name="Changes" comment="removed some unused packages" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -157,7 +155,7 @@
       <workItem from="1740498138344" duration="15736000" />
       <workItem from="1741711360510" duration="27060000" />
       <workItem from="1742776595800" duration="636000" />
-      <workItem from="1742778763549" duration="1130000" />
+      <workItem from="1742778763549" duration="1369000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -343,7 +341,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742779768846</updated>
     </task>
-    <option name="localTasksCounter" value="24" />
+    <task id="LOCAL-00024" summary="finished the functions">
+      <option name="closed" value="true" />
+      <created>1742780203710</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1742780203710</updated>
+    </task>
+    <task id="LOCAL-00025" summary="removed some unused packages">
+      <option name="closed" value="true" />
+      <created>1742780241609</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1742780241609</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -371,6 +385,8 @@
     <MESSAGE value="made a new branch and added the html file" />
     <MESSAGE value="got the map to a working phase" />
     <MESSAGE value="added functions" />
-    <option name="LAST_COMMIT_MESSAGE" value="added functions" />
+    <MESSAGE value="finished the functions" />
+    <MESSAGE value="removed some unused packages" />
+    <option name="LAST_COMMIT_MESSAGE" value="removed some unused packages" />
   </component>
 </project>
