@@ -2,19 +2,19 @@ package bsu.edu.cs.Parsers;
 
 public class RidePositionSearch {
     private final String rideName;
-    private final BoundingBox boundingBox;
+    private final Park park;
 
-    public RidePositionSearch(String rideName, BoundingBox boundingBox){
+    public RidePositionSearch(String rideName, Park park){
         this.rideName = rideName;
-        this.boundingBox = boundingBox;
+        this.park = park;
     }
 
     public String getRideName(){
         return rideName;
     }
 
-    public BoundingBox getBoundingBox(){
-        return boundingBox;
+    public Park getPark(){
+        return park;
     }
 
 }

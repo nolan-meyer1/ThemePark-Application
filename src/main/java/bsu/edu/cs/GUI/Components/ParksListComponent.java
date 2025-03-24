@@ -4,6 +4,7 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Controller;
+import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Park;
 import bsu.edu.cs.Parsers.Ride;
 import bsu.edu.cs.Utils.CSSConstants;
@@ -29,7 +30,7 @@ public class ParksListComponent {
     private final Controller controller = new Controller();
     RidesListComponent ridesListComponent = new RidesListComponent();
 
-    public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent) {
+    public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent, MapManager mapManager) {
         VBox sidebar = new VBox(10);
         sidebar.setPadding(new Insets(UIConstants.PADDING));
         sidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
@@ -50,6 +51,7 @@ public class ParksListComponent {
                     filteredList.add(park);
                 }
             }
+            parksList.getSelectionModel().clearSelection();
             Collections.sort(filteredList);
             parksList.setItems(filteredList);
         });
@@ -81,13 +83,14 @@ public class ParksListComponent {
 
         // Handle Park Selection
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
+            if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
                 ridesList.getItems().clear();
                 List<Ride> rideList;
                 try {
-                    rideList = controller.getRides(park.getId());
+                    mapManager.createMap(park);
+                    rideList = mapManager.getListOfRides();
 
                     if (rideList.isEmpty()) {
                         rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0, "N/A"));

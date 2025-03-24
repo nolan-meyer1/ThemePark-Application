@@ -19,6 +19,8 @@ import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.scene.web.WebView;
 import javafx.scene.image.Image;
+
+import java.io.File;
 import java.util.*;
 
 public class GUI extends Application {
@@ -67,9 +69,10 @@ public class GUI extends Application {
         parkTitle.getStyleClass().add(CSSConstants.CLASS_PARK_TITLE);
 
         WebView webView = new WebView();
+        File htmlFile = new File("src/main/java/bsu/edu/cs/GUI/Html/Map.html");
         webView.setPrefHeight(700);
-        webView.getEngine().load("https://www.google.com/maps/place/Ball+State+University/@40.2024944,-85.408399,17z/data=!3m1!4b1!4m6!3m5!1s0x88153d66697c1e21:0xe4e0ee9b189f89f4!8m2!3d40.2024944!4d-85.4058241!16zL20vMDIybGx5?entry=ttu&g_ep=EgoyMDI1MDMxOS4yIKXMDSoASAFQAw%3D%3D");
-
+        webView.getEngine().load(htmlFile.toURI().toString());
+        MapManager mapManager = new MapManager(webView.getEngine());
 
         HBox webContainer = new HBox(UIConstants.MEDIUM_SPACING);
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));
@@ -95,7 +98,7 @@ public class GUI extends Application {
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
 
-        VBox sideBarVBox = sideBar.createSideBar(parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent);
+        VBox sideBarVBox = sideBar.createSideBar(parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent,mapManager);
 
         mainContent.getChildren().addAll(ridesHeader, weather, webContainer);
 
