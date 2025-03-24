@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1a1ad995-6f97-467d-9036-ea7684a994c6" name="Changes" comment="made a new branch and added the html file">
-      <change afterPath="$PROJECT_DIR$/.idea/jsLibraryMappings.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/gradle.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/gradle.xml" afterDir="false" />
+    <list default="true" id="1a1ad995-6f97-467d-9036-ea7684a994c6" name="Changes" comment="got the map to a working phase">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/bsu/edu/cs/GUI/Html/Map.html" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/bsu/edu/cs/GUI/Html/Map.html" afterDir="false" />
     </list>
@@ -161,7 +158,7 @@
       <workItem from="1740498138344" duration="15736000" />
       <workItem from="1741711360510" duration="27060000" />
       <workItem from="1742776595800" duration="636000" />
-      <workItem from="1742778763549" duration="608000" />
+      <workItem from="1742778763549" duration="755000" />
     </task>
     <task id="LOCAL-00001" summary="initial commit">
       <option name="closed" value="true" />
@@ -331,7 +328,15 @@
       <option name="project" value="LOCAL" />
       <updated>1742779038015</updated>
     </task>
-    <option name="localTasksCounter" value="22" />
+    <task id="LOCAL-00022" summary="got the map to a working phase">
+      <option name="closed" value="true" />
+      <created>1742779528667</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1742779528667</updated>
+    </task>
+    <option name="localTasksCounter" value="23" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -357,6 +362,7 @@
     <MESSAGE value="added themeManager and made some edits to the WeatherParser" />
     <MESSAGE value="more refactoring" />
     <MESSAGE value="made a new branch and added the html file" />
-    <option name="LAST_COMMIT_MESSAGE" value="made a new branch and added the html file" />
+    <MESSAGE value="got the map to a working phase" />
+    <option name="LAST_COMMIT_MESSAGE" value="got the map to a working phase" />
   </component>
 </project>
