@@ -3,8 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link
+            rel="stylesheet"
+            href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+    />
 </head>
+<style>
+    #map {
+        width: 100%;
+        height: 100vh;
+    }
+</style>
 <body>
+<div id="map">
+<p>KJNLDB</p>
+</div>
 
+<script
+        type="text/javascript"
+        src="https://code.jquery.com/jquery-3.2.1.min.js"
+></script>
+<script
+        type="text/javascript"
+        src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"
+></script>
+<script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+<script>
+    var map = L.map('map').setView([51.505, -0.09], 13);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    L.marker([51.5, -0.09]).addTo(map)
+        .bindPopup('A pretty CSS popup.<br> Easily customizable.')
+        .openPopup()
+</script>
 </body>
 </html>
