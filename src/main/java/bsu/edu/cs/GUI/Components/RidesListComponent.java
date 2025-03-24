@@ -1,6 +1,7 @@
 package bsu.edu.cs.GUI.Components;
 
 import bsu.edu.cs.GUI.Controller;
+import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Ride;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
@@ -12,7 +13,14 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class RidesListComponent {
-    public void styleRidesList(ListView<Ride> ridesList, Controller controller) {
+    public void styleRidesList(ListView<Ride> ridesList, Controller controller, MapManager mapmanager) {
+
+        ridesList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if(newValue != null) {
+                mapmanager.recenterToRide(newValue.getName());
+            }
+        });
+
         ridesList.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(Ride ride, boolean empty) {

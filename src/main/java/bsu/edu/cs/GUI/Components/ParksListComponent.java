@@ -109,7 +109,7 @@ public class ParksListComponent {
                     rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0, "N/A"));
                 }
                 ridesList.setItems(FXCollections.observableArrayList(rideList));
-                ridesListComponent.styleRidesList(ridesList, controller);
+                ridesListComponent.styleRidesList(ridesList, controller,mapManager);
 
             }
         });

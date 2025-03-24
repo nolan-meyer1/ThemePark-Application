@@ -4,11 +4,9 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.InternetConnections.ParkConnection;
-import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
 
-import java.util.List;
 import java.util.Map;
 
 public class Controller {
@@ -53,12 +51,6 @@ public class Controller {
         }
 
         return output;
-    }
-
-    public List<Ride> getRides(int id) throws networkErrorException, openInputStreamException, noItemFoundException {
-        RideConnection rideConnectionInstance = new RideConnection();
-        RideParser rideParserInstance = new RideParser(new ApiInputStream(rideConnectionInstance.search(id)));
-        return rideParserInstance.parse();
     }
 
     public Weather getWeather(String latitude, String longitude) throws networkErrorException, openInputStreamException, noItemFoundException {

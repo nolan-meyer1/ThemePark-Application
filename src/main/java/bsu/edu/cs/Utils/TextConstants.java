@@ -17,4 +17,6 @@ public class TextConstants {
     public static final String CLOSED_STATUS = " CLOSED";
     public static final String QUEUE_TIMES_TEXT = "Powered by Queue-Times.com";
     public static final String QUEUE_TIMES_URL = "https://queue-times.com/en-US";
+
+    public static final String NO_RIDE_FOUND = "No ride could be found on map!";
 }
