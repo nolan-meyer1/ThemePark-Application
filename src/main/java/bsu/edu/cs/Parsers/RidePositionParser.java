@@ -12,7 +12,7 @@ public class RidePositionParser extends Parser<Coordinates> {
 
     @Override
     protected String getQuery() {
-        return "$.[*]";
+        return "$..results";
     }
 
     @Override
@@ -24,7 +24,7 @@ public class RidePositionParser extends Parser<Coordinates> {
 
         if(!list.isEmpty()) {
 
-            JSONArray results = (JSONArray) list.get(1);
+            JSONArray results = (JSONArray) list.get(0);
 
             if (!results.isEmpty()) {
 

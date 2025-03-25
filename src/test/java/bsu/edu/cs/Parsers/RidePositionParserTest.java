@@ -19,7 +19,7 @@ public class RidePositionParserTest {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ridePositionSample.json");
         assert sampleFile != null;
         RidePositionParser ridePositionParserInstance = new RidePositionParser(new ApiInputStream(sampleFile));
-        assertEquals("$.[*]",ridePositionParserInstance.getQuery());
+        assertEquals("$..results",ridePositionParserInstance.getQuery());
     }
 
     @Test
