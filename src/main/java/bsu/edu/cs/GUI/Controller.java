@@ -4,9 +4,11 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.InternetConnections.ParkConnection;
+import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
 
+import java.util.List;
 import java.util.Map;
 
 public class Controller {
@@ -57,6 +59,12 @@ public class Controller {
         WeatherConnection weatherConnectionInstance = new WeatherConnection();
         WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new Coordinates(latitude, longitude))));
         return weatherParserInstance.parse();
+    }
+
+    public List<Ride> fetchRides(Park park) throws networkErrorException, openInputStreamException, noItemFoundException {
+        RideConnection rideConnection = new RideConnection();
+        RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(park.getId())));
+        return rideParser.parse();
     }
 
 }

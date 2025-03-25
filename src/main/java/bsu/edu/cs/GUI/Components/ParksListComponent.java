@@ -85,12 +85,13 @@ public class ParksListComponent {
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
+                mapManager.setCurrentPark(newValue);
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
                 ridesList.getItems().clear();
                 List<Ride> rideList;
                 try {
                     mapManager.createMap(park);
-                    rideList = mapManager.getListOfRides();
+                    rideList = controller.fetchRides(park);
 
                     if (rideList.isEmpty()) {
                         rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0, "N/A"));

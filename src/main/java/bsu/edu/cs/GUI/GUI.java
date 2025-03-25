@@ -72,7 +72,7 @@ public class GUI extends Application {
         File htmlFile = new File("src/main/java/bsu/edu/cs/GUI/Html/Map.html");
         webView.setPrefHeight(700);
         webView.getEngine().load(htmlFile.toURI().toString());
-        MapManager mapManager = new MapManager(webView.getEngine());
+        MapManager mapManager = new MapManager(webView.getEngine(),parksMap);
 
         HBox webContainer = new HBox(UIConstants.MEDIUM_SPACING);
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));
@@ -107,7 +107,7 @@ public class GUI extends Application {
         root.setRight(ridesSidebar);
 
         //needs error handling
-        Image appIcon = new Image(getClass().getResourceAsStream("/icon.png"));
+        Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png")));
         primaryStage.getIcons().add(appIcon);
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ResourcePathsConstants.STYLE_PATH)).toExternalForm());

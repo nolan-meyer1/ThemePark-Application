@@ -1,5 +1,8 @@
 package bsu.edu.cs.GUI.Components;
 
+import bsu.edu.cs.Exceptions.networkErrorException;
+import bsu.edu.cs.Exceptions.noItemFoundException;
+import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Controller;
 import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Ride;
@@ -13,11 +16,15 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 
 public class RidesListComponent {
-    public void styleRidesList(ListView<Ride> ridesList, Controller controller, MapManager mapmanager) {
+    public void styleRidesList(ListView<Ride> ridesList, Controller controller, MapManager mapManager) {
 
         ridesList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
-                mapmanager.recenterToRide(newValue.getName());
+                try {
+                    mapManager.addMarker(newValue);
+                } catch (noItemFoundException | networkErrorException | openInputStreamException e) {
+                    mapManager.alert();
+                }
             }
         });
 

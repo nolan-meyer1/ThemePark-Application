@@ -46,19 +46,6 @@
        }
     }
 
-    // Tests For the MAp
-    const testMarkers = [
-        { lat: 40.7128, long: -74.0060, id: "nyc", rideName: "New York Ride", waitTime: "10 minutes" },
-        { lat: 34.0522, long: -118.2437, id: "la", rideName: "LA Ride", waitTime: "5 minutes" },
-        { lat: 51.5074, long: -0.1278, id: "london", rideName: "London Eye", waitTime: "15 minutes" }
-    ];
-
-    setMapView(40.7128, -74.0060, 12);
-
-    testMarkers.forEach(marker => {
-        addMarker(marker.lat, marker.long, marker.id, marker.rideName, marker.waitTime);
-    });
-
 </script>
 </body>
 </html>
