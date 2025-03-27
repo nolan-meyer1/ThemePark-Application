@@ -9,9 +9,9 @@ public class CSSConstants {
     public static final String CLASS_WEATHER_CONTAINER = "weather-container";
     public static final String CLASS_WHITE = "white";
     public static final String CLASS_TEMP = "temp";
-    public static final String CLASS_WEATHER_SPEED = "weather-speed";
     public static final String CLASS_BLACK = "black";
     public static final String CLASS_RIDE_NAME = "ride-name";
+    public static final String CLASS_CLICKABLE_LABEL = "clickable-label";
     public static final String CLASS_WAIT_TIME = "wait-time";
     public static final String CLASS_STATUS_OPEN = "status-open";
     public static final String CLASS_STATUS_CLOSED = "status-closed";

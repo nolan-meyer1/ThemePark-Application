@@ -38,11 +38,14 @@
 
 
 .weather-container {
-    -fx-padding: 20;
+    -fx-padding: 10;
     -fx-text-fill: #eaeaea;
     -fx-background-color: #300D99;
-    -fx-border-radius: 38px;
-    -fx-background-radius: 38px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-pref-width: 100%;
 }
 
 .weather-speed {
@@ -61,7 +64,7 @@
 }
 
 .temp {
-    -fx-font-size: 35px;
+    -fx-font-size: 25px;
 }
 
 .park-title {
@@ -75,8 +78,10 @@
 .rides-container {
     -fx-background-color: #121212;
     -fx-padding: 20px;
-    -fx-border-radius: 15px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
     -fx-spacing: 40px;
+    -fx-end-margin: 30px;
 }
 
 .ride-item {
@@ -86,11 +91,22 @@
     -fx-border-color: transparent;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
-    -fx-spacing: 40px;
+    /*-fx-spacing: 40px;*/
+}
+
+.clickable-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-cursor: hand;
+}
+
+.clickable-label:hover {
+    -fx-text-fill: #3498db;
+    -fx-underline: true;
 }
 
 .ride-name {
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #eaeaea;
 }
