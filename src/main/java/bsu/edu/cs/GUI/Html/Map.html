@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Ride Tracking Map</title>
     <link
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
@@ -25,25 +25,20 @@
     L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-    let markers = {}
+
+    let currentMarker = null;
+
     function setMapView(lat, long, zoomLevel) {
         map.setView([lat, long], zoomLevel)
     }
 
     function addMarker(lat, long, id, rideName, waitTime) {
-        if (markers[id]) {
-            removeMarker(id)
+        if (currentMarker) {
+            map.removeLayer(currentMarker);
         }
-        markers[id] = L.marker([lat, long]).addTo(map)
+        currentMarker = L.marker([lat, long]).addTo(map)
             .bindPopup(`<b>${rideName}</b><br>Wait Time: ${waitTime}`)
-            .openPopup()
-    }
-
-    function removeMarker(id) {
-       if (markers[id]) {
-           map.removeLayer(markers[id])
-           delete markers[id]
-       }
+            .openPopup();
     }
 
 </script>
