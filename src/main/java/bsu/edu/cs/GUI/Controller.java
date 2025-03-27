@@ -36,11 +36,9 @@ public class Controller {
     }
 
     public String convertMinToHours(int minutes){
-
         String output;
         int hours;
         int extraMinutes;
-
         if(minutes < 60){
             output = minutes + " min";
         }else if(minutes % 60 == 0){

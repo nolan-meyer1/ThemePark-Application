@@ -31,12 +31,27 @@
     function setMapView(lat, long, zoomLevel) {
         map.setView([lat, long], zoomLevel)
     }
-
-    function addMarker(lat, long, id, rideName, waitTime) {
+    function addMarker(lat, long, id, rideName, waitTime, isOpen) {
+        let icon
+        if (!isOpen) {
+            icon = 'https://i.ibb.co/hxs49HHB/gray-pointer.png'
+        } else if (waitTime < 45){
+            icon = 'https://i.ibb.co/j9jk7dHL/green-pointer.png'
+        } else if (waitTime <= 95){
+            icon = 'https://i.ibb.co/230X13DZ/yellow-pointer.png'
+        } else {
+            icon = 'https://i.ibb.co/DDXBrW9D/red-pointer.png'
+        }
+        const markerIcon = L.icon({
+            iconUrl: icon,
+            iconSize: [25, 30],
+        })
         if (currentMarker) {
             map.removeLayer(currentMarker);
         }
-        currentMarker = L.marker([lat, long]).addTo(map)
+        currentMarker = L.marker([lat, long], {
+            icon: markerIcon
+        }).addTo(map)
             .bindPopup(`<b>${rideName}</b><br>Wait Time: ${waitTime}`)
             .openPopup();
     }

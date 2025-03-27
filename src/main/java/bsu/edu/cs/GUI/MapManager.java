@@ -39,7 +39,7 @@ public class MapManager {
 
         if (coordinates != null) {
             String convertedRideName = ride.getName().replace("'", "\\'");
-            webEngine.executeScript(String.format("addMarker(%s, %s,%d,'%s', %d)", coordinates.getLatitude(), coordinates.getLongitude(),ride.getId(), convertedRideName, ride.getWaitTime()));
+            webEngine.executeScript(String.format("addMarker(%s, %s,%d,'%s', %d, %b)", coordinates.getLatitude(), coordinates.getLongitude(),ride.getId(), convertedRideName, ride.getWaitTime(), ride.getIsOpen()));
             webEngine.executeScript(String.format("setMapView(%s, %s, 17)", coordinates.getLatitude(), coordinates.getLongitude()));
 
         }else{
