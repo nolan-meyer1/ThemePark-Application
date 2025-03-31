@@ -17,4 +17,5 @@ public class CSSConstants {
     public static final String CLASS_STATUS_CLOSED = "status-closed";
     public static final String CLASS_RIDE_ITEM = "ride-item";
     public static final String CLASS_PARKS_CONTAINER = "parks-container";
+    public static final String CLASS_REVIEWS_BUTTON = "reviews-button";
 }

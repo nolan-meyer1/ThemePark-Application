@@ -68,6 +68,12 @@ public class GUI extends Application {
         Label parkTitle = new Label(TextConstants.SELECT_PARK_TEXT);
         parkTitle.getStyleClass().add(CSSConstants.CLASS_PARK_TITLE);
 
+        // Button to open the review pop-up
+        Button viewReviewsButton = new Button("View Reviews");
+        viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+        viewReviewsButton.setOnAction(event -> showReviewsPopup());
+
+
         WebView webView = new WebView();
         File htmlFile = new File("src/main/java/bsu/edu/cs/GUI/Html/Map.html");
         webView.setPrefHeight(700);
@@ -90,7 +96,7 @@ public class GUI extends Application {
         HBox ridesHeader = new HBox(UIConstants.MEDIUM_SPACING);
         HBox spacer = new HBox();
         HBox.setHgrow(spacer, Priority.ALWAYS);
-        ridesHeader.getChildren().addAll(parkTitle, spacer, toggleThemeButton);
+        ridesHeader.getChildren().addAll(parkTitle, spacer, viewReviewsButton, toggleThemeButton);
         ridesHeader.setAlignment(Pos.CENTER_LEFT);
 
         HBox weather = weatherComponent.createWeatherDisplay(new Weather(45, TextConstants.NO_WEATHER_INFO, 0, 0, 0, 0, "01d"));
@@ -114,6 +120,35 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
+    private void showReviewsPopup() {
+        Stage reviewStage = new Stage();
+        reviewStage.setTitle("Park Reviews");
+
+        VBox reviewBox = new VBox(10);
+        reviewBox.setPadding(new Insets(15));
+        reviewBox.getStyleClass().add("review-popup");
+        reviewBox.setAlignment(Pos.CENTER);
+
+        List<String> reviews = Arrays.asList(
+                "Great park! Loved the rides. ★★★★★",
+                "It was okay, but the food was overpriced. ★★★☆☆",
+                "Amazing experience, will visit again! ★★★★★",
+                "Not well maintained. ★★☆☆☆"
+        );
+
+        for (String review : reviews) {
+            Label reviewLabel = new Label(review);
+            reviewLabel.setWrapText(true);
+            reviewLabel.getStyleClass().add("review-text");
+            reviewBox.getChildren().add(reviewLabel);
+        }
+
+        Scene reviewScene = new Scene(reviewBox, 500, 200);
+        reviewScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ResourcePathsConstants.STYLE_PATH)).toExternalForm());
+        reviewStage.setScene(reviewScene);
+        reviewStage.show();
+    }
+
 
     public static void main(String[] args) {
         launch(args);
