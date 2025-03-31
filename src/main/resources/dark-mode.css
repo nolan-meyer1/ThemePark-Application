@@ -74,6 +74,23 @@
     -fx-padding-bottom: 10px;
 }
 
+.reviews-button {
+    -fx-background-color: #300D99;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #300D99;
+}
+
+.review-button:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: black;
+}
+
+
 /* Rides section styling */
 .rides-container {
     -fx-background-color: #121212;
