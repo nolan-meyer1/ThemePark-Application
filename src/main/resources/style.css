@@ -150,6 +150,17 @@
     -fx-border-color: transparent;
 }
 
+.label-no-reviews {
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-text-fill: #7f8c8d;
+}
+
+.profile-image {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
+}
+
 /* Rides section styling */
 .rides-container {
     /*-fx-background-color: #2c1a33;*/

@@ -26,5 +26,7 @@ public class CSSConstants {
     public static final String CLASS_LABEL_TIME = "label-time";
     public static final String CLASS_LABEL_REVIEW_TEXT = "label-review-text";
     public static final String CLASS_LABEL_REVIEW_RATING = "label-review-rating";
+    public static final String CLASS_LABEL_NO_REVIEWS = ".label-no-reviews";
     public static final String CLASS_SCROLL_PANE = "scroll-pane";
+    public static final String CLASS_PROFILE_IMAGE = "profile-image";
 }
