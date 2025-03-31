@@ -106,7 +106,6 @@ public class GUI extends Application {
         root.setCenter(mainContent);
         root.setRight(ridesSidebar);
 
-        //needs error handling
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png")));
         primaryStage.getIcons().add(appIcon);
 
