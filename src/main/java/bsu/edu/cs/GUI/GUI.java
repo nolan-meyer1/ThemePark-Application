@@ -4,7 +4,6 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Components.ParksListComponent;
-import bsu.edu.cs.GUI.Components.ReviewsComponent;
 import bsu.edu.cs.GUI.Components.ThemeManager;
 import bsu.edu.cs.GUI.Components.WeatherComponent;
 import bsu.edu.cs.Parsers.*;
@@ -25,11 +24,9 @@ import java.io.File;
 import java.util.*;
 
 public class GUI extends Application {
-
     private final Controller controller = new Controller();
     private final WeatherComponent weatherComponent = new WeatherComponent();
     private final ThemeManager themeManager = new ThemeManager();
-    private final ReviewsComponent reviewsComponent = new ReviewsComponent();
 
     @Override
     public void start(Stage primaryStage) {
@@ -73,8 +70,6 @@ public class GUI extends Application {
         // Button to open the review pop-up
         Button viewReviewsButton = new Button("View Reviews");
         viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
-        viewReviewsButton.setOnAction(event -> reviewsComponent.showReviewsPopup());
-
 
         WebView webView = new WebView();
         File htmlFile = new File("src/main/java/bsu/edu/cs/GUI/Html/Map.html");
@@ -106,7 +101,7 @@ public class GUI extends Application {
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
 
-        VBox sideBarVBox = sideBar.createSideBar(parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent,mapManager);
+        VBox sideBarVBox = sideBar.createSideBar(parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent,mapManager, viewReviewsButton);
 
         mainContent.getChildren().addAll(ridesHeader, weather, webContainer);
 

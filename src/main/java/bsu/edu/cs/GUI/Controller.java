@@ -4,6 +4,7 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.InternetConnections.ParkConnection;
+import bsu.edu.cs.InternetConnections.ReviewConnection;
 import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
