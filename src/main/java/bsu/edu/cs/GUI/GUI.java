@@ -4,6 +4,7 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Components.ParksListComponent;
+import bsu.edu.cs.GUI.Components.ReviewsComponent;
 import bsu.edu.cs.GUI.Components.ThemeManager;
 import bsu.edu.cs.GUI.Components.WeatherComponent;
 import bsu.edu.cs.Parsers.*;
@@ -28,6 +29,7 @@ public class GUI extends Application {
     private final Controller controller = new Controller();
     private final WeatherComponent weatherComponent = new WeatherComponent();
     private final ThemeManager themeManager = new ThemeManager();
+    private final ReviewsComponent reviewsComponent = new ReviewsComponent();
 
     @Override
     public void start(Stage primaryStage) {
@@ -71,7 +73,7 @@ public class GUI extends Application {
         // Button to open the review pop-up
         Button viewReviewsButton = new Button("View Reviews");
         viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
-        viewReviewsButton.setOnAction(event -> showReviewsPopup());
+        viewReviewsButton.setOnAction(event -> reviewsComponent.showReviewsPopup());
 
 
         WebView webView = new WebView();
@@ -119,34 +121,6 @@ public class GUI extends Application {
         primaryStage.setTitle(TextConstants.APP_TITLE);
         primaryStage.setScene(scene);
         primaryStage.show();
-    }
-    private void showReviewsPopup() {
-        Stage reviewStage = new Stage();
-        reviewStage.setTitle("Park Reviews");
-
-        VBox reviewBox = new VBox(10);
-        reviewBox.setPadding(new Insets(15));
-        reviewBox.getStyleClass().add("review-popup");
-        reviewBox.setAlignment(Pos.CENTER);
-
-        List<String> reviews = Arrays.asList(
-                "Great park! Loved the rides. ★★★★★",
-                "It was okay, but the food was overpriced. ★★★☆☆",
-                "Amazing experience, will visit again! ★★★★★",
-                "Not well maintained. ★★☆☆☆"
-        );
-
-        for (String review : reviews) {
-            Label reviewLabel = new Label(review);
-            reviewLabel.setWrapText(true);
-            reviewLabel.getStyleClass().add("review-text");
-            reviewBox.getChildren().add(reviewLabel);
-        }
-
-        Scene reviewScene = new Scene(reviewBox, 500, 200);
-        reviewScene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ResourcePathsConstants.STYLE_PATH)).toExternalForm());
-        reviewStage.setScene(reviewScene);
-        reviewStage.show();
     }
 
 
