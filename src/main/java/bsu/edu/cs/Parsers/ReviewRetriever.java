@@ -15,7 +15,6 @@ public class ReviewRetriever {
 
         PlaceIDParser placeIDParserInstance = new PlaceIDParser(new ApiInputStream(placeIDConnectionInstance.search(park)));
         String placeID = placeIDParserInstance.parse();
-        System.out.println("PlaceID for " + park.getName() + ": " + placeID);
 
         ReviewParser reviewParserInstance = new ReviewParser(new ApiInputStream(reviewConnectionInstance.search(placeID)));
 

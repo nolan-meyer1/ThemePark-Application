@@ -22,6 +22,7 @@ public class CSSConstants {
     public static final String CLASS_LABEL_TITLE = "label-title";
     public static final String CLASS_LABEL_RATING = "label-rating";
     public static final String CLASS_REVIEW_BOX = "review-box";
+    public static final String CLASS_REVIEW_CONTAINER = "review-container";
     public static final String CLASS_LABEL_AUTHOR = "label-author";
     public static final String CLASS_LABEL_TIME = "label-time";
     public static final String CLASS_LABEL_REVIEW_TEXT = "label-review-text";

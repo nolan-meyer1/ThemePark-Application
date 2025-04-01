@@ -15,4 +15,5 @@ public class UIConstants {
     public static final int REVIEW_SPACING = 15;
     public static final int REVIEW_MAX_WIDTH = 600;
     public static final int REVIEW_MAX_HEIGHT = 450;
+    public static final int WEBVIEW_HEIGHT = 700;
 }

@@ -17,12 +17,12 @@ public class TextConstants {
     public static final String CLOSED_STATUS = " CLOSED";
     public static final String QUEUE_TIMES_TEXT = "Powered by Queue-Times.com";
     public static final String QUEUE_TIMES_URL = "https://queue-times.com/en-US";
-
     public static final String NO_RIDE_FOUND = "No ride could be found on map!";
     public static final String NO_REVIEWS_AVAILABLE = "No reviews available for this park.";
     public static final String AVERAGE_RATING_TEXT = "Average Rating: ";
     public static final String RATING_TEXT = "Rating: ";
     public static final String REVIEWS_TEXT = " Reviews";
+    public static final String VIEW_REVIEWS = "View Reviews";
     public static final String REVIEWS_FOR_TEXT = " Reviews for ";
     public static final String RATING_SUFFIX = " ★";
 }

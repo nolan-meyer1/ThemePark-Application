@@ -33,7 +33,10 @@ public class ParksListComponent {
     private final Controller controller = new Controller();
     RidesListComponent ridesListComponent = new RidesListComponent();
     private final ReviewRetriever reviewRetriever = new ReviewRetriever();
-    private final ReviewsComponent reviewsComponent = new ReviewsComponent();
+    private final ReviewsComponent reviewsComponent;
+    public ParksListComponent(ReviewsComponent reviewsComponent) {
+        this.reviewsComponent = reviewsComponent; // Receive ReviewsComponent instance
+    }
     private ParkReviewInformation reviews;
 
     public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent, MapManager mapManager, Button viewReviewsButton) {
@@ -93,7 +96,11 @@ public class ParksListComponent {
                 Park park = parksMap.get(newValue);
                 mapManager.setCurrentPark(newValue);
                 reviews = getReviewsForPark(park);
-                viewReviewsButton.setOnAction(event -> reviewsComponent.showReviewsPopup(newValue, reviews));
+                viewReviewsButton.setOnAction(event -> {
+                    if (reviews != null) {
+                        reviewsComponent.showReviewsPopup(newValue, reviews);
+                    }
+                });
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
                 ridesList.getItems().clear();
                 List<Ride> rideList;
@@ -109,7 +116,7 @@ public class ParksListComponent {
                     HBox weatherUpdated = weatherComponent.createWeatherDisplay(controller.getWeather(park.getLatitude(), park.getLongitude()));
                     weatherUpdated.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
                     weatherUpdated.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
-                    weatherUpdated.getStyleClass().add("weather-container");
+                    weatherUpdated.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
                     mainContent.getChildren().add(1, weatherUpdated);
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {

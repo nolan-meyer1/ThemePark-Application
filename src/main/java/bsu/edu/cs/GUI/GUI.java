@@ -4,6 +4,7 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Components.ParksListComponent;
+import bsu.edu.cs.GUI.Components.ReviewsComponent;
 import bsu.edu.cs.GUI.Components.ThemeManager;
 import bsu.edu.cs.GUI.Components.WeatherComponent;
 import bsu.edu.cs.Parsers.*;
@@ -25,9 +26,11 @@ import java.util.*;
 
 public class GUI extends Application {
     private final Controller controller = new Controller();
+    private final SharedState sharedState = new SharedState();
     private final WeatherComponent weatherComponent = new WeatherComponent();
-    private final ThemeManager themeManager = new ThemeManager();
-
+    private final ThemeManager themeManager = new ThemeManager(sharedState);
+    private final ReviewsComponent reviewsComponent = new ReviewsComponent(sharedState);
+    private final ParksListComponent sideBar = new ParksListComponent(reviewsComponent);
     @Override
     public void start(Stage primaryStage) {
         Alert errorPopUp = new Alert(Alert.AlertType.ERROR);
@@ -42,12 +45,12 @@ public class GUI extends Application {
             errorPopUp.showAndWait();
             return;
         }
-
+//        themeManager.setReviewsComponent(reviewsComponent);
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, UIConstants.WINDOW_WIDTH, UIConstants.WINDOW_HEIGHT);
         Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
 
-        ParksListComponent sideBar = new ParksListComponent();
+
 
         VBox ridesSidebar = new VBox(UIConstants.MEDIUM_SPACING);
         ridesSidebar.setPadding(new Insets(UIConstants.PADDING));
@@ -68,12 +71,12 @@ public class GUI extends Application {
         parkTitle.getStyleClass().add(CSSConstants.CLASS_PARK_TITLE);
 
         // Button to open the review pop-up
-        Button viewReviewsButton = new Button("View Reviews");
+        Button viewReviewsButton = new Button(TextConstants.VIEW_REVIEWS);
         viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
 
         WebView webView = new WebView();
-        File htmlFile = new File("src/main/java/bsu/edu/cs/GUI/Html/Map.html");
-        webView.setPrefHeight(700);
+        File htmlFile = new File(ResourcePathsConstants.HTML_FILE);
+        webView.setPrefHeight(UIConstants.WEBVIEW_HEIGHT);
         webView.getEngine().load(htmlFile.toURI().toString());
         MapManager mapManager = new MapManager(webView.getEngine(),parksMap);
 

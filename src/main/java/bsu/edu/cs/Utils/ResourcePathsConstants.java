@@ -9,4 +9,5 @@ public class ResourcePathsConstants {
     public static final String WIND_ICON_PATH = "/wind.png";
     public static final String WEATHER_ICON_URL_PREFIX = "https://openweathermap.org/img/wn/";
     public static final String WEATHER_ICON_URL_SUFFIX = "@4x.png";
+    public static final String HTML_FILE = "src/main/java/bsu/edu/cs/GUI/Html/Map.html";
 }
