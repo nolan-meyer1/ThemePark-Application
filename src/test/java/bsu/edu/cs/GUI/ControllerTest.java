@@ -10,12 +10,14 @@ public class ControllerTest {
     public void convertToHoursLessThan60MinTest(){
         Controller controller = new Controller();
         assertEquals("45 min",controller.convertMinToHours(45));
+        assertEquals("59 min",controller.convertMinToHours(59));
     }
 
     @Test
     public void convertToHoursGreaterThan60MinTest(){
         Controller controller = new Controller();
         assertEquals("1 hr 30 min",controller.convertMinToHours(90));
+        assertEquals("1 hr 50 min",controller.convertMinToHours(110));
     }
 
     @Test
@@ -46,6 +48,9 @@ public class ControllerTest {
     public void getWaitColorGreaterThan90Test(){
         Controller controller = new Controller();
         assertEquals("high-wait-time",controller.getWaitTimeColor(100));
+        assertEquals("high-wait-time",controller.getWaitTimeColor(95));
     }
+
+
 
 }

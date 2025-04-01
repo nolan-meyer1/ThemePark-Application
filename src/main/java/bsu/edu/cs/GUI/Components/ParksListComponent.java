@@ -4,7 +4,10 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.Controller;
+import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Park;
+import bsu.edu.cs.Parsers.ParkReviewInformation;
+import bsu.edu.cs.Parsers.ReviewRetriever;
 import bsu.edu.cs.Parsers.Ride;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
@@ -13,6 +16,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -28,8 +32,14 @@ import java.util.Map;
 public class ParksListComponent {
     private final Controller controller = new Controller();
     RidesListComponent ridesListComponent = new RidesListComponent();
+    private final ReviewRetriever reviewRetriever = new ReviewRetriever();
+    private final ReviewsComponent reviewsComponent;
+    public ParksListComponent(ReviewsComponent reviewsComponent) {
+        this.reviewsComponent = reviewsComponent; // Receive ReviewsComponent instance
+    }
+    private ParkReviewInformation reviews;
 
-    public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent) {
+    public VBox createSideBar(Map<String, Park> parksMap, Alert errorPopUp, Label parkTitle, ListView<Ride> ridesList, VBox mainContent, WeatherComponent weatherComponent, MapManager mapManager, Button viewReviewsButton) {
         VBox sidebar = new VBox(10);
         sidebar.setPadding(new Insets(UIConstants.PADDING));
         sidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
@@ -50,6 +60,7 @@ public class ParksListComponent {
                     filteredList.add(park);
                 }
             }
+            parksList.getSelectionModel().clearSelection();
             Collections.sort(filteredList);
             parksList.setItems(filteredList);
         });
@@ -81,13 +92,24 @@ public class ParksListComponent {
 
         // Handle Park Selection
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
+            if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
+                mapManager.setCurrentPark(newValue);
+                viewReviewsButton.setOnAction(event -> {
+                    reviews = getReviewsForPark(park);
+                    if (reviews != null) {
+                        reviewsComponent.showReviewsPopup(newValue, reviews);
+                    }else{
+                        errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
+                        errorPopUp.showAndWait();
+                    }
+                });
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
                 ridesList.getItems().clear();
                 List<Ride> rideList;
                 try {
-                    rideList = controller.getRides(park.getId());
+                    mapManager.createMap(park);
+                    rideList = controller.fetchRides(park);
 
                     if (rideList.isEmpty()) {
                         rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0, "N/A"));
@@ -97,19 +119,32 @@ public class ParksListComponent {
                     HBox weatherUpdated = weatherComponent.createWeatherDisplay(controller.getWeather(park.getLatitude(), park.getLongitude()));
                     weatherUpdated.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
                     weatherUpdated.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
-                    weatherUpdated.getStyleClass().add("weather-container");
+                    weatherUpdated.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
                     mainContent.getChildren().add(1, weatherUpdated);
-
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     rideList = new ArrayList<>();
                     rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0, "N/A"));
                 }
                 ridesList.setItems(FXCollections.observableArrayList(rideList));
-                ridesListComponent.styleRidesList(ridesList, controller);
+                ridesListComponent.styleRidesList(ridesList, controller, mapManager);
 
             }
         });
         return sidebar;
     }
+    private ParkReviewInformation getReviewsForPark(Park park) {
+        try {
+            ParkReviewInformation reviewInformation = reviewRetriever.getReviewInformation(park);
+            if (reviewInformation == null) {
+                System.out.println("No review information available for the park.");
+            }
+            return reviewInformation;
+        } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
+            System.out.println("Error retrieving review information: " + e.getMessage());
+            return null;
+        }
+    }
+
 }
+

@@ -32,11 +32,14 @@
 }
 
 .weather-container {
-    -fx-padding: 20;
+    -fx-padding: 10;
     -fx-text-fill: #eaeaea;
     -fx-background-color: #300D99;
-    -fx-border-radius: 38px;
-    -fx-background-radius: 38px;
+    -fx-border-radius: 8px;
+    -fx-background-radius: 8px;
+    -fx-spacing: 10px;
+    -fx-alignment: center;
+    -fx-pref-width: 100%;
 }
 
 .weather-speed {
@@ -55,8 +58,8 @@
 }
 
 .temp {
-    -fx-font-size: 35px;
-    -fx-end-margin: 20px;
+    -fx-font-size: 25px;
+    /*-fx-end-margin: 20px;*/
 }
 
 .park-title {
@@ -64,6 +67,98 @@
     -fx-font-weight: bold;
     -fx-text-fill: #000;
     -fx-padding-bottom: 10px;
+}
+
+.reviews-button {
+    -fx-background-color: #300D99;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 8px;
+    -fx-border-radius: 5px;
+    -fx-background-radius: 5px;
+    -fx-border-color: #300D99;
+}
+
+.review-button:hover {
+    -fx-background-color: #fff;
+    -fx-text-fill: black;
+}
+
+.review-popup {
+    -fx-background-color: #f4f4f4;
+    -fx-border-color: #ddd;
+    -fx-border-width: 2px;
+    -fx-padding: 15px;
+    -fx-border-radius: 8px;
+}
+
+.review-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #333;
+    -fx-background-color: #ffffff;
+    -fx-padding: 8px;
+    -fx-border-radius: 5px;
+    -fx-border-width: 1px;
+    -fx-border-color: #ccc;
+}
+
+.label-title {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+}
+
+.label-rating {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f39c12;
+}
+
+.review-box {
+    -fx-background-color: #f4f4f4;
+    -fx-background-radius: 10;
+    -fx-border-color: #dcdcdc;
+    -fx-border-radius: 10;
+    -fx-padding: 10;
+}
+
+.label-author {
+    -fx-font-weight: bold;
+    -fx-text-fill: #34495e;
+    -fx-font-size: 14px;
+}
+
+.label-time {
+    -fx-font-size: 12px;
+    -fx-text-fill: #7f8c8d;
+}
+
+.label-review-text {
+    -fx-font-size: 14px;
+    -fx-text-fill: #2c3e50;
+}
+
+.label-review-rating {
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #f39c12;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.label-no-reviews {
+    -fx-font-size: 14px;
+    -fx-font-style: italic;
+    -fx-text-fill: #7f8c8d;
+}
+
+.profile-image {
+    -fx-background-radius: 25;
+    -fx-border-radius: 25;
 }
 
 /* Rides section styling */
@@ -83,10 +178,21 @@
     -fx-border-color: #271A89;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    -fx-background-color: #f4f4f4;
+}
+.clickable-label {
+    -fx-font-weight: bold;
+    -fx-text-fill: #2c3e50;
+    -fx-cursor: hand;
+}
+
+.clickable-label:hover {
+    -fx-text-fill: #3498db;
+    -fx-underline: true;
 }
 
 .ride-name {
-    -fx-font-size: 20px;
+    -fx-font-size: 16px;
     -fx-font-weight: bold;
     -fx-text-fill: #333;
 }
