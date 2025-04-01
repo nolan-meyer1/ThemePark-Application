@@ -13,6 +13,7 @@ In order to run this program you will need to create a file called ApiKeys.json,
 ```json
 {
   "weather": "Your OpenWeatherMap(https://openweathermap.org/current) API key"
+  "google": "Your Google Places API (https://developers.google.com/maps/documentation/places/web-service) API key"
 }
 ```
 
@@ -156,10 +157,14 @@ This is a custom exception that happens when we cannot open the input stream. Th
 
 * Java
 * JavaFX
+* HTML
+* Javascript
 * Cascading Style Sheets (CSS)
 * Gradle
 * IntelliJ
+* [Leaflet](https://leafletjs.com)
 * [OpenWeatherMap](https://openweathermap.org/current)
 * [QueueTimes](https://queue-times.com/en-US/pages/api)
+* [Google Places](https://developers.google.com/maps/documentation/places/web-service)
 
 
