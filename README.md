@@ -1,10 +1,11 @@
 # Final Project Team-D
 
 ----------------------------------------------------------------------------
-This is a simple application that allows you to a pick a theme park, and it will display the ride names and wait times!
-
-<img width="1196" alt="Screenshot 2025-03-19 at 1 28 34 PM" src="https://github.com/user-attachments/assets/b42ccf3b-5a31-4309-a004-aa08e88edcac" />
-<img width="1193" alt="Screenshot 2025-03-19 at 1 28 49 PM" src="https://github.com/user-attachments/assets/bb5da19a-aa65-4328-9e18-5e7e34bfde04" />
+This is a simple application that allows you to a pick a theme park, and it will display the ride names and wait times! It also will display an interactive map that if you click on a ride in the sidebar it will show that ride's location on the map! Lastly, if you click the see reviews button you will be able to see the review of the park.
+<img width="1496" alt="Screenshot 2025-04-01 at 2 56 00 PM" src="https://github.com/user-attachments/assets/620f6fe5-b920-4dbd-9530-a90eca8dccaa" />
+<img width="1501" alt="Screenshot 2025-04-01 at 2 56 18 PM" src="https://github.com/user-attachments/assets/0b97212a-54a5-4700-b973-48bdc9a056ca" />
+<img width="1495" alt="Screenshot 2025-04-01 at 2 56 37 PM" src="https://github.com/user-attachments/assets/c9c6a979-7f56-420c-ace3-8176b477d37b" />
+<img width="1497" alt="Screenshot 2025-04-01 at 2 56 46 PM" src="https://github.com/user-attachments/assets/f9c22b67-8b46-4e61-a849-2ca20d92a2e4" />
 
 ## $${\color{lightgreen}Build Instructions}$$
 In order to run this program you will need to create a file called ApiKeys.json, and add it to the resources folder inside of the src/main/resources. Inside of the file this should be the structure: 
