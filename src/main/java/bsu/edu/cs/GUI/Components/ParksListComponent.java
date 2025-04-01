@@ -95,8 +95,8 @@ public class ParksListComponent {
             if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
                 mapManager.setCurrentPark(newValue);
-                reviews = getReviewsForPark(park);
                 viewReviewsButton.setOnAction(event -> {
+                    reviews = getReviewsForPark(park);
                     if (reviews != null) {
                         reviewsComponent.showReviewsPopup(newValue, reviews);
                     }
