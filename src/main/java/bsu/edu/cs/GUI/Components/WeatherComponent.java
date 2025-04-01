@@ -8,7 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 
 public class WeatherComponent {
-
     public HBox createWeatherDisplay(Weather weather) {
         Label temperatureLabel = new Label(weather.getTemperature() + TextConstants.TEMPERATURE_UNIT);
         Label humidityLabel = new Label(weather.getHumidity() + TextConstants.HUMIDITY_UNIT);

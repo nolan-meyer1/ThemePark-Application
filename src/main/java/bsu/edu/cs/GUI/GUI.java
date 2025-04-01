@@ -45,7 +45,6 @@ public class GUI extends Application {
             errorPopUp.showAndWait();
             return;
         }
-//        themeManager.setReviewsComponent(reviewsComponent);
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, UIConstants.WINDOW_WIDTH, UIConstants.WINDOW_HEIGHT);
         Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
@@ -59,8 +58,7 @@ public class GUI extends Application {
         ListView<Ride> ridesList = new ListView<>();
         ridesList.getStyleClass().add(CSSConstants.CLASS_RIDES_CONTAINER);
 
-        VBox.setVgrow(ridesList, Priority.ALWAYS); // This makes the ridesList stretch to fill the height of the sidebar
-
+        VBox.setVgrow(ridesList, Priority.ALWAYS); // This makes the ridesList stretch to fill the height with the sidebar
         ridesSidebar.getChildren().add(ridesList);
 
         VBox mainContent = new VBox(UIConstants.MEDIUM_SPACING);
@@ -89,7 +87,7 @@ public class GUI extends Application {
         ridesSidebar.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.22);
 
         ridesSidebar.setMaxHeight(Double.MAX_VALUE);
-        ridesSidebar.setMinHeight(0);
+        ridesSidebar.setMinHeight(UIConstants.ZERO_VALUE);
 
         webContainer.getChildren().add(webView);
 
@@ -99,7 +97,7 @@ public class GUI extends Application {
         ridesHeader.getChildren().addAll(parkTitle, spacer, viewReviewsButton, toggleThemeButton);
         ridesHeader.setAlignment(Pos.CENTER_LEFT);
 
-        HBox weather = weatherComponent.createWeatherDisplay(new Weather(45, TextConstants.NO_WEATHER_INFO, 0, 0, 0, 0, "01d"));
+        HBox weather = weatherComponent.createWeatherDisplay(new Weather(UIConstants.WEATHER_DEFAULT_ID, TextConstants.NO_WEATHER_INFO, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, TextConstants.WEATHER_DEFAULT_ICON_ID));
         weather.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
@@ -112,7 +110,7 @@ public class GUI extends Application {
         root.setCenter(mainContent);
         root.setRight(ridesSidebar);
 
-        Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/icon.png")));
+        Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream(ResourcePathsConstants.APP_ICON_PATH)));
         primaryStage.getIcons().add(appIcon);
 
         scene.getStylesheets().add(Objects.requireNonNull(getClass().getResource(ResourcePathsConstants.STYLE_PATH)).toExternalForm());

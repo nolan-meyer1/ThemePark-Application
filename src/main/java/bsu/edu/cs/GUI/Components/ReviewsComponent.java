@@ -44,12 +44,12 @@ public class ReviewsComponent {
         mainLayout.getChildren().add(parkTitleLabel);
 
         if (reviewInformation != null && reviewInformation.getListOfReviews() != null && !reviewInformation.getListOfReviews().isEmpty()) {
-            Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.2f", reviewInformation.getRating()) + " ★");
+            Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.2f", reviewInformation.getRating()) + TextConstants.RATING_SUFFIX);
             ratingLabel.getStyleClass().add(CSSConstants.CLASS_LABEL_RATING);
             mainLayout.getChildren().add(ratingLabel);
 
-            VBox reviewsContainer = new VBox(10);
-            reviewsContainer.setPadding(new Insets(10));
+            VBox reviewsContainer = new VBox(UIConstants.PADDING);
+            reviewsContainer.setPadding(new Insets(UIConstants.PADDING));
 
             for (Review review : reviewInformation.getListOfReviews()) {
                 HBox reviewBox = new HBox(UIConstants.REVIEW_SPACING);

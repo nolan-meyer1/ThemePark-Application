@@ -4,6 +4,7 @@ public class TextConstants {
     public static final String TEMPERATURE_UNIT = "℉";
     public static final String HUMIDITY_UNIT = "%";
     public static final String WIND_SPEED_UNIT = " MPH";
+    public static final String WEATHER_DEFAULT_ICON_ID = "01d";
     public static final String APP_TITLE = "Theme Park Explorer";
     public static final String SEARCH_PROMPT = "Search Parks...";
     public static final String SELECT_PARK_TEXT = "Select a Park";
