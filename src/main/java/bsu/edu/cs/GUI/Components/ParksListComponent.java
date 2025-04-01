@@ -99,6 +99,9 @@ public class ParksListComponent {
                     reviews = getReviewsForPark(park);
                     if (reviews != null) {
                         reviewsComponent.showReviewsPopup(newValue, reviews);
+                    }else{
+                        errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
+                        errorPopUp.showAndWait();
                     }
                 });
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);

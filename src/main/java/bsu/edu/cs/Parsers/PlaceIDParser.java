@@ -14,6 +14,12 @@ public class PlaceIDParser extends Parser<String>{
 
     @Override
     protected String convertData(JSONArray list) {
-        return (String) list.get(0);
+        String output = null;
+
+        if(!list.isEmpty()){
+            output = (String) list.get(0);
+        }
+
+        return output;
     }
 }
