@@ -20,7 +20,7 @@ public class WeatherConnection extends InternetConnection<Coordinates> {
 
 
     @Override
-    public String createRequestUrl(Coordinates latitudeAndLongitude) {
+    protected String createRequestUrl(Coordinates latitudeAndLongitude) {
         return "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeAndLongitude.getLatitude() + "&lon=" + latitudeAndLongitude.getLongitude() + "&appid=" + API_KEY + "&units=imperial";
     }
 
