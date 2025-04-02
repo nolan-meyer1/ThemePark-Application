@@ -112,8 +112,31 @@ This class extends InternetConnection, and allows us to handle the searchItem as
 ### &#9679; $${\color{lightblue}WeatherConnection}$$
 This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API.  
 
+#### &bull; loadApiKey()
+This method will load the api key from the required ApiKeys.json file.
+
 #### &bull; *createRequestUrl(String[] latitudeAndLongitude)*
-This method generates the API request URL for retrieving weather data based on geographic coordinates.  
+This method generates the API request URL for retrieving weather data based on geographic coordinates.
+
+
+### &#9679; $${\color{lightblue}PlaceIDConnection}$$
+This class handles the connection to the Google Places API to find the place ID for the location we're searching for. 
+
+#### &bull; loadApiKey()
+This method will load the api key from the required ApiKeys.json file.
+
+#### &bull; *createRequestUrl(Park searchItem)*
+This method takes in a Park object as a parameter. It will then extract it's latitude, longitude, and encode the park name to use to form the search URL.
+
+
+### &#9679; $${\color{lightblue}RidePositionConnection}$$
+This class class is very similar to the PlaceID/Review Connection as it's using the same API just a different endpoint. It will handle the finding of a ride. 
+
+#### &bull; loadApiKey()
+This method will load the api key from the required ApiKeys.json file.
+
+#### &bull; *createRequestUrl(RidePositionSearch searchItem)*
+This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give to the search URL that will return a list of matches ranked by distance where the closest match is the first element. 
 
 ----------------------------------------------------------------------------
 
