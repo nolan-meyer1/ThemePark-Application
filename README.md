@@ -101,7 +101,7 @@ This method will take in a search item that we will then use to build a URL and 
 ### &#9679; $${\color{lightblue}ParkConnection}$$
 This class handles the fetching of all the parks from the QueueTimes API.  
 
-#### &bull; *createURLRequest(T searchItem)*
+#### &bull; *createURLRequest(Park park)*
 This method will still take in a search item, but here we just want to grab the URL. We won't be using the search item for this method, but we will still override it to use the URL we want. 
 
 
@@ -115,7 +115,7 @@ This class handles the fetching of all the weather information from the OpenWeat
 #### &bull; loadApiKey()
 This method will load the api key from the required ApiKeys.json file.
 
-#### &bull; *createRequestUrl(String[] latitudeAndLongitude)*
+#### &bull; *createRequestUrl(Coordinates latitudeAndLongitude)*
 This method generates the API request URL for retrieving weather data based on geographic coordinates.
 
 
@@ -125,7 +125,7 @@ This class handles the connection to the Google Places API to find the place ID 
 #### &bull; loadApiKey()
 This method will load the api key from the required ApiKeys.json file.
 
-#### &bull; *createRequestUrl(Park searchItem)*
+#### &bull; *createRequestUrl(Park park)*
 This method takes in a Park object as a parameter. It will then extract it's latitude, longitude, and encode the park name to use to form the search URL.
 
 
