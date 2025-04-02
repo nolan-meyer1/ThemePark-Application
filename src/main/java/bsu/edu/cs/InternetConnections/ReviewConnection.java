@@ -17,9 +17,9 @@ public class ReviewConnection extends InternetConnection<String>{
         }
     }
     @Override
-    protected String createRequestUrl(String searchItem) {
+    protected String createRequestUrl(String placeID) {
         return String.format("https://maps.googleapis.com/maps/api/place/details/json?place_id=%s&fields=name,rating,reviews&key=%s",
-                searchItem,API_KEY);
+                placeID,API_KEY);
     }
 
     private static String loadApiKey() throws IOException {

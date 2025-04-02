@@ -21,11 +21,11 @@ public class PlaceIDConnection extends InternetConnection<Park>{
     }
 
     @Override
-    protected String createRequestUrl(Park searchItem) {
-        String urlEncodedParkName = URLEncoder.encode(searchItem.getName(), StandardCharsets.UTF_8);
+    protected String createRequestUrl(Park park) {
+        String urlEncodedParkName = URLEncoder.encode(park.getName(), StandardCharsets.UTF_8);
         urlEncodedParkName = urlEncodedParkName.replace("+","%20");
         return String.format("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&rankby=distance&type=amusement_park&keyword=%s&key=%s",
-                searchItem.getLatitude(),searchItem.getLongitude(),urlEncodedParkName,API_KEY);
+                park.getLatitude(),park.getLongitude(),urlEncodedParkName,API_KEY);
     }
 
     private static String loadApiKey() throws IOException {
