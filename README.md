@@ -81,6 +81,52 @@ This method returns a JSONPath query string, that is used to select all elements
 #### &bull; *convertData(JSONArray list)*
 This method is converts raw JSON weather data into a structured object.
 
+
+### &#9679; $${\color{lightblue}PlaceIDParser}$$ 
+This is what will parse the the place ID.
+
+#### &bull; *getQuery()*
+This is method will return a String that contains our JSON path query.
+
+#### &bull; *conertRevisionsToList(JSONArray list)*
+This method takes in a JSONArray. It will then parse the data and return the string of the place ID.
+
+### &#9679; $${\color{lightblue}Review}$$ 
+This is what contains all the data about an individual review. It will show the rating, text, author name, profile picture URL, and relative time description. 
+
+### &#9679; $${\color{lightblue}ParkReviewInformation}$$ 
+This is what contains all the data we have about the park review. It will contain a variable that shows how many stars the park is, and it will contain a list of Review objects.
+
+
+### &#9679; $${\color{lightblue}ReviewParser}$$ 
+This is what will parse the reviews of the park. 
+
+#### &bull; *getQuery()*
+This is method will return a String that contains our JSON path query.
+
+#### &bull; *conertRevisionsToList(JSONArray list)*
+This method takes in a JSONArray. It will then parse the data and convert it to a ParkReviewInformation object.
+
+### &#9679; $${\color{lightblue}ReviewRetriever}$$ 
+This class combines the PlaceIDConnection\PlaceIDParser and the ReviewConnection\ReviewParser to get the Place ID and give it to the ReviewConnection. Then the ReviewParser will take what is given from the ReviewConnection and parse out the reviews and return a ParkReviewInformation object.
+
+#### &bull; *getReviewInformation(Park park)*
+This method takes in a park object. It will then parse the data and get the reviews for the park.
+
+### &#9679; $${\color{lightblue}RidePositionSearch}$$ 
+This is an object that will hold the ride name we're searching for and the park object for the park that should contain the ride. 
+
+
+### &#9679; $${\color{lightblue}RidePositionParser}$$ 
+This is what will parse the ride's position. 
+
+#### &bull; *getQuery()*
+This is method will return a String that contains our JSON path query.
+
+#### &bull; *conertRevisionsToList(JSONArray list)*
+This method takes in a JSONArray. It will then parse the data and convert it to a Coordinates object containing the latitude and longitude.
+
+
 ----------------------------------------------------------------------------
 
 ## $${\color{lightgreen}Internet Connections}$$
