@@ -129,6 +129,16 @@ This method will load the api key from the required ApiKeys.json file.
 This method takes in a Park object as a parameter. It will then extract it's latitude, longitude, and encode the park name to use to form the search URL.
 
 
+### &#9679; $${\color{lightblue}ReviewConnection}$$
+This class class handles the connection to grab the actual reviews.
+
+#### &bull; loadApiKey()
+This method will load the api key from the required ApiKeys.json file.
+
+#### &bull; *createRequestUrl(String placeID)*
+This method takes in a placeID. It will then create the URL to get reviews from that placeID. 
+
+
 ### &#9679; $${\color{lightblue}RidePositionConnection}$$
 This class class is very similar to the PlaceID/Review Connection as it's using the same API just a different endpoint. It will handle the finding of a ride. 
 
@@ -136,7 +146,7 @@ This class class is very similar to the PlaceID/Review Connection as it's using 
 This method will load the api key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(RidePositionSearch searchItem)*
-This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give to the search URL that will return a list of matches ranked by distance where the closest match is the first element. 
+This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give to the search URL that will return a list of matches ranked by distance where the closest match is the first element.
 
 ----------------------------------------------------------------------------
 
