@@ -68,7 +68,6 @@ public class GUI extends Application {
         Label parkTitle = new Label(TextConstants.SELECT_PARK_TEXT);
         parkTitle.getStyleClass().add(CSSConstants.CLASS_PARK_TITLE);
 
-        // Button to open the review pop-up
         Button viewReviewsButton = new Button(TextConstants.VIEW_REVIEWS);
         viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
 

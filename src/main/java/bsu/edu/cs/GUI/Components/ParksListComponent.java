@@ -111,7 +111,7 @@ public class ParksListComponent {
                     rideList = controller.fetchRides(park);
 
                     if (rideList.isEmpty()) {
-                        rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0, "N/A"));
+                        rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0));
                     }
 
                     mainContent.getChildren().remove(1);
@@ -123,7 +123,7 @@ public class ParksListComponent {
 
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                     rideList = new ArrayList<>();
-                    rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0, "N/A"));
+                    rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0));
                 }
                 ridesList.setItems(FXCollections.observableArrayList(rideList));
                 ridesListComponent.styleRidesList(ridesList, controller, mapManager);
