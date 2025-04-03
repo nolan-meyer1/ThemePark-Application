@@ -1,10 +1,8 @@
 package bsu.edu.cs.InternetConnections;
 
 import bsu.edu.cs.Parsers.Coordinates;
-import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class WeatherConnection extends InternetConnection<Coordinates> {
 
@@ -12,7 +10,7 @@ public class WeatherConnection extends InternetConnection<Coordinates> {
 
     static {
         try {
-            API_KEY = loadApiKey();
+            API_KEY = loadApiKey("weather");
         } catch (IOException e) {
             throw new RuntimeException("Failed to load API Key",e);
         }
@@ -22,11 +20,6 @@ public class WeatherConnection extends InternetConnection<Coordinates> {
     @Override
     protected String createRequestUrl(Coordinates latitudeAndLongitude) {
         return "https://api.openweathermap.org/data/2.5/weather?lat=" + latitudeAndLongitude.getLatitude() + "&lon=" + latitudeAndLongitude.getLongitude() + "&appid=" + API_KEY + "&units=imperial";
-    }
-
-    private static String loadApiKey() throws IOException {
-        InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
-        return JsonPath.read(apiKeyFile,"weather");
     }
 
 }

@@ -1,7 +1,9 @@
 package bsu.edu.cs.InternetConnections;
 
 import bsu.edu.cs.Exceptions.networkErrorException;
+import com.jayway.jsonpath.JsonPath;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
 import java.net.URLConnection;
@@ -25,6 +27,11 @@ public abstract class InternetConnection<T> {
             throw new networkErrorException();
         }
         return output;
+    }
+
+    protected static String loadApiKey(String key) throws IOException {
+        InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
+        return JsonPath.read(apiKeyFile,key);
     }
 
     protected abstract String createRequestUrl(T searchItem);
