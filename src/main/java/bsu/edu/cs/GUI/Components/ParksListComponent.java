@@ -35,7 +35,7 @@ public class ParksListComponent {
     private final ReviewRetriever reviewRetriever = new ReviewRetriever();
     private final ReviewsComponent reviewsComponent;
     public ParksListComponent(ReviewsComponent reviewsComponent) {
-        this.reviewsComponent = reviewsComponent; // Receive ReviewsComponent instance
+        this.reviewsComponent = reviewsComponent;
     }
     private ParkReviewInformation reviews;
 
@@ -94,7 +94,6 @@ public class ParksListComponent {
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
-                mapManager.setCurrentPark(newValue);
                 viewReviewsButton.setOnAction(event -> {
                     reviews = getReviewsForPark(park);
                     if (reviews != null) {

@@ -30,6 +30,7 @@ public class MapManager {
     }
 
     public void createMap(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+        currentPark = park.getName();
         webEngine.executeScript(String.format("setMapView(%s, %s, 18)", park.getLatitude(), park.getLongitude()));
     }
 
@@ -50,9 +51,5 @@ public class MapManager {
     public void alert(){
         noRideFound.setContentText(TextConstants.NO_RIDE_FOUND);
         noRideFound.showAndWait();
-    }
-
-    public void setCurrentPark(String parkName){
-        currentPark = parkName;
     }
 }
