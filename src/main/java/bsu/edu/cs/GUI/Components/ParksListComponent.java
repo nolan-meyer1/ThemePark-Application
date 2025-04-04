@@ -95,10 +95,10 @@ public class ParksListComponent {
             if (newValue != null && !newValue.equals(oldValue)) {
                 Park park = parksMap.get(newValue);
                 viewReviewsButton.setOnAction(event -> {
-                    reviews = getReviewsForPark(park);
-                    if (reviews != null) {
+                    try {
+                        reviews = getReviewsForPark(park);
                         reviewsComponent.showReviewsPopup(newValue, reviews);
-                    }else{
+                    }catch(networkErrorException | openInputStreamException | noItemFoundException e) {
                         errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
                         errorPopUp.showAndWait();
                     }
@@ -132,17 +132,8 @@ public class ParksListComponent {
         });
         return sidebar;
     }
-    private ParkReviewInformation getReviewsForPark(Park park) {
-        try {
-            ParkReviewInformation reviewInformation = reviewRetriever.getReviewInformation(park);
-            if (reviewInformation == null) {
-                System.out.println("No review information available for the park.");
-            }
-            return reviewInformation;
-        } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
-            System.out.println("Error retrieving review information: " + e.getMessage());
-            return null;
-        }
+    private ParkReviewInformation getReviewsForPark(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+        return reviewRetriever.getReviewInformation(park);
     }
 
 }
