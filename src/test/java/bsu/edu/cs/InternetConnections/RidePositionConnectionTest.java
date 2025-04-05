@@ -10,7 +10,7 @@ public class RidePositionConnectionTest {
 
     @Test
     public void createURLRequestTest() {
-        Park testPark = new Park(26,"Disney Magic Kingdom","United States","North America","28.4177","-81.5812","America/New_York");
+        Park testPark = new Park(26,"Disney Magic Kingdom","28.4177","-81.5812");
         RidePositionSearch ridePositionSearch = new RidePositionSearch("Pirates of the Caribbean", testPark);
         RidePositionConnection ridePositionConnectionInstance = new RidePositionConnection();
         assertTrue(ridePositionConnectionInstance.createRequestUrl(ridePositionSearch)

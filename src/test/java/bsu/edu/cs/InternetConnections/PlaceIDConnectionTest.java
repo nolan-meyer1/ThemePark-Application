@@ -9,7 +9,7 @@ public class PlaceIDConnectionTest {
 
     @Test
     public void createURLRequestTest(){
-        Park testPark = new Park(26,"Disney Magic Kingdom","United States","North America","28.4177","-81.5812","America/New_York");
+        Park testPark = new Park(26,"Disney Magic Kingdom","28.4177","-81.5812");
         PlaceIDConnection placeIDConnection = new PlaceIDConnection();
         assertTrue(placeIDConnection.createRequestUrl(testPark).matches("https://maps\\.googleapis\\.com/maps/api/place/nearbysearch/json\\?location=28\\.4177,-81\\.5812&rankby=distance&type=amusement_park&keyword=Disney%20Magic%20Kingdom&key=[^&]+"));
     }
