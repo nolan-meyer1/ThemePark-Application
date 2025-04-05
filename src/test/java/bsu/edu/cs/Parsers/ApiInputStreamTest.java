@@ -20,6 +20,7 @@ public class ApiInputStreamTest {
         sampleFile.close();
 
         try {
+            //Variable is never used because we are simply trying to force an error to be thrown for testing
             ApiInputStream apiInputStream = new ApiInputStream(sampleFile);
             fail("Input stream exception not thrown");
         }catch (openInputStreamException e){

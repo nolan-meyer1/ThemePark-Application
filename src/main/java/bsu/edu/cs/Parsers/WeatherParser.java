@@ -18,7 +18,7 @@ public class WeatherParser extends Parser<Weather> {
     @Override
     @SuppressWarnings("unchecked")
     protected Weather convertData(JSONArray list) {
-        Weather output = null;
+        Weather output;
 
         LinkedHashMap<String, ?> weatherData = null;
         if (list.get(3) instanceof LinkedHashMap<?, ?>) {
@@ -35,9 +35,11 @@ public class WeatherParser extends Parser<Weather> {
             windData = (LinkedHashMap<String, ?>) list.get(5);
         }
 
+        assert windData != null;
         Number windSpeedNumber = (Number) windData.get("speed");
         double windSpeed = windSpeedNumber.doubleValue();
 
+        assert weatherData != null;
         Number tempNumber = (Number) weatherData.get("temp");
         double temp = tempNumber.doubleValue();
 
@@ -48,7 +50,7 @@ public class WeatherParser extends Parser<Weather> {
         int humidity = humidityNumber.intValue();
 
 
-
+        assert mainData != null;
         output = new Weather(
                 (Integer) mainData.get("id"),
                 (String) mainData.get("main"),
