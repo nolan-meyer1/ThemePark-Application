@@ -161,4 +161,10 @@ This is a custom exception that happens when we cannot open the input stream. Th
 * [OpenWeatherMap](https://openweathermap.org/current)
 * [QueueTimes](https://queue-times.com/en-US/pages/api)
 
+## $${\color{lightgreen}Authors}$$
+* Nolan Meyer
+* Dakota Couhglin
+* Sinclair Nzenwata
+* Chibiuike Anyiam
+
 
