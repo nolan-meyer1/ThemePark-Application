@@ -1,9 +1,7 @@
 package bsu.edu.cs.InternetConnections;
 
-import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
-import java.io.InputStream;
 
 public class ReviewConnection extends InternetConnection<String>{
 
@@ -11,7 +9,7 @@ public class ReviewConnection extends InternetConnection<String>{
 
     static {
         try {
-            API_KEY = loadApiKey();
+            API_KEY = loadApiKey("google");
         } catch (IOException e) {
             throw new RuntimeException("Failed to load API Key",e);
         }
@@ -22,8 +20,4 @@ public class ReviewConnection extends InternetConnection<String>{
                 placeID,API_KEY);
     }
 
-    private static String loadApiKey() throws IOException {
-        InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
-        return JsonPath.read(apiKeyFile,"google");
-    }
 }

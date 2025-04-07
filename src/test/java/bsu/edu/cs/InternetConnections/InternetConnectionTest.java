@@ -10,7 +10,12 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 public class InternetConnectionTest {
 
     @Test
-    public void loadApiKeyTest() throws IOException {
+    public void loadApiKeyTestGoogle() throws IOException {
         assertNotNull(loadApiKey("google"));
+    }
+
+    @Test
+    public void loadApiKeyTestWeather() throws IOException {
+        assertNotNull(loadApiKey("weather"));
     }
 }

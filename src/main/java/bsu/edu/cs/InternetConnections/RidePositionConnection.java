@@ -2,10 +2,8 @@ package bsu.edu.cs.InternetConnections;
 
 import bsu.edu.cs.Parsers.Park;
 import bsu.edu.cs.Parsers.RidePositionSearch;
-import com.jayway.jsonpath.JsonPath;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
@@ -15,7 +13,7 @@ public class RidePositionConnection extends InternetConnection<RidePositionSearc
 
     static {
         try {
-            API_KEY = loadApiKey();
+            API_KEY = loadApiKey("google");
         } catch (IOException e) {
             throw new RuntimeException("Failed to load API Key",e);
         }
@@ -27,11 +25,6 @@ public class RidePositionConnection extends InternetConnection<RidePositionSearc
         urlEncodedRideName = urlEncodedRideName.replace("+","%20");
         return String.format("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&rankby=distance&keyword=%s&key=%s",
                 park.getLatitude(),park.getLongitude(), urlEncodedRideName,API_KEY);
-    }
-
-    private static String loadApiKey() throws IOException {
-        InputStream apiKeyFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json");
-        return JsonPath.read(apiKeyFile,"google");
     }
 
 }
