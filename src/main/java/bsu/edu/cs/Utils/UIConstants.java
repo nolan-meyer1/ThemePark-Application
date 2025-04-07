@@ -13,7 +13,6 @@ public class UIConstants {
     public static final int WEATHER_MAX_HEIGHT = 150;
     public static final int WEATHER_DEFAULT_VALUE = 0;
     public static final int ZERO_VALUE = 0;
-    public static final int WEATHER_DEFAULT_ID = 45;
     public static final int PROFILE_IMAGE_SIZE = 50;
     public static final int REVIEW_SPACING = 15;
     public static final int REVIEW_MAX_WIDTH = 600;
