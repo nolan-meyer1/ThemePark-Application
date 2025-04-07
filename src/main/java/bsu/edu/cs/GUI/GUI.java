@@ -96,7 +96,7 @@ public class GUI extends Application {
         ridesHeader.getChildren().addAll(parkTitle, spacer, viewReviewsButton, toggleThemeButton);
         ridesHeader.setAlignment(Pos.CENTER_LEFT);
 
-        HBox weather = weatherComponent.createWeatherDisplay(new Weather(UIConstants.WEATHER_DEFAULT_ID, TextConstants.NO_WEATHER_INFO, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, TextConstants.WEATHER_DEFAULT_ICON_ID));
+        HBox weather = weatherComponent.createWeatherDisplay(new Weather(UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, UIConstants.WEATHER_DEFAULT_VALUE, TextConstants.WEATHER_DEFAULT_ICON_ID));
         weather.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);

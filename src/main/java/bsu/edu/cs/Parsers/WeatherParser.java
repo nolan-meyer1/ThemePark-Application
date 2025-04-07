@@ -52,8 +52,6 @@ public class WeatherParser extends Parser<Weather> {
 
         assert mainData != null;
         output = new Weather(
-                (Integer) mainData.get("id"),
-                (String) mainData.get("main"),
                 temp,
                 feelsLike,
                 windSpeed,
