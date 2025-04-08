@@ -3,7 +3,7 @@ package bsu.edu.cs.GUI.Components;
 import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
-import bsu.edu.cs.GUI.Controller;
+import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Park;
 import bsu.edu.cs.Parsers.ParkReviewInformation;
@@ -30,7 +30,7 @@ import java.util.List;
 import java.util.Map;
 
 public class ParksListComponent {
-    private final Controller controller = new Controller();
+    private final GUIModel controller = new GUIModel();
     RidesListComponent ridesListComponent = new RidesListComponent();
     private final ReviewRetriever reviewRetriever = new ReviewRetriever();
     private final ReviewsComponent reviewsComponent;

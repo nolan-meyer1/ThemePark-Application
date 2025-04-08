@@ -25,7 +25,7 @@ import java.io.File;
 import java.util.*;
 
 public class GUI extends Application {
-    private final Controller controller = new Controller();
+    private final GUIModel controller = new GUIModel();
     private final SharedState sharedState = new SharedState();
     private final WeatherComponent weatherComponent = new WeatherComponent();
     private final ThemeManager themeManager = new ThemeManager(sharedState);

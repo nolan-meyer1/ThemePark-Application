@@ -11,7 +11,7 @@ import bsu.edu.cs.Parsers.*;
 import java.util.List;
 import java.util.Map;
 
-public class Controller {
+public class GUIModel {
 
     public Map<String, Park> fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
         ParkConnection parkConnection = new ParkConnection();
