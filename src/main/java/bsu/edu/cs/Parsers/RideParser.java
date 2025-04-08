@@ -27,8 +27,7 @@ public class RideParser extends Parser<List<Ride>> {
                         (int) rideConverted.get("id"),
                         (String) rideConverted.get("name"),
                         (Boolean) rideConverted.get("is_open"),
-                        ((Number) rideConverted.get("wait_time")).intValue(),
-                        (String) rideConverted.get("last_updated")
+                        ((Number) rideConverted.get("wait_time")).intValue()
                 ));
             }
         }

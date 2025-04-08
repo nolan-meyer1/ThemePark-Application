@@ -25,9 +25,8 @@ public class ParkParser extends Parser<HashMap<String,Park>> {
                 @SuppressWarnings("unchecked")
                 LinkedHashMap<String, ?> parkConverted = (LinkedHashMap<String, ?>) parkItem;
                 parkMap.put((String) parkConverted.get("name"),new Park((int) parkConverted.get("id"), (String) parkConverted.get("name"),
-                        (String) parkConverted.get("country"), (String) parkConverted.get("continent"),
-                        (String) parkConverted.get("latitude"), (String) parkConverted.get("longitude"),
-                        (String) parkConverted.get("timezone")));
+                        (String) parkConverted.get("latitude"), (String) parkConverted.get("longitude")
+                ));
             }
         }
         return parkMap;

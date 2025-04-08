@@ -15,22 +15,6 @@ import static org.junit.jupiter.api.Assertions.fail;
 public class WeatherParserTest {
 
     @Test
-    public void convertDataTestGetName() throws openInputStreamException, noItemFoundException {
-        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("weatherSample.json");
-        assert sampleFile != null;
-        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals("Clear",weatherParserInstance.parse().getName());
-    }
-
-    @Test
-    public void convertDataTestGetId() throws openInputStreamException, noItemFoundException {
-        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("weatherSample.json");
-        assert sampleFile != null;
-        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(sampleFile));
-        assertEquals(800,weatherParserInstance.parse().getId());
-    }
-
-    @Test
     public void convertDataTestGetFeelsLike() throws openInputStreamException, noItemFoundException {
         InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("weatherSample.json");
         assert sampleFile != null;

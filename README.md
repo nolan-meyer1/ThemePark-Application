@@ -246,4 +246,10 @@ This is a custom exception that happens when we cannot open the input stream. Th
 * [QueueTimes](https://queue-times.com/en-US/pages/api)
 * [Google Places](https://developers.google.com/maps/documentation/places/web-service)
 
+## $${\color{lightgreen}Authors}$$
+* Nolan Meyer
+* Dakota Couhglin
+* Sinclair Nzenwata
+* Chibiuike Anyiam
+
 

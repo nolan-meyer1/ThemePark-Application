@@ -11,7 +11,7 @@ import bsu.edu.cs.Parsers.*;
 import java.util.List;
 import java.util.Map;
 
-public class Controller {
+public class GUIModel {
 
     public Map<String, Park> fetchParks() throws networkErrorException, openInputStreamException, noItemFoundException {
         ParkConnection parkConnection = new ParkConnection();
@@ -36,12 +36,13 @@ public class Controller {
     }
 
     public String convertMinToHours(int minutes){
-
         String output;
         int hours;
         int extraMinutes;
-
-        if(minutes < 60){
+        if (minutes < 0){
+            output = "Invalid: minute cannot be negative";
+        }
+        else if(minutes < 60){
             output = minutes + " min";
         }else if(minutes % 60 == 0){
             hours = minutes / 60;
@@ -55,16 +56,16 @@ public class Controller {
         return output;
     }
 
-    public List<Ride> getRides(int id) throws networkErrorException, openInputStreamException, noItemFoundException {
-        RideConnection rideConnectionInstance = new RideConnection();
-        RideParser rideParserInstance = new RideParser(new ApiInputStream(rideConnectionInstance.search(id)));
-        return rideParserInstance.parse();
-    }
-
     public Weather getWeather(String latitude, String longitude) throws networkErrorException, openInputStreamException, noItemFoundException {
         WeatherConnection weatherConnectionInstance = new WeatherConnection();
-        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new String[]{latitude,longitude})));
+        WeatherParser weatherParserInstance = new WeatherParser(new ApiInputStream(weatherConnectionInstance.search(new Coordinates(latitude, longitude))));
         return weatherParserInstance.parse();
+    }
+
+    public List<Ride> fetchRides(Park park) throws networkErrorException, openInputStreamException, noItemFoundException {
+        RideConnection rideConnection = new RideConnection();
+        RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(park.getId())));
+        return rideParser.parse();
     }
 
 }
