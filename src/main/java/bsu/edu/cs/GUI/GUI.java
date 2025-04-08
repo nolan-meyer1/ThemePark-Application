@@ -30,7 +30,7 @@ public class GUI extends Application {
     private final WeatherComponent weatherComponent = new WeatherComponent();
     private final ThemeManager themeManager = new ThemeManager(sharedState);
     private final ReviewsComponent reviewsComponent = new ReviewsComponent(sharedState);
-    private final ParksListComponent sideBar = new ParksListComponent(reviewsComponent);
+
     @Override
     public void start(Stage primaryStage) {
         Alert errorPopUp = new Alert(Alert.AlertType.ERROR);
@@ -48,8 +48,6 @@ public class GUI extends Application {
         BorderPane root = new BorderPane();
         Scene scene = new Scene(root, UIConstants.WINDOW_WIDTH, UIConstants.WINDOW_HEIGHT);
         Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
-
-
 
         VBox ridesSidebar = new VBox(UIConstants.MEDIUM_SPACING);
         ridesSidebar.setPadding(new Insets(UIConstants.PADDING));
@@ -75,7 +73,7 @@ public class GUI extends Application {
         File htmlFile = new File(ResourcePathsConstants.HTML_FILE);
         webView.setPrefHeight(UIConstants.WEBVIEW_HEIGHT);
         webView.getEngine().load(htmlFile.toURI().toString());
-        MapManager mapManager = new MapManager(webView.getEngine(),parksMap);
+        MapManager mapManager = new MapManager(webView.getEngine(), parksMap);
 
         HBox webContainer = new HBox(UIConstants.MEDIUM_SPACING);
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));
@@ -101,11 +99,11 @@ public class GUI extends Application {
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
 
-        VBox sideBarVBox = sideBar.createSideBar(parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent,mapManager, viewReviewsButton);
+        ParksListComponent sideBar = new ParksListComponent(reviewsComponent, parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent, mapManager, viewReviewsButton);
 
         mainContent.getChildren().addAll(ridesHeader, weather, webContainer);
 
-        root.setLeft(sideBarVBox);
+        root.setLeft(sideBar);
         root.setCenter(mainContent);
         root.setRight(ridesSidebar);
 
@@ -117,7 +115,6 @@ public class GUI extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
     }
-
 
     public static void main(String[] args) {
         launch(args);
