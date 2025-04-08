@@ -39,7 +39,10 @@ public class Controller {
         String output;
         int hours;
         int extraMinutes;
-        if(minutes < 60){
+        if (minutes < 0){
+            output = "Invalid: minute cannot be negative";
+        }
+        else if(minutes < 60){
             output = minutes + " min";
         }else if(minutes % 60 == 0){
             hours = minutes / 60;

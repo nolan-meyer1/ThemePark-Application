@@ -7,6 +7,12 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ControllerTest {
 
     @Test
+    public void convertToHoursLessThan0MinTest(){
+        Controller controller = new Controller();
+        assertEquals("Invalid: minute cannot be negative",controller.convertMinToHours(-30));
+    }
+
+    @Test
     public void convertToHoursLessThan60MinTest(){
         Controller controller = new Controller();
         assertEquals("45 min",controller.convertMinToHours(45));
