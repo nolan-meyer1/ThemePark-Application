@@ -21,6 +21,8 @@ public class MapManager {
     private final Map<String,Park> parksMap;
     private String currentPark;
 
+    private final GUIModel guiModel = new GUIModel();
+
     public MapManager(WebEngine webEngine, Map<String,Park> parkMap) {
         this.webEngine = webEngine;
         this.parksMap = parkMap;
@@ -40,7 +42,7 @@ public class MapManager {
 
         if (coordinates != null) {
             String convertedRideName = ride.getName().replace("'", "\\'");
-            webEngine.executeScript(String.format("addMarker(%s, %s,%d,'%s', %d, %b)", coordinates.getLatitude(), coordinates.getLongitude(),ride.getId(), convertedRideName, ride.getWaitTime(), ride.getIsOpen()));
+            webEngine.executeScript(String.format("addMarker(%s, %s,%d,'%s', '%s', %b)", coordinates.getLatitude(), coordinates.getLongitude(),ride.getId(), convertedRideName, guiModel.convertMinToHours(ride.getWaitTime()), ride.getIsOpen()));
             webEngine.executeScript(String.format("setMapView(%s, %s, 17)", coordinates.getLatitude(), coordinates.getLongitude()));
 
         }else{
