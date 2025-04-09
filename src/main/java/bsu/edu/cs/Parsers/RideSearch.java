@@ -1,10 +1,10 @@
 package bsu.edu.cs.Parsers;
 
-public class RidePositionSearch {
+public class RideSearch {
     private final String rideName;
     private final Park park;
 
-    public RidePositionSearch(String rideName, Park park){
+    public RideSearch(String rideName, Park park){
         this.rideName = rideName;
         this.park = park;
     }
