@@ -5,17 +5,19 @@ import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
-import bsu.edu.cs.Parsers.Ride;
+import bsu.edu.cs.GUI.SharedState;
+import bsu.edu.cs.Parsers.*;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ListCell;
-import javafx.scene.control.ListView;
+import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 
+import java.util.Map;
+
 public class RidesListComponent {
-    public void styleRidesList(ListView<Ride> ridesList, GUIModel controller, MapManager mapManager) {
+    public void styleRidesList(ListView<Ride> ridesList, GUIModel controller, MapManager mapManager, Map<String,Park> parksMap, Alert errorPopUp, SharedState shardState) {
+
+        ReviewsComponent reviewsComponent = new ReviewsComponent(shardState);
 
         ridesList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if(newValue != null) {
@@ -25,6 +27,7 @@ public class RidesListComponent {
                     mapManager.alert();
                 }
             }
+
         });
 
         ridesList.setCellFactory(lv -> new ListCell<>() {
@@ -58,10 +61,20 @@ public class RidesListComponent {
                             ride.getIsOpen() ? CSSConstants.CLASS_STATUS_OPEN : CSSConstants.CLASS_STATUS_CLOSED
                     );
 
-                    detailsBox.getChildren().addAll(waitTimeLabel, statusLabel);
-
-                    Button viewReviewsButton = new Button(TextConstants.VIEW_REVIEWS);
+                    Button viewReviewsButton = new Button(TextConstants.RIDE_REVIEWS);
                     viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+
+                    viewReviewsButton.setOnAction(event -> {
+                        try {
+                            ParkReviewInformation reviews = getReviewsForRide(ride,parksMap.get(mapManager.getCurrentPark()));
+                            reviewsComponent.showReviewsPopup(ride.getName(), reviews);
+                        } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
+                            errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
+                            errorPopUp.showAndWait();
+                        }
+                    });
+
+                    detailsBox.getChildren().addAll(waitTimeLabel, statusLabel);
 
                     rideInfoBox.getChildren().addAll(nameLabel, detailsBox, viewReviewsButton);
 
@@ -69,6 +82,11 @@ public class RidesListComponent {
                 }
             }
         });
+    }
+
+    private ParkReviewInformation getReviewsForRide(Ride ride,Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+        ReviewRetriever reviewRetriever = new ReviewRetriever();
+        return reviewRetriever.getReviewInformation(new RideSearch(ride.getName(),park));
     }
 }
 

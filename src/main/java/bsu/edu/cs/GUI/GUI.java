@@ -66,7 +66,7 @@ public class GUI extends Application {
         Label parkTitle = new Label(TextConstants.SELECT_PARK_TEXT);
         parkTitle.getStyleClass().add(CSSConstants.CLASS_PARK_TITLE);
 
-        Button viewReviewsButton = new Button(TextConstants.VIEW_REVIEWS);
+        Button viewReviewsButton = new Button(TextConstants.PARK_REVIEWS);
         viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
 
         WebView webView = new WebView();
@@ -99,7 +99,7 @@ public class GUI extends Application {
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
 
-        ParksListComponent sideBar = new ParksListComponent(reviewsComponent, parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent, mapManager, viewReviewsButton);
+        ParksListComponent sideBar = new ParksListComponent(reviewsComponent, parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent, mapManager, viewReviewsButton,sharedState);
 
         mainContent.getChildren().addAll(ridesHeader, weather, webContainer);
 

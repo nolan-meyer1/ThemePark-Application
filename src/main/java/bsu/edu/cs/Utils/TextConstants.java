@@ -22,7 +22,8 @@ public class TextConstants {
     public static final String AVERAGE_RATING_TEXT = "Average Rating: ";
     public static final String RATING_TEXT = "Rating: ";
     public static final String REVIEWS_TEXT = " Reviews";
-    public static final String VIEW_REVIEWS = "View Reviews";
+    public static final String PARK_REVIEWS = "Park Reviews";
+    public static final String RIDE_REVIEWS = "Reviews";
     public static final String REVIEWS_FOR_TEXT = " Reviews for ";
     public static final String RATING_SUFFIX = " ★";
     public static final String NO_REVIEW_FOUND = "Cannot get reviews!";

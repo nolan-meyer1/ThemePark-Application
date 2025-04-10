@@ -52,4 +52,8 @@ public class MapManager {
         noRideFound.setContentText(TextConstants.NO_RIDE_FOUND);
         noRideFound.showAndWait();
     }
+
+    public String getCurrentPark(){
+      return currentPark;
+    }
 }

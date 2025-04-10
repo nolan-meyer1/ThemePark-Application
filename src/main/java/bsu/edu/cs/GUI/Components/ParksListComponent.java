@@ -5,6 +5,7 @@ import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
+import bsu.edu.cs.GUI.SharedState;
 import bsu.edu.cs.Parsers.Park;
 import bsu.edu.cs.Parsers.ParkReviewInformation;
 import bsu.edu.cs.Parsers.ReviewRetriever;
@@ -39,7 +40,7 @@ public class ParksListComponent extends VBox {
 
     public ParksListComponent(ReviewsComponent reviewsComponent, Map<String, Park> parksMap, Alert errorPopUp,
                               Label parkTitle, ListView<Ride> ridesListControl, VBox mainContent,
-                              WeatherComponent weatherComponent, MapManager mapManager, Button viewReviewsButton) {
+                              WeatherComponent weatherComponent, MapManager mapManager, Button viewReviewsButton, SharedState sharedState) {
 
         this.setSpacing(10);
         this.setPadding(new Insets(UIConstants.PADDING));
@@ -129,7 +130,7 @@ public class ParksListComponent extends VBox {
                     rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0));
                 }
                 ridesListControl.setItems(FXCollections.observableArrayList(rideList));
-                ridesListComponent.styleRidesList(ridesListControl, controller, mapManager);
+                ridesListComponent.styleRidesList(ridesListControl, controller, mapManager,parksMap,errorPopUp,sharedState);
 
             }
         });
