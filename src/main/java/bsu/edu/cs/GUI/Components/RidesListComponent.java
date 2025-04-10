@@ -8,6 +8,7 @@ import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.Parsers.Ride;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListCell;
 import javafx.scene.control.ListView;
@@ -59,7 +60,10 @@ public class RidesListComponent {
 
                     detailsBox.getChildren().addAll(waitTimeLabel, statusLabel);
 
-                    rideInfoBox.getChildren().addAll(nameLabel, detailsBox);
+                    Button viewReviewsButton = new Button(TextConstants.VIEW_REVIEWS);
+                    viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+
+                    rideInfoBox.getChildren().addAll(nameLabel, detailsBox, viewReviewsButton);
 
                     setGraphic(rideInfoBox);
                 }
