@@ -64,4 +64,12 @@ public class PlaceIDParserTest {
         PlaceIDParser placeIDParserInstance = new PlaceIDParser(new ApiInputStream(sampleFile));
         assertEquals("ChIJgUulalN-3YgRGoTaWM2LawY",placeIDParserInstance.parse());
     }
+
+    @Test
+    public void ridePositionParseTest() throws openInputStreamException, noItemFoundException {
+        InputStream sampleFile = Thread.currentThread().getContextClassLoader().getResourceAsStream("ridePositionSample.json");
+        assert sampleFile != null;
+        PlaceIDParser placeIDParserInstance = new PlaceIDParser(new ApiInputStream(sampleFile));
+        assertEquals("ChIJw4ci_I9-3YgRlc53KntyI9k",placeIDParserInstance.parse());
+    }
 }

@@ -35,7 +35,7 @@ public class MapManager {
     }
 
     public void addMarker(Ride ride) throws noItemFoundException, networkErrorException, openInputStreamException {
-        RidePositionParser ridePositionParser = new RidePositionParser(new ApiInputStream(ridePositionConnection.search(new RidePositionSearch(ride.getName(),parksMap.get(currentPark)))));
+        RidePositionParser ridePositionParser = new RidePositionParser(new ApiInputStream(ridePositionConnection.search(new RideSearch(ride.getName(),parksMap.get(currentPark)))));
         Coordinates coordinates = ridePositionParser.parse();
 
         if (coordinates != null) {
