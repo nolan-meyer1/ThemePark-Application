@@ -7,6 +7,7 @@
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     />
+    <link rel="stylesheet" type="text/css" href="leaflet-openweathermap.css" />
 </head>
 <style>
     #map {
@@ -19,13 +20,17 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
+<script type="text/javascript" src="leaflet-openweathermap.js"></script>
+
 <script>
     // All the unused functions are being used in the MapManager class
     const map = L.map('map').setView([0, 0], 1);
-
-    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    //
+    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+
     let currentMarker = null;
     /**
      * Sets the map view to the given coordinates and zoom level.
@@ -108,6 +113,28 @@
             .bindPopup(`<b>${rideName}</b><br>Wait Time: ${convertMinToHours(waitTime)}`)
             .openPopup();
     }
+
+    /**
+     * Adds a weather overlay to the map using OpenWeatherMap tiles.
+     *
+     * @param {string} apiKey - Your OpenWeatherMap API key.
+     */
+    function addWeatherLayer(apiKey) {
+        const rain = L.OWM.rainClassic({showLegend: false, opacity: 0.5, appId: apiKey});
+        const temperature = L.OWM.temperature({showLegend: false, opacity: 0.5, appId: apiKey});
+        const city = L.OWM.current({interval: 15, lang: 'en'});
+        const baseMaps = { "OSM Standard": osm };
+        const overlayMaps = { "Rain": rain, "Temperature": temperature, "Cities": city };
+        L.control.layers(baseMaps, overlayMaps).addTo(map);
+    }
+
+
+
+
+    setMapView(37.7749, -122.4194, 5);
+    addWeatherLayer("1b0f4529f6b03a65738f138508968d2b");
+    addMarker(37.7749, -122.4194, "1", "Golden Gate Coaster", 25, true);
+
 
 </script>
 </body>
