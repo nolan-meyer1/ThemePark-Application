@@ -7,14 +7,16 @@ public class Restaurant {
     private final Double rating;
     private final Double price_level;
     private final String placeID;
+    private final String photoReferenceID;
 
 
-    public Restaurant(String name, Coordinates coordinates, Double rating, Double priceLevel, String placeID) {
+    public Restaurant(String name, Coordinates coordinates, Double rating, Double priceLevel, String placeID, String photoReferenceID) {
         this.name = name;
         this.coordinates = coordinates;
         this.rating = rating;
         this.price_level = priceLevel;
         this.placeID = placeID;
+        this.photoReferenceID = photoReferenceID;
     }
 
     public String getName() {
@@ -35,5 +37,9 @@ public class Restaurant {
 
     public String getPlaceID() {
         return placeID;
+    }
+
+    public String getPhotoReferenceID() {
+        return photoReferenceID;
     }
 }

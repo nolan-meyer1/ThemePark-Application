@@ -23,28 +23,38 @@ public class RestaurantParser extends Parser<List<Restaurant>>{
         Coordinates coordinates = null;
         Double priceLevel = null;
         Double rating = null;
+        String photoReferenceID = null;
 
         for(Object restaurant: list){
 
-            if(restaurant instanceof LinkedHashMap<?, ?> restrauntHashMap){
+            if(restaurant instanceof LinkedHashMap<?, ?> restaurantHashMap){
 
-                if(restrauntHashMap.get("geometry") instanceof LinkedHashMap<?, ?> geometryHashMap) {
+                if(restaurantHashMap.get("geometry") instanceof LinkedHashMap<?, ?> geometryHashMap) {
 
                     if(geometryHashMap.get("location") instanceof LinkedHashMap<?, ?> locationHashMap) {
                         coordinates = new Coordinates(Double.toString((Double) locationHashMap.get("lat")),Double.toString((Double) locationHashMap.get("lng")));
                     }
                 }
 
-                if(restrauntHashMap.get("price_level") != null){
-                    priceLevel = ((Number) restrauntHashMap.get("price_level")).doubleValue();
+
+                if(restaurantHashMap.get("photos") != null){
+
+                    JSONArray photos = (JSONArray) restaurantHashMap.get("photos");
+                    if(photos.get(0) instanceof LinkedHashMap<?, ?> photoHashMap){
+                        photoReferenceID = (String) photoHashMap.get("photo_reference");
+                    }
                 }
 
-                if(restrauntHashMap.get("rating") != null){
-                    rating = ((Number) restrauntHashMap.get("rating")).doubleValue();
+                if(restaurantHashMap.get("price_level") != null){
+                    priceLevel = ((Number) restaurantHashMap.get("price_level")).doubleValue();
                 }
 
-                restaurantsList.add(new Restaurant((String) restrauntHashMap.get("name"),coordinates,rating,
-                        priceLevel,(String) restrauntHashMap.get("place_id")));
+                if(restaurantHashMap.get("rating") != null){
+                    rating = ((Number) restaurantHashMap.get("rating")).doubleValue();
+                }
+
+                restaurantsList.add(new Restaurant((String) restaurantHashMap.get("name"),coordinates,rating,
+                        priceLevel,(String) restaurantHashMap.get("place_id"),photoReferenceID));
             }
         }
 

@@ -4,10 +4,18 @@ public class Coordinates {
 
     private final String latitude;
     private final String longitude;
+    private final String photoReference;
 
     public Coordinates(String latitude,String longitude){
         this.latitude = latitude;
         this.longitude = longitude;
+        this.photoReference = null;
+    }
+
+    public Coordinates(String latitude,String longitude,String photoReference){
+        this.latitude = latitude;
+        this.longitude = longitude;
+        this.photoReference = photoReference;
     }
 
     public String getLatitude(){
@@ -18,4 +26,7 @@ public class Coordinates {
         return longitude;
     }
 
+    public String getPhotoReference() {
+        return photoReference;
+    }
 }
