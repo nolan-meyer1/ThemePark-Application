@@ -42,8 +42,23 @@ public class MapManager {
             String convertedRideName = ride.getName().replace("'", "\\'");
             webEngine.executeScript(String.format("addMarker(%s, %s,%d,'%s', '%s', %b)", coordinates.getLatitude(), coordinates.getLongitude(),ride.getId(), convertedRideName, ride.getWaitTime(), ride.getIsOpen()));
             webEngine.executeScript(String.format("setMapView(%s, %s, 17)", coordinates.getLatitude(), coordinates.getLongitude()));
-
         }else{
+            alert();
+        }
+    }
+    public void addRestaurantMarker(Restaurant restaurant) {
+        Coordinates coordinates = restaurant.getCoordinates();
+        if (coordinates != null) {
+            System.out.println(restaurant.getName());
+            String convertedRideName = restaurant.getName().replace("\\", "\\\\").replace("'", "\\'");
+            webEngine.executeScript(String.format(
+                    "addRestaurantMarker(%s, %s, '%s')",
+                    coordinates.getLatitude(),
+                    coordinates.getLongitude(),
+                    convertedRideName
+            ));
+            webEngine.executeScript(String.format("setMapView(%s, %s, 17)", coordinates.getLatitude(), coordinates.getLongitude()));
+        } else {
             alert();
         }
     }
