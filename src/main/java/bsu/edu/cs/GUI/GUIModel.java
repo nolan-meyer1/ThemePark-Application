@@ -4,6 +4,7 @@ import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.InternetConnections.ParkConnection;
+import bsu.edu.cs.InternetConnections.RestaurantPlaceIDConnection;
 import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
@@ -66,6 +67,12 @@ public class GUIModel {
         RideConnection rideConnection = new RideConnection();
         RideParser rideParser = new RideParser(new ApiInputStream(rideConnection.search(park.getId())));
         return rideParser.parse();
+    }
+
+    public List<Restaurant> fetchRestaurants(Park park) throws networkErrorException, noItemFoundException, openInputStreamException {
+        RestaurantPlaceIDConnection restaurantPlaceIDConnection = new RestaurantPlaceIDConnection();
+        RestaurantParser restaurantParser = new RestaurantParser(new ApiInputStream(restaurantPlaceIDConnection.search(park)));
+        return restaurantParser.parse();
     }
 
 }
