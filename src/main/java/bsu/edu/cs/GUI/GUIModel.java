@@ -8,7 +8,9 @@ import bsu.edu.cs.InternetConnections.RestaurantPlaceIDConnection;
 import bsu.edu.cs.InternetConnections.RideConnection;
 import bsu.edu.cs.InternetConnections.WeatherConnection;
 import bsu.edu.cs.Parsers.*;
+import com.jayway.jsonpath.JsonPath;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +75,11 @@ public class GUIModel {
         RestaurantPlaceIDConnection restaurantPlaceIDConnection = new RestaurantPlaceIDConnection();
         RestaurantParser restaurantParser = new RestaurantParser(new ApiInputStream(restaurantPlaceIDConnection.search(park)));
         return restaurantParser.parse();
+    }
+
+    public String getPhotoURl(String photoReference) throws IOException {
+       String apiKey = JsonPath.read(Thread.currentThread().getContextClassLoader().getResourceAsStream("ApiKeys.json"),"google");
+       return String.format("https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photoreference=%s&key=%s",photoReference,apiKey);
     }
 
 }
