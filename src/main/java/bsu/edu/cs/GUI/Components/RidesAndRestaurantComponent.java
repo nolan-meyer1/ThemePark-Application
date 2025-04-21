@@ -11,6 +11,7 @@ import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
 import bsu.edu.cs.Utils.UIConstants;
 import javafx.collections.FXCollections;
+import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
@@ -225,7 +226,22 @@ public class RidesAndRestaurantComponent {
                     Label priceLabel = new Label("Price Level: " + restaurant.getPriceLevel());
                     priceLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_PRICE);
 
-                    restaurantBox.getChildren().addAll(nameLabel, ratingLabel, priceLabel);
+                    Button viewReviewsButton = new Button(TextConstants.RIDE_REVIEWS);
+                    viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+
+                    Button viewWebsiteButton = new Button(TextConstants.RIDE_WEBSITE);
+                    viewWebsiteButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+
+                    HBox buttonBox = new HBox(10);
+                    buttonBox.setAlignment(Pos.CENTER);
+                    buttonBox.getChildren().addAll(viewReviewsButton, viewWebsiteButton);
+
+                    HBox.setHgrow(viewReviewsButton, Priority.ALWAYS);
+                    HBox.setHgrow(viewWebsiteButton, Priority.ALWAYS);
+                    viewReviewsButton.setMaxWidth(Double.MAX_VALUE);
+                    viewWebsiteButton.setMaxWidth(Double.MAX_VALUE);
+
+                    restaurantBox.getChildren().addAll(nameLabel, ratingLabel, priceLabel, buttonBox);
                     setGraphic(restaurantBox);
                 }
             }

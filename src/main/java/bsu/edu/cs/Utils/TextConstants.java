@@ -31,4 +31,5 @@ public class TextConstants {
     public static final String NO_REVIEW_FOUND = "Cannot get reviews!";
     public static final String RESTAURANTS_TEXT = "Restaurants";
 
+    public static final String RIDE_WEBSITE = "Website";
 }
