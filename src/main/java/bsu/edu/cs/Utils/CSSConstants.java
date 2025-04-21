@@ -30,4 +30,13 @@ public class CSSConstants {
     public static final String CLASS_LABEL_NO_REVIEWS = ".label-no-reviews";
     public static final String CLASS_SCROLL_PANE = "scroll-pane";
     public static final String CLASS_PROFILE_IMAGE = "profile-image";
+    public static final String CLASS_TOGGLE_BUTTON_CONTAINER = "toggle-button-container";
+    public static final String CLASS_TOGGLE_BUTTON_ACTIVE = "toggle-button-active";
+    public static final String CLASS_SIDEBAR_BUTTON= "side-bar-button";
+    public static final String CLASS_RESTAURANT_ITEM = "restaurant-item";
+    public static final String CLASS_RESTAURANT_NAME = "restaurant-name";
+    public static final String CLASS_RESTAURANT_RATING = "restaurant-rating";
+    public static final String CLASS_RESTAURANT_PRICE = "restaurant-price";
+
+
 }

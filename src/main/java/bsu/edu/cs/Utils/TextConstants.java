@@ -10,7 +10,9 @@ public class TextConstants {
     public static final String SELECT_PARK_TEXT = "Select a Park";
     public static final String RIDE_SUFFIX = " Rides";
     public static final String NO_RIDE_INFO = "No ride information available";
+    public static final String NO_RESTAURANT_INFO = "No restaurant information available";
     public static final String ERROR_RETRIEVING_RIDES = "Error retrieving ride information! Please check internet connection and try again!";
+    public static final String ERROR_RETRIEVING_RESTAURANT = "Error retrieving restaurant information! Please check internet connection and try again!";
     public static final String NETWORK_ERROR = "There was an error! Please check internet connection";
     public static final String LINK_ERROR = "Can't open this link! Please try again!";
     public static final String OPEN_STATUS = " OPENED";
@@ -27,4 +29,6 @@ public class TextConstants {
     public static final String REVIEWS_FOR_TEXT = " Reviews for ";
     public static final String RATING_SUFFIX = " ★";
     public static final String NO_REVIEW_FOUND = "Cannot get reviews!";
+    public static final String RESTAURANTS_TEXT = "Restaurants";
+
 }
