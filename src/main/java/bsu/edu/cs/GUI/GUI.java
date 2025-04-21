@@ -73,7 +73,7 @@ public class GUI extends Application {
         File htmlFile = new File(ResourcePathsConstants.HTML_FILE);
         webView.setPrefHeight(UIConstants.WEBVIEW_HEIGHT);
         webView.getEngine().load(htmlFile.toURI().toString());
-        MapManager mapManager = new MapManager(webView.getEngine(), parksMap);
+        MapManager mapManager = new MapManager(webView.getEngine(), parksMap, controller);
 
         HBox webContainer = new HBox(UIConstants.MEDIUM_SPACING);
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));

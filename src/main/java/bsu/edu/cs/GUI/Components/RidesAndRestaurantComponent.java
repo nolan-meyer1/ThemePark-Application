@@ -117,6 +117,8 @@ public class RidesAndRestaurantComponent {
                     mapManager.addMarker(newValue);
                 } catch (noItemFoundException | networkErrorException | openInputStreamException e) {
                     mapManager.alert();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
             }
         });
@@ -192,8 +194,7 @@ public class RidesAndRestaurantComponent {
         restaurantListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 try {
-                    String imageUrl = controller.getPhotoURl(newValue.getPhotoReferenceID());
-                    mapManager.addRestaurantMarker(newValue, imageUrl);
+                    mapManager.addRestaurantMarker(newValue);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -218,7 +219,7 @@ public class RidesAndRestaurantComponent {
                     nameLabel.setWrapText(true);
                     nameLabel.getStyleClass().addAll(CSSConstants.CLASS_RESTAURANT_NAME, CSSConstants.CLASS_CLICKABLE_LABEL);
 
-                    Label ratingLabel = new Label("Rating: " + String.format("%.1f", restaurant.getRating()));
+                    Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.1f", restaurant.getRating()) + TextConstants.RATING_SUFFIX);
                     ratingLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_RATING);
 
                     Label priceLabel = new Label("Price Level: " + restaurant.getPriceLevel());

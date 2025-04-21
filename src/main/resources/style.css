@@ -355,12 +355,12 @@
 
 .restaurant-rating {
     -fx-font-size: 14px;
-    -fx-text-fill: #4CAF50; /* Green for ratings */
+    -fx-text-fill: #f39c12;
 }
 
 .restaurant-price {
     -fx-font-size: 14px;
-    -fx-text-fill: #FF5722; /* Orange for price info */
+    -fx-text-fill:#271A89;
 }
 
 
