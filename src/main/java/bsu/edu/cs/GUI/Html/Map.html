@@ -113,6 +113,26 @@
             .bindPopup(`<b>${rideName}</b><br>Wait Time: ${convertMinToHours(waitTime)}`)
             .openPopup();
     }
+    function addRestaurantMarker(lat, long, rideName) {
+        /**
+         * @type {string}
+         */
+
+        const markerIcon = L.icon({
+            iconUrl: 'https://i.ibb.co/hxs49HHB/gray-pointer.png',
+            iconSize: [25, 30],
+        });
+
+        if (currentMarker) {
+            map.removeLayer(currentMarker);
+        }
+
+        currentMarker = L.marker([lat, long], {
+            icon: markerIcon
+        }).addTo(map)
+            .bindPopup(`<b>${rideName}</b>`)
+            .openPopup();
+    }
 
     /**
      * Adds a weather overlay to the map using OpenWeatherMap tiles.
@@ -128,8 +148,8 @@
         L.control.layers(baseMaps, overlayMaps).addTo(map);
     }
 
-    setMapView(0,0,1);
-    addWeatherLayer("1b0f4529f6b03a65738f138508968d2b");
+    // setMapView(0,0,1);
+    // addWeatherLayer("1b0f4529f6b03a65738f138508968d2b");
 
 
 </script>
