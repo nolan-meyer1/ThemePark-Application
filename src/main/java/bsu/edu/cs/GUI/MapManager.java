@@ -46,16 +46,17 @@ public class MapManager {
             alert();
         }
     }
-    public void addRestaurantMarker(Restaurant restaurant) {
+    public void addRestaurantMarker(Restaurant restaurant, String imageUrl) {
         Coordinates coordinates = restaurant.getCoordinates();
         if (coordinates != null) {
-            System.out.println(restaurant.getName());
+            String convertedImageUrl = imageUrl.replace("'", "\\'");
             String convertedRideName = restaurant.getName().replace("\\", "\\\\").replace("'", "\\'");
             webEngine.executeScript(String.format(
-                    "addRestaurantMarker(%s, %s, '%s')",
+                    "addRestaurantMarker(%s, %s, '%s', '%s')",
                     coordinates.getLatitude(),
                     coordinates.getLongitude(),
-                    convertedRideName
+                    convertedRideName,
+                    convertedImageUrl
             ));
             webEngine.executeScript(String.format("setMapView(%s, %s, 17)", coordinates.getLatitude(), coordinates.getLongitude()));
         } else {

@@ -16,6 +16,8 @@ import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 import java.util.List;
 
 public class RidesAndRestaurantComponent {
@@ -189,7 +191,12 @@ public class RidesAndRestaurantComponent {
     private void applyRestaurantCellFactory() {
         restaurantListView.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                mapManager.addRestaurantMarker(newValue);
+                try {
+                    String imageUrl = controller.getPhotoURl(newValue.getPhotoReferenceID());
+                    mapManager.addRestaurantMarker(newValue, imageUrl);
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
             }
         });
         restaurantListView.setCellFactory(lv -> new ListCell<>() {
