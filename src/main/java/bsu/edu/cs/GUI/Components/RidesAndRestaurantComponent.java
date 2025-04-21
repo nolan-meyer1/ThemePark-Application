@@ -130,9 +130,11 @@ public class RidesAndRestaurantComponent {
                 } else {
                     getStyleClass().add(CSSConstants.CLASS_BLACK);
                     VBox rideInfoBox = new VBox(10);
-                    rideInfoBox.getStyleClass().add(CSSConstants.CLASS_RIDE_ITEM);
+                    rideInfoBox.getStyleClass().add(CSSConstants.CLASS_SIDEBAR_CONTAINER);
 
                     Label nameLabel = new Label(ride.getName());
+                    nameLabel.setMaxWidth(200);
+                    nameLabel.setWrapText(true);
                     nameLabel.getStyleClass().addAll(CSSConstants.CLASS_RIDE_NAME, CSSConstants.CLASS_CLICKABLE_LABEL);
 
                     VBox detailsBox = new VBox(5);
@@ -200,10 +202,13 @@ public class RidesAndRestaurantComponent {
                     setText(null);
                     setGraphic(null);
                 } else {
-                    VBox restaurantBox = new VBox(10);
-                    restaurantBox.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_ITEM);
+                    getStyleClass().add(CSSConstants.CLASS_BLACK);
+                    VBox restaurantBox = new VBox(UIConstants.PADDING);
+                    restaurantBox.getStyleClass().add(CSSConstants.CLASS_SIDEBAR_CONTAINER);
 
                     Label nameLabel = new Label(restaurant.getName());
+                    nameLabel.setMaxWidth(200);
+                    nameLabel.setWrapText(true);
                     nameLabel.getStyleClass().addAll(CSSConstants.CLASS_RESTAURANT_NAME, CSSConstants.CLASS_CLICKABLE_LABEL);
 
                     Label ratingLabel = new Label("Rating: " + String.format("%.1f", restaurant.getRating()));

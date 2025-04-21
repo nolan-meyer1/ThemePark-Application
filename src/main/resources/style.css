@@ -338,7 +338,7 @@
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 2, 0, 0, 1);
 }
 
-.restaurant-item {
+.side-bar-container {
     -fx-background-color: #fafafa;
     -fx-padding: 12;
     -fx-spacing: 6;
@@ -362,4 +362,7 @@
     -fx-font-size: 14px;
     -fx-text-fill: #FF5722; /* Orange for price info */
 }
+
+
+
 

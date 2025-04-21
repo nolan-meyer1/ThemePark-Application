@@ -15,7 +15,6 @@ public class CSSConstants {
     public static final String CLASS_WAIT_TIME = "wait-time";
     public static final String CLASS_STATUS_OPEN = "status-open";
     public static final String CLASS_STATUS_CLOSED = "status-closed";
-    public static final String CLASS_RIDE_ITEM = "ride-item";
     public static final String CLASS_PARKS_CONTAINER = "parks-container";
     public static final String CLASS_REVIEWS_BUTTON = "reviews-button";
     public static final String CLASS_REVIEW_POPUP = "review-popup";
@@ -33,7 +32,7 @@ public class CSSConstants {
     public static final String CLASS_TOGGLE_BUTTON_CONTAINER = "toggle-button-container";
     public static final String CLASS_TOGGLE_BUTTON_ACTIVE = "toggle-button-active";
     public static final String CLASS_SIDEBAR_BUTTON= "side-bar-button";
-    public static final String CLASS_RESTAURANT_ITEM = "restaurant-item";
+    public static final String CLASS_SIDEBAR_CONTAINER= "side-bar-container";
     public static final String CLASS_RESTAURANT_NAME = "restaurant-name";
     public static final String CLASS_RESTAURANT_RATING = "restaurant-rating";
     public static final String CLASS_RESTAURANT_PRICE = "restaurant-price";

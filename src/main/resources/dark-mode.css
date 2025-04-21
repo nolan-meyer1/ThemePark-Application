@@ -194,7 +194,7 @@
 .rides-list-component {
     -fx-padding: 10;
     -fx-spacing: 10;
-    -fx-background-color: transparent;
+    -fx-background-color: #121212;
     -fx-pref-width: 100%;
     -fx-pref-height: 100%;
     -fx-max-height: Infinity;
@@ -335,4 +335,29 @@
     -fx-text-fill: #ddd;
     -fx-font-size: 14px;
     -fx-cursor: hand;
+}
+
+.side-bar-container {
+    -fx-background-color: #121212;
+    -fx-padding: 12;
+    -fx-spacing: 6;
+    -fx-border-color: #e0e0e0;
+    -fx-border-radius: 8;
+    -fx-background-radius: 8;
+}
+
+.restaurant-name {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-text-fill: #fafafa;
+}
+
+.restaurant-rating {
+    -fx-font-size: 14px;
+    -fx-text-fill: #4CAF50;
+}
+
+.restaurant-price {
+    -fx-font-size: 14px;
+    -fx-text-fill: #FF5722;
 }
