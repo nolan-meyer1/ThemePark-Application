@@ -6,6 +6,8 @@ import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.GUI.SharedState;
+import bsu.edu.cs.InternetConnections.RestaurantWebsiteConnection;
+import bsu.edu.cs.InternetConnections.ReviewConnection;
 import bsu.edu.cs.Parsers.*;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
@@ -14,11 +16,16 @@ import javafx.collections.FXCollections;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
+import java.awt.*;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 public class RidesAndRestaurantComponent {
@@ -223,14 +230,35 @@ public class RidesAndRestaurantComponent {
                     Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.1f", restaurant.getRating()) + TextConstants.RATING_SUFFIX);
                     ratingLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_RATING);
 
-                    Label priceLabel = new Label("Price Level: " + restaurant.getPriceLevel());
+                    Label priceLabel = new Label("Price Level: " + TextConstants.DOLLAR_Sign.repeat(restaurant.getPriceLevel().intValue()));
                     priceLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_PRICE);
 
                     Button viewReviewsButton = new Button(TextConstants.RIDE_REVIEWS);
                     viewReviewsButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
 
+                    viewReviewsButton.setOnAction(event -> {
+                        try {
+                            ParkReviewInformation reviews = getReviewsForRestaurant(restaurant.getPlaceID());
+                            reviewsComponent.showReviewsPopup(restaurant.getName(), reviews);
+                        } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
+                            errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
+                            errorPopUp.showAndWait();
+                        }
+                    });
+
                     Button viewWebsiteButton = new Button(TextConstants.RIDE_WEBSITE);
                     viewWebsiteButton.getStyleClass().add(CSSConstants.CLASS_REVIEWS_BUTTON);
+
+                    viewWebsiteButton.setOnAction(event -> {
+                        try {
+                            String url = fetchWebsite(restaurant.getPlaceID());
+                            Desktop desktop = Desktop.getDesktop();
+                            desktop.browse(new URI(url));
+                        } catch (networkErrorException | openInputStreamException | noItemFoundException| IOException | URISyntaxException e) {
+                            errorPopUp.setContentText(TextConstants.WEBSITE_ERROR);
+                            errorPopUp.showAndWait();
+                        }
+                    });
 
                     HBox buttonBox = new HBox(10);
                     buttonBox.setAlignment(Pos.CENTER);
@@ -251,5 +279,17 @@ public class RidesAndRestaurantComponent {
     private ParkReviewInformation getReviewsForRide(Ride ride, Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
         ReviewRetriever reviewRetriever = new ReviewRetriever();
         return reviewRetriever.getReviewInformation(new RideSearch(ride.getName(), park));
+    }
+
+    private ParkReviewInformation getReviewsForRestaurant(String placeID) throws networkErrorException, openInputStreamException, noItemFoundException {
+        ReviewConnection reviewConnection = new ReviewConnection();
+        ReviewParser reviewParser = new ReviewParser(new ApiInputStream(reviewConnection.search(placeID)));
+        return reviewParser.parse();
+    }
+
+    private String fetchWebsite(String placeID) throws networkErrorException, openInputStreamException, noItemFoundException {
+        RestaurantWebsiteConnection restaurantWebsiteConnection = new RestaurantWebsiteConnection();
+        RestaurantWebsiteParser restaurantWebsiteParser = new RestaurantWebsiteParser(new ApiInputStream(restaurantWebsiteConnection.search(placeID)));
+        return restaurantWebsiteParser.parse();
     }
 }

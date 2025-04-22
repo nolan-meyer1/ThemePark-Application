@@ -30,6 +30,7 @@ public class TextConstants {
     public static final String RATING_SUFFIX = " ★";
     public static final String NO_REVIEW_FOUND = "Cannot get reviews!";
     public static final String RESTAURANTS_TEXT = "Restaurants";
-
     public static final String RIDE_WEBSITE = "Website";
+    public static final String WEBSITE_ERROR = "There was an error! We cannot route you to website!";
+    public static final String DOLLAR_Sign = "$";
 }

@@ -53,11 +53,6 @@ public class GUI extends Application {
         ridesAndRestaurantSidebar.setPadding(new Insets(UIConstants.PADDING));
         ridesAndRestaurantSidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
 
-//        ListView<Ride> ridesList = new ListView<>();
-//        ridesList.getStyleClass().add(CSSConstants.CLASS_RIDES_CONTAINER);
-//
-//        VBox.setVgrow(ridesList, Priority.ALWAYS); // This makes the ridesList stretch to fill the height with the sidebar
-//        ridesAndRestaurantSidebar.getChildren().add(ridesList);
 
         VBox mainContent = new VBox(UIConstants.MEDIUM_SPACING);
         mainContent.setPadding(new Insets(UIConstants.PADDING_LARGE));
