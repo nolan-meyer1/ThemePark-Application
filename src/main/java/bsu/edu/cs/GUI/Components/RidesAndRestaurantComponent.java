@@ -230,7 +230,7 @@ public class RidesAndRestaurantComponent {
                     Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.1f", restaurant.getRating()) + TextConstants.RATING_SUFFIX);
                     ratingLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_RATING);
 
-                    Label priceLabel = new Label("Price Level: " + TextConstants.DOLLAR_Sign.repeat(restaurant.getPriceLevel().intValue()));
+                    Label priceLabel = new Label("Price Level: " + (restaurant.getPriceLevel() != null ? TextConstants.DOLLAR_Sign.repeat(restaurant.getPriceLevel().intValue()) : "Couldn't find price level"));
                     priceLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_PRICE);
 
                     Button viewReviewsButton = new Button(TextConstants.RIDE_REVIEWS);
