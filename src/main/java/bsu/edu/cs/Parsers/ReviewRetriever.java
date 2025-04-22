@@ -3,13 +3,13 @@ package bsu.edu.cs.Parsers;
 import bsu.edu.cs.Exceptions.networkErrorException;
 import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
-import bsu.edu.cs.InternetConnections.PlaceIDConnection;
+import bsu.edu.cs.InternetConnections.ParkPlaceIDConnection;
 import bsu.edu.cs.InternetConnections.ReviewConnection;
 import bsu.edu.cs.InternetConnections.RidePositionConnection;
 
 public class ReviewRetriever {
 
-    private final PlaceIDConnection placeIDConnectionInstance = new PlaceIDConnection();
+    private final ParkPlaceIDConnection placeIDConnectionInstance = new ParkPlaceIDConnection();
     private final ReviewConnection reviewConnectionInstance = new ReviewConnection();
 
     private final RidePositionConnection ridePositionConnectionInstance = new RidePositionConnection();

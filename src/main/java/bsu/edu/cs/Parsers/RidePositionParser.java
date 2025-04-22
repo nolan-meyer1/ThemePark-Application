@@ -20,6 +20,7 @@ public class RidePositionParser extends Parser<Coordinates> {
 
         Double latitude = null;
         Double longitude = null;
+        String photoReferenceID = null;
         Coordinates output = null;
 
         if(!list.isEmpty()) {
@@ -45,8 +46,17 @@ public class RidePositionParser extends Parser<Coordinates> {
                         }
 
                     }
+
+                    if(location.get("photos") != null){
+
+                        JSONArray photos = (JSONArray) location.get("photos");
+                        if(photos.get(0) instanceof LinkedHashMap<?, ?> photoHashMap){
+                            photoReferenceID = (String) photoHashMap.get("photo_reference");
+                        }
+                    }
                 }
-                output = new Coordinates(String.valueOf(latitude), String.valueOf(longitude));
+
+                output = new Coordinates(String.valueOf(latitude), String.valueOf(longitude),photoReferenceID);
             }
         }
 

@@ -49,15 +49,10 @@ public class GUI extends Application {
         Scene scene = new Scene(root, UIConstants.WINDOW_WIDTH, UIConstants.WINDOW_HEIGHT);
         Button toggleThemeButton = themeManager.createThemeToggleButton(scene);
 
-        VBox ridesSidebar = new VBox(UIConstants.MEDIUM_SPACING);
-        ridesSidebar.setPadding(new Insets(UIConstants.PADDING));
-        ridesSidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
+        VBox ridesAndRestaurantSidebar = new VBox(UIConstants.MEDIUM_SPACING);
+        ridesAndRestaurantSidebar.setPadding(new Insets(UIConstants.PADDING));
+        ridesAndRestaurantSidebar.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
 
-        ListView<Ride> ridesList = new ListView<>();
-        ridesList.getStyleClass().add(CSSConstants.CLASS_RIDES_CONTAINER);
-
-        VBox.setVgrow(ridesList, Priority.ALWAYS); // This makes the ridesList stretch to fill the height with the sidebar
-        ridesSidebar.getChildren().add(ridesList);
 
         VBox mainContent = new VBox(UIConstants.MEDIUM_SPACING);
         mainContent.setPadding(new Insets(UIConstants.PADDING_LARGE));
@@ -73,7 +68,7 @@ public class GUI extends Application {
         File htmlFile = new File(ResourcePathsConstants.HTML_FILE);
         webView.setPrefHeight(UIConstants.WEBVIEW_HEIGHT);
         webView.getEngine().load(htmlFile.toURI().toString());
-        MapManager mapManager = new MapManager(webView.getEngine(), parksMap);
+        MapManager mapManager = new MapManager(webView.getEngine(), parksMap, controller);
 
         HBox webContainer = new HBox(UIConstants.MEDIUM_SPACING);
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));
@@ -81,10 +76,10 @@ public class GUI extends Application {
 
         webView.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.8);
 
-        ridesSidebar.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.22);
+        ridesAndRestaurantSidebar.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.22);
 
-        ridesSidebar.setMaxHeight(Double.MAX_VALUE);
-        ridesSidebar.setMinHeight(UIConstants.ZERO_VALUE);
+        ridesAndRestaurantSidebar.setMaxHeight(Double.MAX_VALUE);
+        ridesAndRestaurantSidebar.setMinHeight(UIConstants.ZERO_VALUE);
 
         webContainer.getChildren().add(webView);
 
@@ -99,13 +94,13 @@ public class GUI extends Application {
         weather.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
         weather.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
 
-        ParksListComponent sideBar = new ParksListComponent(reviewsComponent, parksMap, errorPopUp, parkTitle, ridesList, mainContent, weatherComponent, mapManager, viewReviewsButton,sharedState);
+        ParksListComponent sideBar = new ParksListComponent(reviewsComponent, parksMap, errorPopUp, parkTitle, ridesAndRestaurantSidebar, mainContent, weatherComponent, mapManager, viewReviewsButton,sharedState);
 
         mainContent.getChildren().addAll(ridesHeader, weather, webContainer);
 
         root.setLeft(sideBar);
         root.setCenter(mainContent);
-        root.setRight(ridesSidebar);
+        root.setRight(ridesAndRestaurantSidebar);
 
         Image appIcon = new Image(Objects.requireNonNull(getClass().getResourceAsStream(ResourcePathsConstants.APP_ICON_PATH)));
         primaryStage.getIcons().add(appIcon);

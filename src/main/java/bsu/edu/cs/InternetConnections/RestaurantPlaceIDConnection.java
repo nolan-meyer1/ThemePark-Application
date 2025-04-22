@@ -6,7 +6,7 @@ import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class PlaceIDConnection extends InternetConnection<Park>{
+public class RestaurantPlaceIDConnection extends InternetConnection<Park>{
 
     private static final String API_KEY;
 
@@ -22,8 +22,7 @@ public class PlaceIDConnection extends InternetConnection<Park>{
     protected String createRequestUrl(Park park) {
         String urlEncodedParkName = URLEncoder.encode(park.getName(), StandardCharsets.UTF_8);
         urlEncodedParkName = urlEncodedParkName.replace("+","%20");
-        return String.format("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&rankby=distance&type=amusement_park&keyword=%s&key=%s",
+        return String.format("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=%s,%s&rankby=distance&type=restaurant&keyword=%s&key=%s",
                 park.getLatitude(),park.getLongitude(),urlEncodedParkName,API_KEY);
     }
-
 }
