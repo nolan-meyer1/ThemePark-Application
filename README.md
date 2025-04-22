@@ -1,7 +1,7 @@
 # Final Project Team-D
 
 ----------------------------------------------------------------------------
-This is a simple application that allows you to a pick a theme park, and it will display the ride names and wait times! It also will display an interactive map that if you click on a ride in the sidebar it will show that ride's location on the map! Lastly, if you click the see reviews button you will be able to see the review of the park.
+This is a simple application that allows you to pick a theme park, and it will display the ride names and wait times! It also will display an interactive map and if you click on a ride in the sidebar, it will show that ride's location on the map! Lastly, if you click the see reviews button you will be able to see the review of the park.
 <img width="1496" alt="Screenshot 2025-04-01 at 2 56 00 PM" src="https://github.com/user-attachments/assets/620f6fe5-b920-4dbd-9530-a90eca8dccaa" />
 <img width="1501" alt="Screenshot 2025-04-01 at 2 56 18 PM" src="https://github.com/user-attachments/assets/0b97212a-54a5-4700-b973-48bdc9a056ca" />
 <img width="1495" alt="Screenshot 2025-04-01 at 2 56 37 PM" src="https://github.com/user-attachments/assets/c9c6a979-7f56-420c-ace3-8176b477d37b" />
@@ -21,39 +21,39 @@ Replace the content in the quotations with your actual API key for each instance
 ## $${\color{lightgreen}Parsers}$$
 
 ### &#9679; $${\color{lightblue}ApiInputStream}$$ 
-This class is used so that we can have an input stream and open it more than once for parsing if we want to.  
+This class is used so that the program can have an input stream and open it more than once for parsing if desired.  
 
 #### &bull; *openInputStream()*
-When you create in instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
+When creating an instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
 
 
 ### &#9679; $${\color{lightblue}Park}$$ 
-This is what will contain all of the data we have about the parks. Each park object will have the id, the name, country, continent, latitude, longitude, and timezone.  
+This is what will contain all of the data about the parks. Each park object will have the id, name, country, continent, latitude, longitude, and timezone.  
 
 ### &#9679; $${\color{lightblue}ParkParser}$$ 
-This is what will parse the data that is given to use from the api.  
+This is what will parse the data that is given from the API.  
 
 #### &bull; *getQuery()*
-This is method will return a String that contains our JSON path query.
+This method will return a String that contains a JSON path query.
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
 This method takes in a JSONArray. It will then loop through that array and convert each item in that list to a Park object. It will then return it as a HashMap with the park's name as the key, and the value as the Park object.
 
 
 ### &#9679; $${\color{lightblue}Parser}$$ 
-This is an abstract class that will be used for all of our parsers. It also uses generics so we can return whatever type of data that we would like.  
+This is an abstract class that will be used for all of the parsers. It also uses generics so it can return whatever type of data that is needed.  
 
 #### &bull; *parse()*
 This method will call the extract data to get the data, then call the convertRevisionsToList method and return the output. 
 
 #### &bull; *extractData(InputStream inputStreamInstance)*
-This takes in an inputstream as a parameter. It will then read the data into a JSONArray and return it. It uses the query given by getQuery() to extract the data.
+This takes in an inputStream as a parameter. It will then read the data into a JSONArray and return it. It uses the query given by getQuery() to extract the data.
 
 #### &bull; *getQuery()*
-This is method will return a String that contains our JSON path query. It will be overriden by the subclass. 
+This method will return a String that contains our JSON path query. It will be overridden by the subclass. 
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
-This method takes in a JSONArray. This is overriden by the subclass and uses the generic when the instance is created to specify it's return type. 
+This method takes in a JSONArray. This is overridden by the subclass and uses the generic when the instance is created to specify its return type. 
 
 
 ### &#9679; $${\color{lightblue}Ride}$$ 
@@ -63,7 +63,7 @@ This will hold data for rides within a park. Each ride object will contain an id
 This is the class that will parse data from the Ride class for later use.  
 
 #### &bull; *getQuery*
-This returns a string that contains our JSON query like in the Parser class. It will is overriden as well.
+This returns a string that contains the JSON query like in the Parser class. It will be overridden as well.
 
 #### &bull; *convertData*
 This will convert the data from a Linked Hashmap and populate the items into an ArrayList.
@@ -79,14 +79,14 @@ This is what parses the object gotten from the Weather API.
 This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
 
 #### &bull; *convertData(JSONArray list)*
-This method is converts raw JSON weather data into a structured object.
+This method converts raw JSON weather data into a structured object.
 
 
 ### &#9679; $${\color{lightblue}PlaceIDParser}$$ 
-This is what will parse the the place ID.
+This is what will parse the place ID.
 
 #### &bull; *getQuery()*
-This is method will return a String that contains our JSON path query.
+This method will return a String that contains our JSON path query.
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
 This method takes in a JSONArray. It will then parse the data and return the string of the place ID.
@@ -102,13 +102,13 @@ This is what contains all the data we have about the park review. It will contai
 This is what will parse the reviews of the park. 
 
 #### &bull; *getQuery()*
-This is method will return a String that contains our JSON path query.
+This method will return a String that contains our JSON path query.
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
 This method takes in a JSONArray. It will then parse the data and convert it to a ParkReviewInformation object.
 
 ### &#9679; $${\color{lightblue}ReviewRetriever}$$ 
-This class combines the PlaceIDConnection\PlaceIDParser and the ReviewConnection\ReviewParser to get the Place ID and give it to the ReviewConnection. Then the ReviewParser will take what is given from the ReviewConnection and parse out the reviews and return a ParkReviewInformation object.
+This class combines the PlaceIDConnection\PlaceIDParser and the ReviewConnection\ReviewParser to get the Place ID and give it to the ReviewConnection. Then the ReviewParser will take what is given from the ReviewConnection, parse out the reviews, and return a ParkReviewInformation object.
 
 #### &bull; *getReviewInformation(Park park)*
 This method takes in a park object. It will then parse the data and get the reviews for the park.
@@ -121,7 +121,7 @@ This is an object that will hold the ride name we're searching for and the park 
 This is what will parse the ride's position. 
 
 #### &bull; *getQuery()*
-This is method will return a String that contains our JSON path query.
+This method will return a String that contains our JSON path query.
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
 This method takes in a JSONArray. It will then parse the data and convert it to a Coordinates object containing the latitude and longitude.
@@ -132,7 +132,7 @@ This method takes in a JSONArray. It will then parse the data and convert it to 
 ## $${\color{lightgreen}Internet Connections}$$
 
 ### &#9679; $${\color{lightblue}InternetConnection}$$
-This abstract class also uses generics in order to handle what the searchItem is. This will grab us our input stream that we will then parse.  
+This abstract class also uses generics to handle what the searchItem is. This will grab an input stream that will then be parsed.  
 
 #### &bull; *search(T searchItem)*
 This method will be given a search item. It will then call the createURLRequest and give it the search item to get the API endpoint we want to go to. It will then give that URL to getInputStream.
@@ -141,58 +141,58 @@ This method will be given a search item. It will then call the createURLRequest 
 This method takes in a URL. It will then go to that endpoint and grab an input stream and return it.
 
 #### &bull; *createRequestURL(T searchItem)*
-This method will take in a search item that we will then use to build a URL and return it. This will be overriden by the subclass. 
+This method will take in a search item that will then be used to build a URL and return it. This will be overridden by the subclass. 
 
 
 ### &#9679; $${\color{lightblue}ParkConnection}$$
 This class handles the fetching of all the parks from the QueueTimes API.  
 
 #### &bull; *createURLRequest(Park park)*
-This method will still take in a search item, but here we just want to grab the URL. We won't be using the search item for this method, but we will still override it to use the URL we want. 
+This method will still take in a search item, but here it grabs the URL. We won't be using the search item for this method, but it will still be overridden to use the URL desired. 
 
 
 ### &#9679; $${\color{lightblue}RideConnection}$$
-This class extends InternetConnection, and allows us to handle the searchItem as well, but for rides. We override the createRequestURL and use getSearchItem in this class to adjust to different data.  
+This class extends InternetConnection, and allows the program to handle the searchItem as well, but for rides. This overrides the createRequestURL and uses getSearchItem in this class to adjust to different data.  
 
 
 ### &#9679; $${\color{lightblue}WeatherConnection}$$
 This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API.  
 
 #### &bull; loadApiKey()
-This method will load the api key from the required ApiKeys.json file.
+This method will load the API key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(Coordinates latitudeAndLongitude)*
 This method generates the API request URL for retrieving weather data based on geographic coordinates.
 
 
 ### &#9679; $${\color{lightblue}PlaceIDConnection}$$
-This class handles the connection to the Google Places API to find the place ID for the location we're searching for. 
+This class handles the connection to the Google Places API to find the place ID for the location the user is searching for. 
 
 #### &bull; loadApiKey()
-This method will load the api key from the required ApiKeys.json file.
+This method will load the API key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(Park park)*
-This method takes in a Park object as a parameter. It will then extract it's latitude, longitude, and encode the park name to use to form the search URL.
+This method takes in a Park object as a parameter. It will then extract its latitude, longitude, and encode the park name to form the search URL.
 
 
 ### &#9679; $${\color{lightblue}ReviewConnection}$$
 This class class handles the connection to grab the actual reviews.
 
 #### &bull; loadApiKey()
-This method will load the api key from the required ApiKeys.json file.
+This method will load the API key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(String placeID)*
 This method takes in a placeID. It will then create the URL to get reviews from that placeID. 
 
 
 ### &#9679; $${\color{lightblue}RidePositionConnection}$$
-This class class is very similar to the PlaceID/Review Connection as it's using the same API just a different endpoint. It will handle the finding of a ride. 
+This class is very similar to the PlaceID/Review Connection since it is using the same API just a different endpoint. It will handle the finding of a ride. 
 
 #### &bull; loadApiKey()
-This method will load the api key from the required ApiKeys.json file.
+This method will load the API key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(RidePositionSearch searchItem)*
-This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give to the search URL that will return a list of matches ranked by distance where the closest match is the first element.
+This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give the search URL that will return a list of matches ranked by distance where the closest match is the first element.
 
 ----------------------------------------------------------------------------
 
@@ -205,10 +205,10 @@ This class is what will handle all the logic for our GUI.
 This method will fetch the parks using the ParkConnection and ParkParser class. 
 
 #### &bull; *getWaitTimeColor(int waitTime)*
-This takes in the an integer that will be our wait time. It will then return the css style color that we want. 
+This takes in an integer that will be our wait time. It will then return the CSS style color that we want. 
 
 #### &bull; *getRides(int id)*
-This takes in an id was the parameter. It will use the RideConnection and RideParser class to get a list of rides. 
+This takes in an id as the parameter. It will use the RideConnection and RideParser class to get a list of rides. 
 
 #### &bull; *getWeather(String latitude, String longitude)*
 This method takes a string of longitude and latitude. It then uses the WeatherConnection and WeatherParser class to return a Weather object containing all the weather data.
@@ -220,11 +220,11 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 ## $${\color{lightgreen}Error Handling}$$
 
 ### &#9679; $${\color{lightblue}networkErrorException}$$
-This is a custom exception that we wrote. This exception is thrown when a network error occurs. This is handled in the GUI.  
+This is a custom exception. This exception is thrown when a network error occurs. This is handled in the GUI.  
 
 
 ### &#9679; $${\color{lightblue}noItemFoundException}$$
-This is a custom exception happens when the item cannot be found. It is handled inside of the GUI.  
+This is a custom exception that happens when the item cannot be found. It is handled inside of the GUI.  
 
 
 ### &#9679; $${\color{lightblue}openInputStreamException}$$
@@ -248,7 +248,7 @@ This is a custom exception that happens when we cannot open the input stream. Th
 
 ## $${\color{lightgreen}Authors}$$
 * Nolan Meyer
-* Dakota Couhglin
+* Dakota Coughlin
 * Sinclair Nzenwata
 * Chibiuike Anyiam
 
