@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 
-public class ReviewParser extends Parser<ParkReviewInformation>{
+public class ReviewParser extends Parser<ReviewInformation>{
     public ReviewParser(ApiInputStream inputStream) {
         super(inputStream);
     }
@@ -17,9 +17,9 @@ public class ReviewParser extends Parser<ParkReviewInformation>{
     }
 
     @Override
-    protected ParkReviewInformation convertData(JSONArray list) {
+    protected ReviewInformation convertData(JSONArray list) {
 
-        ParkReviewInformation output;
+        ReviewInformation output;
         List<Review> listOfReviews = new ArrayList<>();
         Object reviews = list.get(2);
 
@@ -38,7 +38,7 @@ public class ReviewParser extends Parser<ParkReviewInformation>{
                         (String) convertedReview.get("text")));
             }
 
-            output = new ParkReviewInformation(parkRatingAsDouble,listOfReviews);
+            output = new ReviewInformation(parkRatingAsDouble,listOfReviews);
 
         return output;
     }

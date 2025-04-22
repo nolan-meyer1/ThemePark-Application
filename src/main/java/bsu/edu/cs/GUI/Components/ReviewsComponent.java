@@ -1,7 +1,7 @@
 package bsu.edu.cs.GUI.Components;
 
 import bsu.edu.cs.GUI.SharedState;
-import bsu.edu.cs.Parsers.ParkReviewInformation;
+import bsu.edu.cs.Parsers.ReviewInformation;
 import bsu.edu.cs.Parsers.Review;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.ResourcePathsConstants;
@@ -29,7 +29,7 @@ public class ReviewsComponent {
         this.reviewStage = null;
         this.sharedState = sharedState;
     }
-    public void showReviewsPopup(String parkName, ParkReviewInformation reviewInformation) {
+    public void showReviewsPopup(String parkName, ReviewInformation reviewInformation) {
         reviewStage = new Stage();
         reviewStage.setTitle(TextConstants.REVIEWS_FOR_TEXT + parkName);
 

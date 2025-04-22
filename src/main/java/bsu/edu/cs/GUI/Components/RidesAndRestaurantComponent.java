@@ -170,7 +170,7 @@ public class RidesAndRestaurantComponent {
 
                     viewReviewsButton.setOnAction(event -> {
                         try {
-                            ParkReviewInformation reviews = getReviewsForRide(ride, selectedPark);
+                            ReviewInformation reviews = getReviewsForRide(ride, selectedPark);
                             reviewsComponent.showReviewsPopup(ride.getName(), reviews);
                         } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                             errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
@@ -238,7 +238,7 @@ public class RidesAndRestaurantComponent {
 
                     viewReviewsButton.setOnAction(event -> {
                         try {
-                            ParkReviewInformation reviews = getReviewsForRestaurant(restaurant.getPlaceID());
+                            ReviewInformation reviews = getReviewsForRestaurant(restaurant.getPlaceID());
                             reviewsComponent.showReviewsPopup(restaurant.getName(), reviews);
                         } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                             errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
@@ -276,12 +276,12 @@ public class RidesAndRestaurantComponent {
         });
     }
 
-    private ParkReviewInformation getReviewsForRide(Ride ride, Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+    private ReviewInformation getReviewsForRide(Ride ride, Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
         ReviewRetriever reviewRetriever = new ReviewRetriever();
         return reviewRetriever.getReviewInformation(new RideSearch(ride.getName(), park));
     }
 
-    private ParkReviewInformation getReviewsForRestaurant(String placeID) throws networkErrorException, openInputStreamException, noItemFoundException {
+    private ReviewInformation getReviewsForRestaurant(String placeID) throws networkErrorException, openInputStreamException, noItemFoundException {
         ReviewConnection reviewConnection = new ReviewConnection();
         ReviewParser reviewParser = new ReviewParser(new ApiInputStream(reviewConnection.search(placeID)));
         return reviewParser.parse();

@@ -7,7 +7,7 @@ import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
 import bsu.edu.cs.GUI.SharedState;
 import bsu.edu.cs.Parsers.Park;
-import bsu.edu.cs.Parsers.ParkReviewInformation;
+import bsu.edu.cs.Parsers.ReviewInformation;
 import bsu.edu.cs.Parsers.ReviewRetriever;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
@@ -30,7 +30,7 @@ import java.util.Map;
 
 public class ParksListComponent extends VBox {
     private final ReviewRetriever reviewRetriever = new ReviewRetriever();
-    private ParkReviewInformation reviews;
+    private ReviewInformation reviews;
     private final ListView<String> parksList;
     private final TextField searchBar;
     public ParksListComponent(ReviewsComponent reviewsComponent, Map<String, Park> parksMap, Alert errorPopUp,
@@ -127,7 +127,7 @@ public class ParksListComponent extends VBox {
         });
     }
 
-    private ParkReviewInformation getReviewsForPark(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+    private ReviewInformation getReviewsForPark(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
         return reviewRetriever.getReviewInformation(park);
     }
 }

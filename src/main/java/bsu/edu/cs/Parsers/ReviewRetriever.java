@@ -14,7 +14,7 @@ public class ReviewRetriever {
 
     private final RidePositionConnection ridePositionConnectionInstance = new RidePositionConnection();
 
-    public ParkReviewInformation getReviewInformation(Park park) throws networkErrorException, openInputStreamException, noItemFoundException {
+    public ReviewInformation getReviewInformation(Park park) throws networkErrorException, openInputStreamException, noItemFoundException {
 
         PlaceIDParser placeIDParserInstance = new PlaceIDParser(new ApiInputStream(placeIDConnectionInstance.search(park)));
         String placeID = placeIDParserInstance.parse();
@@ -24,7 +24,7 @@ public class ReviewRetriever {
         return reviewParserInstance.parse();
     }
 
-    public ParkReviewInformation getReviewInformation(RideSearch rideReviewSearch) throws networkErrorException, openInputStreamException, noItemFoundException {
+    public ReviewInformation getReviewInformation(RideSearch rideReviewSearch) throws networkErrorException, openInputStreamException, noItemFoundException {
         //We use the RidePositionConnection class because we can get the placeID from where we grab the RidePosition
         PlaceIDParser placeIDParserInstance = new PlaceIDParser(new ApiInputStream(ridePositionConnectionInstance.search(rideReviewSearch)));
         String placeID = placeIDParserInstance.parse();
