@@ -3,6 +3,7 @@ package bsu.edu.cs.Parsers;
 import net.minidev.json.JSONArray;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -57,7 +58,7 @@ public class RestaurantParser extends Parser<List<Restaurant>>{
                         priceLevel,(String) restaurantHashMap.get("place_id"),photoReferenceID));
             }
         }
-
+        restaurantsList.sort(Comparator.comparing(Restaurant::getName));
         return restaurantsList;
     }
 }
