@@ -16,7 +16,7 @@ In order to run this program you will need to create a file called ApiKeys.json,
   "google": "Your Google Places API (https://developers.google.com/maps/documentation/places/web-service) API key"
 }
 ```
-
+Replace the content in the quotations with your actual API key for each instance.
 
 ## $${\color{lightgreen}Parsers}$$
 
