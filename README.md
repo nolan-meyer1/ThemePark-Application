@@ -56,6 +56,10 @@ This method will return a String that contains a JSON path query.
 This method takes in a JSONArray. It will then loop through that array and convert each item in that list to a Park object. It will then return it as a HashMap with the park's name as the key, and the value as the Park object.
 
 
+### &#9679; $${\color{lightblue}ParkReviewInformation}$$ 
+This is what contains all the data we have about the park review. It will contain a variable that shows how many stars the park is, and it will contain a list of Review objects.
+
+
 ### &#9679; $${\color{lightblue}Parser}$$ 
 This is an abstract class that will be used for all of the parsers. It also uses generics so it can return whatever type of data that is needed.  
 
@@ -109,9 +113,6 @@ This method takes in a JSONArray. It will then parse the data and return the str
 
 ### &#9679; $${\color{lightblue}Review}$$ 
 This is what contains all the data about an individual review. It will show the rating, text, author name, profile picture URL, and relative time description. 
-
-### &#9679; $${\color{lightblue}ParkReviewInformation}$$ 
-This is what contains all the data we have about the park review. It will contain a variable that shows how many stars the park is, and it will contain a list of Review objects.
 
 
 ### &#9679; $${\color{lightblue}ReviewParser}$$ 
