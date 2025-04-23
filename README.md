@@ -169,20 +169,6 @@ This class handles the fetching of all the parks from the QueueTimes API.
 This method will still take in a search item, but here it grabs the URL. We won't be using the search item for this method, but it will still be overridden to use the URL desired. 
 
 
-### &#9679; $${\color{lightblue}RideConnection}$$
-This class extends InternetConnection, and allows the program to handle the searchItem as well, but for rides. This overrides the createRequestURL and uses getSearchItem in this class to adjust to different data.  
-
-
-### &#9679; $${\color{lightblue}WeatherConnection}$$
-This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API.  
-
-#### &bull; loadApiKey()
-This method will load the API key from the required ApiKeys.json file.
-
-#### &bull; *createRequestUrl(Coordinates latitudeAndLongitude)*
-This method generates the API request URL for retrieving weather data based on geographic coordinates.
-
-
 ### &#9679; $${\color{lightblue}PlaceIDConnection}$$
 This class handles the connection to the Google Places API to find the place ID for the location the user is searching for. 
 
@@ -203,6 +189,10 @@ This method will load the API key from the required ApiKeys.json file.
 This method takes in a placeID. It will then create the URL to get reviews from that placeID. 
 
 
+### &#9679; $${\color{lightblue}RideConnection}$$
+This class extends InternetConnection, and allows the program to handle the searchItem as well, but for rides. This overrides the createRequestURL and uses getSearchItem in this class to adjust to different data.  
+
+
 ### &#9679; $${\color{lightblue}RidePositionConnection}$$
 This class is very similar to the PlaceID/Review Connection since it is using the same API just a different endpoint. It will handle the finding of a ride. 
 
@@ -211,6 +201,17 @@ This method will load the API key from the required ApiKeys.json file.
 
 #### &bull; *createRequestUrl(RidePositionSearch searchItem)*
 This method takes in a RidePositionSearch object that contains a Ride name, and a park object. It will then use the ride name and the park's latitude and longitude to give the search URL that will return a list of matches ranked by distance where the closest match is the first element.
+
+
+### &#9679; $${\color{lightblue}WeatherConnection}$$
+This class handles the fetching of all the weather information from the OpenWeatherMap(https://openweathermap.org/) API.  
+
+#### &bull; loadApiKey()
+This method will load the API key from the required ApiKeys.json file.
+
+#### &bull; *createRequestUrl(Coordinates latitudeAndLongitude)*
+This method generates the API request URL for retrieving weather data based on geographic coordinates.
+
 
 ----------------------------------------------------------------------------
 
