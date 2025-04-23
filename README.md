@@ -217,7 +217,7 @@ This method generates the API request URL for retrieving weather data based on g
 
 ## $${\color{lightgreen}GUI}$$
 
-### &#9679; $${\color{lightblue}Controller}$$
+### &#9679; $${\color{lightblue}GUIModel}$$
 This class is what will handle all the logic for our GUI.  
 
 #### &bull; *fetchParks()*
