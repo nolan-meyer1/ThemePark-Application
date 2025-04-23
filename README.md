@@ -23,15 +23,6 @@ Replace the content in the quotations with your actual API key for each instance
 ### &#9679; $${\color{lightblue}ApiInputStream}$$ 
 This class is used so that the program can have an input stream and open it more than once for parsing if desired.  
 
-### &#9679; $${\color{lightblue}Coordinates}$$
-This class gets and returns longitude and latitude values.
-
-#### &bull; getLatitude()
-This method returns the latitude value.
-
-#### &bull; getLongitude()
-This method returns the longitude value.
-
 #### &bull; loadApiKey()
 This method will load the API key from the required ApiKeys.json file.
 
@@ -40,6 +31,16 @@ This method takes in a Park object as a parameter. It will then extract its lati
 
 #### &bull; *openInputStream()*
 When creating an instance of this object you will need to give it an input stream, and it will store the input stream as a byte array. This method will then return that byte array as an input stream. 
+
+
+### &#9679; $${\color{lightblue}Coordinates}$$
+This class gets and returns longitude and latitude values.
+
+#### &bull; getLatitude()
+This method returns the latitude value.
+
+#### &bull; getLongitude()
+This method returns the longitude value.
 
 
 ### &#9679; $${\color{lightblue}Park}$$ 
