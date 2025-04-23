@@ -118,20 +118,6 @@ This returns a string that contains the JSON query like in the Parser class. It 
 #### &bull; *convertData*
 This will convert the data from a Linked Hashmap and populate the items into an ArrayList.
 
-
-### &#9679; $${\color{lightblue}Weather}$$ 
-This is what contains all the data we have about the weather. Each weather object will have the id, name, temperature, feels_like, windSpeed, humidity, and iconID.  
-
-### &#9679; $${\color{lightblue}WeatherParser}$$ 
-This is what parses the object gotten from the Weather API.  
-
-#### &bull; *getQuery*
-This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
-
-#### &bull; *convertData(JSONArray list)*
-This method converts raw JSON weather data into a structured object.
-
-
 ### &#9679; $${\color{lightblue}RidePositionSearch}$$ 
 This is an object that will hold the ride name we're searching for and the park object for the park that should contain the ride. 
 
@@ -144,6 +130,19 @@ This method will return a String that contains our JSON path query.
 
 #### &bull; *conertRevisionsToList(JSONArray list)*
 This method takes in a JSONArray. It will then parse the data and convert it to a Coordinates object containing the latitude and longitude.
+
+
+### &#9679; $${\color{lightblue}Weather}$$ 
+This is what contains all the data we have about the weather. Each weather object will have the id, name, temperature, feels_like, windSpeed, humidity, and iconID.  
+
+### &#9679; $${\color{lightblue}WeatherParser}$$ 
+This is what parses the object gotten from the Weather API.  
+
+#### &bull; *getQuery*
+This method returns a JSONPath query string, that is used to select all elements within the JSON structure.
+
+#### &bull; *convertData(JSONArray list)*
+This method converts raw JSON weather data into a structured object.
 
 
 ----------------------------------------------------------------------------
