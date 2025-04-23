@@ -234,6 +234,12 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 
 ### &#9679; $${\color{lightblue}GUI}$$  
 
+
+### &#9679; $${\color{lightblue}MapManager}$$ 
+
+
+### &#9679; $${\color{lightblue}SharedState}$$ 
+
 ----------------------------------------------------------------------------
 
 ## $${\color{lightgreen}Error Handling}$$
