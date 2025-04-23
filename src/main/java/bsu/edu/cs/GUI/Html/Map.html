@@ -85,9 +85,13 @@
      */
     function addMarker(lat, long, id, rideName, waitTime, isOpen, imageUrl) {
         let icon;
+        var waitTimeColor = getWaitTimeColor(waitTime);
+        var waitTimeText = `Wait Time: ${convertMinToHours(waitTime)}`;
 
         if (!isOpen) {
             icon = 'https://i.ibb.co/hxs49HHB/gray-pointer.png';
+            waitTimeText = "CLOSED"
+            waitTimeColor = getWaitTimeColor(120);
         } else if (waitTime < 45) {
             icon = 'https://i.ibb.co/j9jk7dHL/green-pointer.png';
         } else if (waitTime <= 95) {
@@ -136,8 +140,8 @@
             >
                 ${rideName}
             </div>
-            <div style="color: #555; font-size: 14px;">
-                Wait Time: ${convertMinToHours(waitTime)}
+            <div style="color: ${waitTimeColor}; font-size: 14px;">
+                <strong>${waitTimeText}</strong>
             </div>
         </div>
     `;
@@ -207,25 +211,25 @@
             .openPopup();
     }
 
-
-
-    /**
-     * Adds a weather overlay to the map using OpenWeatherMap tiles.
+     /**
+     * Gets a color for the ride
      *
-     * @param {string} apiKey - Your OpenWeatherMap API key.
+     * @param {number} waitTime - the wait time of the ride.
+     * @returns {string} color - the color that the text for the wait time should be
      */
-    function addWeatherLayer(apiKey) {
-        const rain = L.OWM.rainClassic({showLegend: false, opacity: 0.5, appId: apiKey});
-        const temperature = L.OWM.temperature({showLegend: false, opacity: 0.5, appId: apiKey});
-        const city = L.OWM.current({interval: 15, lang: 'en'});
-        const baseMaps = { "OSM Standard": osm };
-        const overlayMaps = { "Rain": rain, "Temperature": temperature, "Cities": city };
-        L.control.layers(baseMaps, overlayMaps).addTo(map);
-    }
+     function getWaitTimeColor(waitTime){
 
-    // setMapView(0,0,1);
-    // addRestaurantMarker(40.748817, -73.985428, "Empire Diner", "https://picsum.photos/200");
-    // addWeatherLayer("1b0f4529f6b03a65738f138508968d2b");
+        output = "";
+
+        if(waitTime < 45){
+            output = "#28a745"
+        }else if(waitTime <= 90){
+            output = "#ffc107"
+        }else{
+            output = "#dc3545";
+        }
+        return output;
+     }
 
 
 </script>
