@@ -222,9 +222,12 @@ This class is what will handle all the logic for our GUI.
 This method will fetch the parks using the ParkConnection and ParkParser class. 
 
 #### &bull; *getWaitTimeColor(int waitTime)*
-This takes in an integer that will be our wait time. It will then return the CSS style color that we want. 
+This takes in an integer that will be our wait time. It will then return the CSS style color that we want.
 
-#### &bull; *getRides(int id)*
+#### &bull; *convertMinToHours(int minutes)*
+This method converts minutes to hours and returns the result.
+
+#### &bull; *fetchRides(int id)*
 This takes in an id as the parameter. It will use the RideConnection and RideParser class to get a list of rides. 
 
 #### &bull; *getWeather(String latitude, String longitude)*
