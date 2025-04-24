@@ -36,6 +36,6 @@ public class CSSConstants {
     public static final String CLASS_RESTAURANT_NAME = "restaurant-name";
     public static final String CLASS_RESTAURANT_RATING = "restaurant-rating";
     public static final String CLASS_RESTAURANT_PRICE = "restaurant-price";
-
+    public static final String CLASS_RIDES_LIST_COMPONENT = "rides-list-component";
 
 }

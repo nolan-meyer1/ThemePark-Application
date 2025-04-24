@@ -7,7 +7,6 @@
             rel="stylesheet"
             href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
     />
-    <link rel="stylesheet" type="text/css" href="leaflet-openweathermap.css" />
 </head>
 <style>
     #map {
@@ -20,16 +19,14 @@
 </div>
 
 <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"></script>
-<script type="text/javascript" src="leaflet-openweathermap.js"></script>
 
 <script>
     // All the unused functions are being used in the MapManager class
     const map = L.map('map').setView([0, 0], 1);
     //
-    const osm = L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
-
 
     let currentMarker = null;
     /**
@@ -85,8 +82,8 @@
      */
     function addMarker(lat, long, id, rideName, waitTime, isOpen, imageUrl) {
         let icon;
-        var waitTimeColor = getWaitTimeColor(waitTime);
-        var waitTimeText = `Wait Time: ${convertMinToHours(waitTime)}`;
+        let waitTimeColor = getWaitTimeColor(waitTime);
+        let waitTimeText = `Wait Time: ${convertMinToHours(waitTime)}`;
 
         if (!isOpen) {
             icon = 'https://i.ibb.co/hxs49HHB/gray-pointer.png';
@@ -218,9 +215,7 @@
      * @returns {string} color - the color that the text for the wait time should be
      */
      function getWaitTimeColor(waitTime){
-
-        output = "";
-
+        let output;
         if(waitTime < 45){
             output = "#28a745"
         }else if(waitTime <= 90){

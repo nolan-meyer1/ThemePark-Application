@@ -28,7 +28,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.List;
 
-public class RidesAndRestaurantComponent {
+public class  RidesAndRestaurantComponent {
 
     private final GUIModel controller;
     private final MapManager mapManager;
@@ -49,7 +49,7 @@ public class RidesAndRestaurantComponent {
 
     public Node createRidesListComponent() {
         container = new VBox(UIConstants.PADDING);
-        container.getStyleClass().add("rides-list-component");
+        container.getStyleClass().add(CSSConstants.CLASS_RIDES_LIST_COMPONENT);
 
         ridesList = new ListView<>();
         ridesList.getStyleClass().add(CSSConstants.CLASS_RIDES_CONTAINER);
@@ -88,7 +88,7 @@ public class RidesAndRestaurantComponent {
             }
         });
         ridesButton.getStyleClass().add(CSSConstants.CLASS_TOGGLE_BUTTON_ACTIVE);
-        container.getChildren().addAll(buttonContainer, ridesList);  // Default is Rides
+        container.getChildren().addAll(buttonContainer, ridesList);
 
         return container;
     }
@@ -188,14 +188,14 @@ public class RidesAndRestaurantComponent {
     private void loadRestaurants(Park park) {
         try {
             List<Restaurant> restaurantList = controller.fetchRestaurants(park);
-           
+
             if (restaurantList.isEmpty()) {
-                restaurantList.add(new Restaurant(TextConstants.NO_RESTAURANT_INFO, new Coordinates("0", "0"), 0.0,0.0, "", ""));
+                restaurantList.add(new Restaurant(TextConstants.NO_RESTAURANT_INFO, new Coordinates(TextConstants.ZERO_TEXT, TextConstants.ZERO_TEXT), UIConstants.ZERO_DECIMAL_VALUE,UIConstants.ZERO_DECIMAL_VALUE, TextConstants.EMPTY_STRING, TextConstants.EMPTY_STRING));
             }
             restaurantListView.setItems(FXCollections.observableArrayList(restaurantList));
             applyRestaurantCellFactory();
         }catch (networkErrorException | openInputStreamException | noItemFoundException e) {
-            restaurantListView.setItems(FXCollections.observableArrayList(new Restaurant(TextConstants.ERROR_RETRIEVING_RESTAURANT, new Coordinates("0", "0"), 0.0,0.0, "", "")));
+            restaurantListView.setItems(FXCollections.observableArrayList(new Restaurant(TextConstants.ERROR_RETRIEVING_RESTAURANT, new Coordinates(TextConstants.ZERO_TEXT, TextConstants.ZERO_TEXT), UIConstants.ZERO_DECIMAL_VALUE,UIConstants.ZERO_DECIMAL_VALUE, TextConstants.EMPTY_STRING, TextConstants.EMPTY_STRING)));
         }
     }
     private void applyRestaurantCellFactory() {
@@ -212,7 +212,7 @@ public class RidesAndRestaurantComponent {
             @Override
             protected void updateItem(Restaurant restaurant, boolean empty) {
                 super.updateItem(restaurant, empty);
-                setStyle("");
+                setStyle(TextConstants.EMPTY_STRING);
 
                 if (empty || restaurant == null) {
                     setText(null);
@@ -223,14 +223,14 @@ public class RidesAndRestaurantComponent {
                     restaurantBox.getStyleClass().add(CSSConstants.CLASS_SIDEBAR_CONTAINER);
 
                     Label nameLabel = new Label(restaurant.getName());
-                    nameLabel.setMaxWidth(200);
+                    nameLabel.setMaxWidth(UIConstants.NAME_LABEL_WIDTH);
                     nameLabel.setWrapText(true);
                     nameLabel.getStyleClass().addAll(CSSConstants.CLASS_RESTAURANT_NAME, CSSConstants.CLASS_CLICKABLE_LABEL);
 
-                    Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.1f", restaurant.getRating()) + TextConstants.RATING_SUFFIX);
+                    Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format(TextConstants.ONE_DECIMAL_PLACE, restaurant.getRating()) + TextConstants.RATING_SUFFIX);
                     ratingLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_RATING);
 
-                    Label priceLabel = new Label("Price Level: " + (restaurant.getPriceLevel() != null ? TextConstants.DOLLAR_Sign.repeat(restaurant.getPriceLevel().intValue()) : "Couldn't find price level"));
+                    Label priceLabel = new Label(TextConstants.PRICE_TEXT + (restaurant.getPriceLevel() != null ? TextConstants.DOLLAR_Sign.repeat(restaurant.getPriceLevel().intValue()) : TextConstants.NO_PRICE_LEVEL_TEXT));
                     priceLabel.getStyleClass().add(CSSConstants.CLASS_RESTAURANT_PRICE);
 
                     Button viewReviewsButton = new Button(TextConstants.RIDE_REVIEWS);
@@ -260,7 +260,7 @@ public class RidesAndRestaurantComponent {
                         }
                     });
 
-                    HBox buttonBox = new HBox(10);
+                    HBox buttonBox = new HBox(UIConstants.MEDIUM_SPACING);
                     buttonBox.setAlignment(Pos.CENTER);
                     buttonBox.getChildren().addAll(viewReviewsButton, viewWebsiteButton);
 

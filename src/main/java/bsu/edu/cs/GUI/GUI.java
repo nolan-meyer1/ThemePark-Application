@@ -74,9 +74,9 @@ public class GUI extends Application {
         webContainer.setPadding(new Insets(UIConstants.PADDING_LARGE));
         webContainer.setAlignment(Pos.CENTER_LEFT);
 
-        webView.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.8);
+        webView.setPrefWidth(UIConstants.WINDOW_WIDTH * UIConstants.WEBVIEW_WIDTH_RATIO);
 
-        ridesAndRestaurantSidebar.setPrefWidth(UIConstants.WINDOW_WIDTH * 0.22);
+        ridesAndRestaurantSidebar.setPrefWidth(UIConstants.WINDOW_WIDTH * UIConstants.RIDES_AND_RESTAURANTS_SIDEBAR_RATIO);
 
         ridesAndRestaurantSidebar.setMaxHeight(Double.MAX_VALUE);
         ridesAndRestaurantSidebar.setMinHeight(UIConstants.ZERO_VALUE);

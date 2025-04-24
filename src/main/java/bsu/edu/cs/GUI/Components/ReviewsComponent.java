@@ -38,13 +38,12 @@ public class ReviewsComponent {
         mainLayout.setAlignment(Pos.TOP_CENTER);
         mainLayout.getStyleClass().add(CSSConstants.CLASS_REVIEW_POPUP);
 
-        // Header
         Label parkTitleLabel = new Label(parkName + TextConstants.REVIEWS_TEXT);
         parkTitleLabel.getStyleClass().add(CSSConstants.CLASS_LABEL_TITLE);
         mainLayout.getChildren().add(parkTitleLabel);
 
         if (reviewInformation != null && reviewInformation.getListOfReviews() != null && !reviewInformation.getListOfReviews().isEmpty()) {
-            Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format("%.2f", reviewInformation.getRating()) + TextConstants.RATING_SUFFIX);
+            Label ratingLabel = new Label(TextConstants.AVERAGE_RATING_TEXT + String.format(TextConstants.TWO_DECIMAL_PLACE, reviewInformation.getRating()) + TextConstants.RATING_SUFFIX);
             ratingLabel.getStyleClass().add(CSSConstants.CLASS_LABEL_RATING);
             mainLayout.getChildren().add(ratingLabel);
 
