@@ -67,13 +67,8 @@ public class MapManager {
             alert();
         }
     }
-
     public void alert(){
         noRideFound.setContentText(TextConstants.NO_RIDE_FOUND);
         noRideFound.showAndWait();
-    }
-
-    public String getCurrentPark(){
-      return currentPark;
     }
 }

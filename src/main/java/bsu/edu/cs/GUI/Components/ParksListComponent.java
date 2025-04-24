@@ -118,8 +118,8 @@ public class ParksListComponent extends VBox {
                     weatherUpdated.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
                     mainContent.getChildren().add(1, weatherUpdated);
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
-                    errorPopUp.setHeaderText("Error Loading Park Data");
-                    errorPopUp.setContentText("We couldn't load information for this park. Please check your connection or try again later.");
+                    errorPopUp.setHeaderText(TextConstants.ERROR_RETRIEVING_PARKS);
+                    errorPopUp.setContentText(TextConstants.NETWORK_ERROR);
                     errorPopUp.showAndWait();
                 }
                 ridesAndRestaurantComponent.loadSelectedParkData(selectedPark);

@@ -18,4 +18,8 @@ public class UIConstants {
     public static final int REVIEW_MAX_WIDTH = 600;
     public static final int REVIEW_MAX_HEIGHT = 450;
     public static final int WEBVIEW_HEIGHT = 700;
+    public static final int NAME_LABEL_WIDTH = 200;
+    public static final double ZERO_DECIMAL_VALUE = 0.0;
+    public static final double WEBVIEW_WIDTH_RATIO = 0.8;
+    public static final double RIDES_AND_RESTAURANTS_SIDEBAR_RATIO = 0.22;
 }

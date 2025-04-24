@@ -33,4 +33,11 @@ public class TextConstants {
     public static final String RIDE_WEBSITE = "Website";
     public static final String WEBSITE_ERROR = "There was an error! We cannot route you to website!";
     public static final String DOLLAR_Sign = "$";
+    public static final String PRICE_TEXT = "Price Level: ";
+    public static final String ONE_DECIMAL_PLACE = "%.1f";
+    public static final String TWO_DECIMAL_PLACE = "%.2f";
+    public static final String NO_PRICE_LEVEL_TEXT = "Couldn't find price level";
+    public static final String ZERO_TEXT = "0";
+    public static final String EMPTY_STRING = "";
+    public static final String ERROR_RETRIEVING_PARKS = "Error Loading Park Data";
 }
