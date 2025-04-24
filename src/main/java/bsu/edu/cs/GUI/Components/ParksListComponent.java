@@ -5,10 +5,10 @@ import bsu.edu.cs.Exceptions.noItemFoundException;
 import bsu.edu.cs.Exceptions.openInputStreamException;
 import bsu.edu.cs.GUI.GUIModel;
 import bsu.edu.cs.GUI.MapManager;
+import bsu.edu.cs.GUI.SharedState;
 import bsu.edu.cs.Parsers.Park;
-import bsu.edu.cs.Parsers.ParkReviewInformation;
+import bsu.edu.cs.Parsers.ReviewInformation;
 import bsu.edu.cs.Parsers.ReviewRetriever;
-import bsu.edu.cs.Parsers.Ride;
 import bsu.edu.cs.Utils.CSSConstants;
 import bsu.edu.cs.Utils.TextConstants;
 import bsu.edu.cs.Utils.UIConstants;
@@ -20,30 +20,32 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 
 import java.awt.*;
 import java.net.URI;
-import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 public class ParksListComponent extends VBox {
-    private final GUIModel controller = new GUIModel();
-    RidesListComponent ridesListComponent = new RidesListComponent();
     private final ReviewRetriever reviewRetriever = new ReviewRetriever();
-    private ParkReviewInformation reviews;
+    private ReviewInformation reviews;
     private final ListView<String> parksList;
     private final TextField searchBar;
-
     public ParksListComponent(ReviewsComponent reviewsComponent, Map<String, Park> parksMap, Alert errorPopUp,
-                              Label parkTitle, ListView<Ride> ridesListControl, VBox mainContent,
-                              WeatherComponent weatherComponent, MapManager mapManager, Button viewReviewsButton) {
+                              Label parkTitle, VBox ridesAndRestaurantControl, VBox mainContent,
+                              WeatherComponent weatherComponent, MapManager mapManager,
+                              Button viewReviewsButton, SharedState sharedState) {
 
-        this.setSpacing(10);
+        this.setSpacing(UIConstants.PADDING);
         this.setPadding(new Insets(UIConstants.PADDING));
         this.getStyleClass().add(CSSConstants.CLASS_SIDEBAR);
+
+        GUIModel controller = new GUIModel();
+        RidesAndRestaurantComponent ridesAndRestaurantComponent = new RidesAndRestaurantComponent(controller, mapManager, errorPopUp, sharedState);
+        VBox rideToggleSection = (VBox) ridesAndRestaurantComponent.createRidesListComponent();
+        VBox.setVgrow(rideToggleSection, Priority.ALWAYS);
 
         searchBar = new TextField();
         searchBar.setPromptText(TextConstants.SEARCH_PROMPT);
@@ -75,6 +77,7 @@ public class ParksListComponent extends VBox {
                 errorPopUp.showAndWait();
             }
         });
+
         parksList.setCellFactory(lv -> new ListCell<>() {
             @Override
             protected void updateItem(String park, boolean empty) {
@@ -88,54 +91,43 @@ public class ParksListComponent extends VBox {
                 }
             }
         });
-
+        ridesAndRestaurantControl.getChildren().add(rideToggleSection);
         this.getChildren().addAll(searchBar, parksList, contributionLink);
 
-        // Handle Park Selection
         parksList.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null && !newValue.equals(oldValue)) {
-                Park park = parksMap.get(newValue);
+                Park selectedPark = parksMap.get(newValue);
 
                 viewReviewsButton.setOnAction(event -> {
                     try {
-                        reviews = getReviewsForPark(park);
+                        reviews = getReviewsForPark(selectedPark);
                         reviewsComponent.showReviewsPopup(newValue, reviews);
                     } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
                         errorPopUp.setContentText(TextConstants.NO_REVIEW_FOUND);
                         errorPopUp.showAndWait();
                     }
                 });
-
                 parkTitle.setText(newValue + TextConstants.RIDE_SUFFIX);
-                ridesListControl.getItems().clear();
-                List<Ride> rideList;
+
                 try {
-                    mapManager.createMap(park);
-                    rideList = controller.fetchRides(park);
-
-                    if (rideList.isEmpty()) {
-                        rideList.add(new Ride(0, TextConstants.NO_RIDE_INFO, false, 0));
-                    }
-
+                    mapManager.createMap(selectedPark);
                     mainContent.getChildren().remove(1);
-                    HBox weatherUpdated = weatherComponent.createWeatherDisplay(controller.getWeather(park.getLatitude(), park.getLongitude()));
+                    HBox weatherUpdated = weatherComponent.createWeatherDisplay(controller.getWeather(selectedPark.getLatitude(), selectedPark.getLongitude()));
                     weatherUpdated.setMaxWidth(UIConstants.WEATHER_MAX_WIDTH);
                     weatherUpdated.setMaxHeight(UIConstants.WEATHER_MAX_HEIGHT);
                     weatherUpdated.getStyleClass().add(CSSConstants.CLASS_WEATHER_CONTAINER);
                     mainContent.getChildren().add(1, weatherUpdated);
-
                 } catch (networkErrorException | openInputStreamException | noItemFoundException e) {
-                    rideList = new ArrayList<>();
-                    rideList.add(new Ride(0, TextConstants.ERROR_RETRIEVING_RIDES, false, 0));
+                    errorPopUp.setHeaderText("Error Loading Park Data");
+                    errorPopUp.setContentText("We couldn't load information for this park. Please check your connection or try again later.");
+                    errorPopUp.showAndWait();
                 }
-                ridesListControl.setItems(FXCollections.observableArrayList(rideList));
-                ridesListComponent.styleRidesList(ridesListControl, controller, mapManager);
-
+                ridesAndRestaurantComponent.loadSelectedParkData(selectedPark);
             }
         });
     }
 
-    private ParkReviewInformation getReviewsForPark(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
+    private ReviewInformation getReviewsForPark(Park park) throws noItemFoundException, networkErrorException, openInputStreamException {
         return reviewRetriever.getReviewInformation(park);
     }
 }

@@ -1,13 +1,13 @@
 package bsu.edu.cs.InternetConnections;
 
 import bsu.edu.cs.Parsers.Park;
-import bsu.edu.cs.Parsers.RidePositionSearch;
+import bsu.edu.cs.Parsers.RideSearch;
 
 import java.io.IOException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 
-public class RidePositionConnection extends InternetConnection<RidePositionSearch>{
+public class RidePositionConnection extends InternetConnection<RideSearch>{
 
     private static final String API_KEY;
 
@@ -19,7 +19,7 @@ public class RidePositionConnection extends InternetConnection<RidePositionSearc
         }
     }
     @Override
-    protected String createRequestUrl(RidePositionSearch searchItem) {
+    protected String createRequestUrl(RideSearch searchItem) {
         Park park = searchItem.getPark();
         String urlEncodedRideName = URLEncoder.encode(searchItem.getRideName(), StandardCharsets.UTF_8);
         urlEncodedRideName = urlEncodedRideName.replace("+","%20");

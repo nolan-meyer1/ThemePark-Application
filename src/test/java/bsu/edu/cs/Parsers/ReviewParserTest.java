@@ -28,7 +28,7 @@ public class ReviewParserTest {
         assert sampleFile != null;
         ReviewParser reviewParserInstance= new ReviewParser(new ApiInputStream(sampleFile));
         JSONArray parsedData = reviewParserInstance.extractData(new ByteArrayInputStream(reviewParserInstance.inputStreamInstance.inputStream));
-        ParkReviewInformation convertedObject = reviewParserInstance.convertData(parsedData);
+        ReviewInformation convertedObject = reviewParserInstance.convertData(parsedData);
         assertEquals(5,convertedObject.getListOfReviews().size());
     }
 

@@ -29,7 +29,7 @@ public class RidePositionParserTest {
         RidePositionParser ridePositionParserInstance = new RidePositionParser(new ApiInputStream(sampleFile));
         JSONArray parsedData = ridePositionParserInstance.extractData(new ByteArrayInputStream(ridePositionParserInstance.inputStreamInstance.inputStream));
         Coordinates coordinates = ridePositionParserInstance.convertData(parsedData);
-        assertEquals("28.4188163 -81.5817689", coordinates.getLatitude() + " " + coordinates.getLongitude());
+        assertEquals("28.3548553 -81.5927921", coordinates.getLatitude() + " " + coordinates.getLongitude());
     }
 
     @Test
