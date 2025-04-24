@@ -233,12 +233,20 @@ This takes in an id as the parameter. It will use the RideConnection and RidePar
 #### &bull; *getWeather(String latitude, String longitude)*
 This method takes a string of longitude and latitude. It then uses the WeatherConnection and WeatherParser class to return a Weather object containing all the weather data.
 
+
 ### &#9679; $${\color{lightblue}GUI}$$  
 
 #### &bull; *start()*
 This method creates and displays the GUI.
 
+
 ### &#9679; $${\color{lightblue}MapManager}$$ 
+
+#### &bull; *createMap()*
+This method creates the Map.
+
+#### &bull; *addMarker()*
+This method creates and places a marker on the Map.
 
 
 ### &#9679; $${\color{lightblue}SharedState}$$ 
