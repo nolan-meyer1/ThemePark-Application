@@ -251,6 +251,9 @@ This method creates and places a marker on the Map.
 
 ### &#9679; $${\color{lightblue}SharedState}$$ 
 
+#### &bull; *setAtomicBooleanValue()*
+THis method sets the atomic boolean value.
+
 ----------------------------------------------------------------------------
 
 ## $${\color{lightgreen}Error Handling}$$
