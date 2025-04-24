@@ -1,4 +1,4 @@
-# Final Project Team-D
+# Theme Park Application
 
 ----------------------------------------------------------------------------
 This is a simple application that allows you to pick a theme park, and it will display the ride names and wait times! It also will display an interactive map and if you click on a ride/restaurant in the sidebar, it will show that ride/restaurant's location on the map! Lastly, there are a lot of buttons throughout the app to allow you to see reviews of the park,ride,and restaurants.
