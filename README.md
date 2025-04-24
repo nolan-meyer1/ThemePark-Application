@@ -235,6 +235,8 @@ This method takes a string of longitude and latitude. It then uses the WeatherCo
 
 ### &#9679; $${\color{lightblue}GUI}$$  
 
+#### &bull; *start()*
+This method creates and displays the GUI.
 
 ### &#9679; $${\color{lightblue}MapManager}$$ 
 
